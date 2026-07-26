@@ -7,11 +7,11 @@
     "build": "npm run prepare:validation && node esbuild.config.mjs production",
     "dev": "node esbuild.config.mjs",
     "install:dev": "npm run build && node scripts/install-dev.mjs",
-    "lint": "eslint .",
+    "lint": "npm run prepare:validation && eslint .",
     "prepare:validation": "node scripts/build-validation.mjs",
     "smoke": "npm run build && node scripts/smoke-bundle.mjs",
-    "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "test": "npm run prepare:validation && vitest run",
+    "typecheck": "npm run prepare:validation && tsc --noEmit"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
