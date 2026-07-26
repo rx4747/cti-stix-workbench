@@ -24,7 +24,6 @@
     "ajv-formats": "^3.0.1",
     "ajv-formats-draft2019": "^1.6.1",
     "antlr-ng": "^1.0.10",
-    "antlr4ng": "^3.0.16",
     "esbuild": "^0.28.1"
   },
   "packageManager": "npm@11.16.0"

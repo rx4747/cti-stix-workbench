@@ -1,5 +1,5 @@
-import eslint from "@eslint/js";
 import { defineConfig } from "eslint/config";
+import obsidianmd from "eslint-plugin-obsidianmd";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
@@ -12,11 +12,7 @@ export default defineConfig([
       "src/validation/generated/**",
     ],
   },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended.map((config) => ({
-    ...config,
-    files: ["**/*.ts"],
-  })),
+  ...obsidianmd.configs.recommended,
   {
     files: ["**/*.ts"],
     languageOptions: {
@@ -30,6 +26,12 @@ export default defineConfig([
     rules: {
       "@typescript-eslint/consistent-type-imports": "error",
       "@typescript-eslint/no-explicit-any": "error",
+      "obsidianmd/ui/sentence-case": [
+        "warn",
+        {
+          acronyms: ["STIX", "JSON", "UUID"],
+        },
+      ],
       "no-restricted-syntax": [
         "error",
         {

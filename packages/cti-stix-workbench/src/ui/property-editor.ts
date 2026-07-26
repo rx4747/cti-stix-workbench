@@ -18,6 +18,7 @@ import {
   createEditorValues,
   createExtensionValue,
   editableStixDefinition,
+  scalarEditorText,
   updateObjectListItemField,
 } from "./property-editor-state";
 
@@ -34,13 +35,6 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function displayName(name: string): string {
   const words = name.replaceAll("_", " ");
   return words.charAt(0).toUpperCase() + words.slice(1);
-}
-
-function scalarText(value: unknown): string {
-  if (value === null || value === undefined) {
-    return "";
-  }
-  return typeof value === "string" ? value : String(value);
 }
 
 function parseScalar(value: string, dataType: string): unknown {
@@ -60,7 +54,7 @@ function parseScalar(value: string, dataType: string): unknown {
 
 function listText(value: unknown): string {
   return Array.isArray(value)
-    ? value.map((item) => scalarText(item)).join("\n")
+    ? value.map((item) => scalarEditorText(item)).join("\n")
     : "";
 }
 
@@ -234,7 +228,7 @@ export class StixPropertyEditorModal extends Modal {
         for (const option of vocabulary.values) {
           dropdown.addOption(option, option);
         }
-        const current = scalarText(value);
+        const current = scalarEditorText(value);
         if (current !== "" && !vocabulary.values.includes(current)) {
           dropdown.addOption(current, `${current} (invalid)`);
         }
@@ -245,7 +239,7 @@ export class StixPropertyEditorModal extends Modal {
 
     setting.addText((input) => {
       input
-        .setValue(scalarText(value))
+        .setValue(scalarEditorText(value))
         .onChange((next) => {
           onChange(parseScalar(next, field.dataType));
         });
@@ -297,8 +291,8 @@ export class StixPropertyEditorModal extends Modal {
       new Setting(card)
         .setName(`${displayName(field.name)} ${itemIndex + 1}`)
         .addButton((button) => {
+          button.buttonEl.addClass("cti-stix-destructive-button");
           button
-            .setWarning()
             .setButtonText("Remove")
             .onClick(() => {
               const next = items.filter((_, index) => index !== itemIndex);
@@ -467,8 +461,8 @@ export class StixPropertyEditorModal extends Modal {
       new Setting(card)
         .setName(extensionDefinition?.title ?? extensionType)
         .addButton((button) => {
+          button.buttonEl.addClass("cti-stix-destructive-button");
           button
-            .setWarning()
             .setButtonText("Remove")
             .onClick(() => {
               const next = { ...extensions };
@@ -534,6 +528,9 @@ export class StixPropertyEditorModal extends Modal {
           ? "JSON dictionary"
           : this.fieldDescription(field),
       );
+    const defaultDescription = field === undefined
+      ? "JSON dictionary"
+      : this.fieldDescription(field);
     setting.addTextArea((input) => {
       input
         .setValue(JSON.stringify(value, null, 2))
@@ -544,12 +541,14 @@ export class StixPropertyEditorModal extends Modal {
               throw new TypeError("Enter a JSON dictionary.");
             }
             this.invalidJsonPaths.delete(path);
-            setting.setErrorMessage(null);
+            setting.setDesc(defaultDescription);
             onChange(parsed);
           } catch (error) {
             this.invalidJsonPaths.add(path);
-            setting.setErrorMessage(
-              error instanceof Error ? error.message : "Invalid JSON.",
+            setting.setDesc(
+              `Invalid JSON: ${
+                error instanceof Error ? error.message : "Unknown error."
+              }`,
             );
           }
         });
@@ -585,9 +584,12 @@ export class StixPropertyEditorModal extends Modal {
     try {
       await this.app.fileManager.processFrontMatter(
         this.file,
-        (frontmatter) => {
+        (frontmatter: unknown) => {
+          if (!isRecord(frontmatter)) {
+            throw new TypeError("Note frontmatter is not a dictionary.");
+          }
           const next = applyEditorValues(
-            isRecord(frontmatter) ? frontmatter : {},
+            frontmatter,
             this.definition,
             this.values,
           );

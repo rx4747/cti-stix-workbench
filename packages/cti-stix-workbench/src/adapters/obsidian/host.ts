@@ -12,6 +12,10 @@ import type {
 } from "../../core/types";
 import type { ActiveGraphHost } from "./active-graph";
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
 export interface RelationshipIdentityStore {
   load(): Readonly<Record<string, PersistedRelationshipIdentity>>;
   save(
@@ -80,7 +84,12 @@ export class ObsidianActiveGraphHost implements ActiveGraphHost {
     if (file === null) {
       throw new Error(`Cannot persist a STIX ID: ${path} is not a file.`);
     }
-    await this.app.fileManager.processFrontMatter(file, (frontmatter) => {
+    await this.app.fileManager.processFrontMatter(file, (frontmatter: unknown) => {
+      if (!isRecord(frontmatter)) {
+        throw new TypeError(
+          `Cannot persist a STIX ID: ${path} frontmatter is not a dictionary.`,
+        );
+      }
       const current = frontmatter.stix_id;
       const missing =
         current === undefined

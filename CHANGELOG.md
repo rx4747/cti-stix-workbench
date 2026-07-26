@@ -2,6 +2,25 @@
 
 ## Released
 
+## 0.1.1 — 2026-07-26
+
+### Fixed
+
+- Validated untrusted Obsidian frontmatter before reading or writing STIX IDs
+  and property-editor values.
+- Preserved popout-window and mobile compatibility by using realm-local Web
+  Crypto globals.
+- Prevented nested values from appearing as meaningless `[object Object]`
+  scalar text.
+- Replaced deprecated and version-incompatible property-editor UI APIs while
+  retaining Obsidian 1.8.10 support.
+
+### Changed
+
+- Added searchable declarative setting definitions for Obsidian 1.13 and kept
+  the imperative settings tab as a compatibility fallback.
+- Added Obsidian's official ESLint review rules to the committed release gates.
+
 ## 0.1.0 — 2026-07-26
 
 ### Added

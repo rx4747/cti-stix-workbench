@@ -105,7 +105,7 @@ function canonicalize(value: unknown): string {
 
   if (typeof value === "object") {
     const object = value as Record<string, unknown>;
-    const prototype = Object.getPrototypeOf(object);
+    const prototype = Reflect.getPrototypeOf(object);
     if (prototype !== Object.prototype && prototype !== null) {
       throw new TypeError("Canonical JSON accepts plain objects only.");
     }
@@ -181,7 +181,7 @@ function bytesToUuid(bytes: Uint8Array): string {
 async function browserSha1(input: Uint8Array): Promise<Uint8Array> {
   const buffer = new ArrayBuffer(input.byteLength);
   new Uint8Array(buffer).set(input);
-  const digest = await globalThis.crypto.subtle.digest("SHA-1", buffer);
+  const digest = await crypto.subtle.digest("SHA-1", buffer);
   return new Uint8Array(digest);
 }
 

@@ -17,12 +17,19 @@ vi.mock("obsidian", () => ({
   TFolder: FakeTFolder,
 }));
 
+function requireRecord(value: unknown): Record<string, unknown> {
+  if (value === null || typeof value !== "object" || Array.isArray(value)) {
+    throw new TypeError("Test frontmatter must be a record.");
+  }
+  return value as Record<string, unknown>;
+}
+
 const { ObsidianActiveGraphHost } = await import(
   "../src/adapters/obsidian/host"
 );
 
 describe("Obsidian active graph host", () => {
-  let frontmatter: Record<string, unknown>;
+  let frontmatter: unknown;
   let processCount: number;
   const file = new FakeTFile("Objects/Observable.md");
   const app = {
@@ -32,7 +39,7 @@ describe("Obsidian active graph host", () => {
     fileManager: {
       processFrontMatter: async (
         _file: FakeTFile,
-        update: (value: Record<string, unknown>) => void,
+        update: (value: unknown) => void,
       ) => {
         processCount += 1;
         update(frontmatter);
@@ -55,14 +62,14 @@ describe("Obsidian active graph host", () => {
   it.each([undefined, null, ""])(
     "persists over Obsidian's empty stix_id representation %j",
     async (emptyValue) => {
-      frontmatter.stix_id = emptyValue;
+      requireRecord(frontmatter).stix_id = emptyValue;
 
       await host.persistStixId(
         file.path,
         "domain-name--415ecb74-ed6a-5329-8970-b2eeb7774e06",
       );
 
-      expect(frontmatter.stix_id).toBe(
+      expect(requireRecord(frontmatter).stix_id).toBe(
         "domain-name--415ecb74-ed6a-5329-8970-b2eeb7774e06",
       );
       expect(processCount).toBe(1);
@@ -70,7 +77,7 @@ describe("Obsidian active graph host", () => {
   );
 
   it("preserves the same ID and rejects replacement of a real ID", async () => {
-    frontmatter.stix_id =
+    requireRecord(frontmatter).stix_id =
       "domain-name--415ecb74-ed6a-5329-8970-b2eeb7774e06";
     await expect(
       host.persistStixId(
@@ -85,5 +92,16 @@ describe("Obsidian active graph host", () => {
         "domain-name--aaaaaaaa-aaaa-5aaa-8aaa-aaaaaaaaaaaa",
       ),
     ).rejects.toThrow("Cannot replace existing stix_id");
+  });
+
+  it("rejects malformed frontmatter at the Obsidian boundary", async () => {
+    frontmatter = [];
+
+    await expect(
+      host.persistStixId(
+        file.path,
+        "domain-name--415ecb74-ed6a-5329-8970-b2eeb7774e06",
+      ),
+    ).rejects.toThrow("frontmatter is not a dictionary");
   });
 });

@@ -1,23 +1,41 @@
 import {
-  normalizePath,
   PluginSettingTab,
   Setting,
+  type SettingDefinitionItem,
 } from "obsidian";
 
 import type CtiStixWorkbenchPlugin from "./main";
-import { parseWorkbenchSettings } from "./settings";
-
-function validateVaultPath(value: string): string | undefined {
-  const parsed = parseWorkbenchSettings({ exportFolder: value }).exportFolder;
-  if (parsed !== normalizePath(value.trim())) {
-    return "Enter a path inside the vault without parent segments.";
-  }
-  return undefined;
-}
+import {
+  createWorkbenchSettingDefinitions,
+  isWorkbenchSettingKey,
+  validateVaultPath,
+  type WorkbenchSettingKey,
+} from "./settings-definitions";
 
 export class WorkbenchSettingTab extends PluginSettingTab {
   constructor(private readonly workbench: CtiStixWorkbenchPlugin) {
     super(workbench.app, workbench);
+  }
+
+  override getSettingDefinitions(): SettingDefinitionItem<
+    WorkbenchSettingKey
+  >[] {
+    return createWorkbenchSettingDefinitions();
+  }
+
+  override getControlValue(key: string): unknown {
+    return isWorkbenchSettingKey(key)
+      ? this.workbench.settings[key]
+      : undefined;
+  }
+
+  override async setControlValue(
+    key: string,
+    value: unknown,
+  ): Promise<void> {
+    if (isWorkbenchSettingKey(key)) {
+      await this.workbench.updateSettings({ [key]: value });
+    }
   }
 
   override display(): void {
@@ -37,7 +55,6 @@ export class WorkbenchSettingTab extends PluginSettingTab {
         slider
           .setLimits(0, 5, 1)
           .setValue(this.workbench.settings.linkTraversalDepth)
-          .setDynamicTooltip()
           .onChange(async (value) => {
             await this.workbench.updateSettings({
               linkTraversalDepth: value,

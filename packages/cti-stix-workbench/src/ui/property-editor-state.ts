@@ -14,6 +14,20 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
+export function scalarEditorText(value: unknown): string {
+  if (typeof value === "string") {
+    return value;
+  }
+  if (
+    typeof value === "number"
+    || typeof value === "boolean"
+    || typeof value === "bigint"
+  ) {
+    return String(value);
+  }
+  return "";
+}
+
 export function cloneEditorValue(value: unknown): unknown {
   if (Array.isArray(value)) {
     return value.map((item) => cloneEditorValue(item));

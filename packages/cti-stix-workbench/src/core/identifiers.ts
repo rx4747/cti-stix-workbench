@@ -107,7 +107,7 @@ export function createIdentifierService(
   dependencies: IdentifierDependencies = {},
 ): IdentifierService {
   const randomUUID = dependencies.randomUUID
-    ?? (() => globalThis.crypto.randomUUID());
+    ?? (() => crypto.randomUUID());
   const currentDate = dependencies.now ?? (() => new Date());
 
   return Object.freeze({

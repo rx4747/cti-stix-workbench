@@ -44,6 +44,15 @@
   border-top: 1px solid var(--background-modifier-border);
 }
 
+.cti-stix-destructive-button {
+  color: var(--text-error);
+}
+
+.cti-stix-destructive-button:hover {
+  color: var(--text-on-accent);
+  background-color: var(--background-modifier-error);
+}
+
 @media (max-width: 600px) {
   .cti-stix-property-editor-modal {
     width: calc(100vw - 16px);

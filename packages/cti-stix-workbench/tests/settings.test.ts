@@ -4,6 +4,10 @@ import {
   DEFAULT_SETTINGS,
   parseWorkbenchSettings,
 } from "../src/settings";
+import {
+  createWorkbenchSettingDefinitions,
+  validateVaultPath,
+} from "../src/settings-definitions";
 
 describe("parseWorkbenchSettings", () => {
   it("returns safe defaults for untrusted persisted data", () => {
@@ -45,5 +49,33 @@ describe("parseWorkbenchSettings", () => {
     expect(
       parseWorkbenchSettings({ linkTraversalDepth: 1.5 }).linkTraversalDepth,
     ).toBe(DEFAULT_SETTINGS.linkTraversalDepth);
+  });
+});
+
+describe("workbench setting definitions", () => {
+  it("exposes every persisted setting to Obsidian settings search", () => {
+    const definitions = createWorkbenchSettingDefinitions();
+    const keys = definitions.flatMap((definition) =>
+      "control" in definition && definition.control !== undefined
+        ? [definition.control.key]
+        : []
+    );
+
+    expect(keys).toEqual([
+      "exportFolder",
+      "linkTraversalDepth",
+      "includeContextualLinks",
+      "readTypedCanvasEdges",
+      "validationMode",
+      "prettyPrint",
+      "extensionRegistryPath",
+    ]);
+  });
+
+  it("rejects paths outside the vault and accepts normalized local paths", () => {
+    expect(validateVaultPath("../outside")).toContain("inside the vault");
+    expect(validateVaultPath("/absolute")).toContain("inside the vault");
+    expect(validateVaultPath("Exports/Bundles")).toBeUndefined();
+    expect(validateVaultPath(" Exports\\Bundles ")).toBeUndefined();
   });
 });

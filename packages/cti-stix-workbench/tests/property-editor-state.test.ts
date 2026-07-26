@@ -7,6 +7,7 @@ import {
   createEditorValues,
   createExtensionValue,
   editableStixDefinition,
+  scalarEditorText,
   updateObjectListItemField,
 } from "../src/ui/property-editor-state";
 
@@ -205,5 +206,13 @@ describe("STIX property editor state", () => {
         url: "https://example.test/report",
       },
     ]);
+  });
+
+  it("does not stringify nested objects as meaningless scalar text", () => {
+    expect(scalarEditorText("value")).toBe("value");
+    expect(scalarEditorText(42)).toBe("42");
+    expect(scalarEditorText(true)).toBe("true");
+    expect(scalarEditorText({ nested: true })).toBe("");
+    expect(scalarEditorText(["value"])).toBe("");
   });
 });
