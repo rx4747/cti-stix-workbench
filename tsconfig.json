@@ -1,0 +1,7 @@
+{
+  "extends": "./packages/cti-stix-workbench/tsconfig.json",
+  "include": [
+    "packages/cti-stix-workbench/src/**/*.ts",
+    "packages/cti-stix-workbench/tests/**/*.ts"
+  ]
+}

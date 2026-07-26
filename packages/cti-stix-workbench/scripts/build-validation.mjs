@@ -31,6 +31,14 @@ const schemaMapDeclarationOutput = path.join(
   "schema-validator-map.d.mts",
 );
 const antlrOutput = path.join(generatedRoot, "antlr");
+const antlrLexerDeclarationOutput = path.join(
+  antlrOutput,
+  "STIXPatternLexer.d.ts",
+);
+const antlrParserDeclarationOutput = path.join(
+  antlrOutput,
+  "STIXPatternParser.d.ts",
+);
 const runtimeOutputRoot = path.join(packageRoot, "generated");
 const runtimeOutput = path.join(
   runtimeOutputRoot,
@@ -214,6 +222,31 @@ await execFileAsync(
     path.join(vendorRoot, "pattern_grammar/STIXPattern.g4"),
   ],
   { cwd: repositoryRoot },
+);
+await writeFile(
+  antlrLexerDeclarationOutput,
+  `import { Lexer, type CharStream } from "antlr4ng";
+
+export declare class STIXPatternLexer extends Lexer {
+  constructor(input: CharStream);
+}
+`,
+  "utf8",
+);
+await writeFile(
+  antlrParserDeclarationOutput,
+  `import {
+  Parser,
+  type ParserRuleContext,
+  type TokenStream,
+} from "antlr4ng";
+
+export declare class STIXPatternParser extends Parser {
+  constructor(input: TokenStream);
+  pattern(): ParserRuleContext;
+}
+`,
+  "utf8",
 );
 
 const buildResult = await build({

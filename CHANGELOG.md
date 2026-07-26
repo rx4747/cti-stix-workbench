@@ -2,6 +2,22 @@
 
 ## Released
 
+## 0.1.2 — 2026-07-26
+
+### Fixed
+
+- Exposed Obsidian, TypeScript, ESLint, and parser type dependencies at the
+  public repository root so automated source review can resolve the plugin's
+  workspace sources.
+- Added reproducible declaration-only contracts for generated STIX schema and
+  pattern modules while keeping generated runtime code out of source control.
+
+### Changed
+
+- Made lint inspect committed source directly instead of generating validation
+  runtime files first, so clean-checkout type-resolution failures cannot be
+  hidden by the local build.
+
 ## 0.1.1 — 2026-07-26
 
 ### Fixed

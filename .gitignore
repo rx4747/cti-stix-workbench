@@ -6,7 +6,13 @@ coverage/
 
 packages/cti-stix-workbench/main.js
 packages/cti-stix-workbench/generated/
-packages/cti-stix-workbench/src/validation/generated/
+packages/cti-stix-workbench/src/validation/generated/*
+!packages/cti-stix-workbench/src/validation/generated/schema-validator-map.d.mts
+!packages/cti-stix-workbench/src/validation/generated/schema-validators.d.mts
+!packages/cti-stix-workbench/src/validation/generated/antlr/
+packages/cti-stix-workbench/src/validation/generated/antlr/*
+!packages/cti-stix-workbench/src/validation/generated/antlr/STIXPatternLexer.d.ts
+!packages/cti-stix-workbench/src/validation/generated/antlr/STIXPatternParser.d.ts
 
 .obsidian/
 Exports/
