@@ -33,18 +33,6 @@ The GitHub Actions workflow runs the same commands for pushes and pull
 requests. Validation and export use pinned local standards data and make no
 runtime network requests.
 
-## Install manually
-
-Download `main.js`, `manifest.json`, and `styles.css` from the `0.1.0` GitHub
-release. Put them in:
-
-```text
-<vault>/.obsidian/plugins/cti-stix-workbench/
-```
-
-Restart Obsidian and enable **CTI STIX Workbench** under Community plugins.
-Obsidian 1.8.10 or newer is required.
-
 ## v0.1 scope
 
 Version 0.1 provides catalog-driven STIX property editing plus validation and
@@ -54,7 +42,5 @@ family.
 
 ## License
 
-Plugin software and tooling are licensed under Apache License 2.0. Fictional
-test fixtures and documentation are licensed under Creative Commons
-Attribution 4.0 International. Vendored OASIS inputs retain their included
-license.
+Plugin software and tooling are licensed under Apache License 2.0. 
+Vendored OASIS inputs retain their included license.
