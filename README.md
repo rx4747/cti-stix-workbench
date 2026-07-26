@@ -45,6 +45,35 @@ builds the plugin, and creates a draft GitHub release containing only
 `main.js`, `manifest.json`, and `styles.css`. Review its notes and assets before
 publishing it.
 
+## Install manually
+
+Download `main.js`, `manifest.json`, and `styles.css` from the `0.1.0` GitHub
+release. Put them in:
+
+```text
+<vault>/.obsidian/plugins/cti-stix-workbench/
+```
+
+Restart Obsidian and enable **CTI STIX Workbench** under Community plugins.
+Obsidian 1.8.10 or newer is required.
+
+## Use
+
+1. Open a Markdown note containing a supported `stix_type` property.
+2. Run **Edit STIX properties** to edit catalog-defined fields and nested STIX
+   values.
+3. Link STIX notes normally for navigation and Graph view.
+4. Declare exportable relationships with list items such as
+   `- stix:uses [[Target note]]`.
+5. Run **Validate active STIX graph** to check the discovered objects without
+   changing the vault.
+6. Run **Export active STIX graph** to validate, persist missing identifiers,
+   and create a STIX Bundle in the configured `Exports` folder.
+
+The commands appear only for supported typed Markdown notes. The plugin defines
+no default hotkeys. Settings control outgoing-link depth, Canvas relationships,
+strict validation, formatting, and the vault-relative export folder.
+
 ## v0.1 scope
 
 Version 0.1 provides catalog-driven STIX property editing plus validation and

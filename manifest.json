@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "minAppVersion": "1.8.10",
   "description": "Author, validate, investigate, and export local STIX 2.1 intelligence.",
-  "author": "CTI STIX Workbench contributors",
+  "author": "rx4747",
+  "authorUrl": "https://github.com/rx4747",
   "isDesktopOnly": false
 }
