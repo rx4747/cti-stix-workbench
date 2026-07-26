@@ -1,0 +1,90 @@
+{
+  "manifest_version": 1,
+  "standard": "STIX 2.1",
+  "sources": [
+    {
+      "id": "stix-2.1-errata01",
+      "role": "normative-specification",
+      "version": "OASIS Standard incorporating Draft 01 of Errata 01, 2025-04-02",
+      "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.md",
+      "license": {
+        "name": "OASIS IPR Policy Non-Assertion Mode",
+        "url": "https://www.oasis-open.org/policies-guidelines/ipr/"
+      },
+      "pin": {
+        "kind": "sha256",
+        "value": "671e22d5e71cd1717ba80254647a254b4cffb27d0243660e26da6eacd0f1028c"
+      }
+    },
+    {
+      "id": "oasis-stix-json-schemas",
+      "role": "validation-aid",
+      "version": "c4f8d589acf2bdb3783655c89e0ffb6e150006ae",
+      "url": "https://github.com/oasis-open/cti-stix2-json-schemas/archive/c4f8d589acf2bdb3783655c89e0ffb6e150006ae.tar.gz",
+      "license": {
+        "name": "BSD 3-Clause License",
+        "url": "https://github.com/oasis-open/cti-stix2-json-schemas/blob/c4f8d589acf2bdb3783655c89e0ffb6e150006ae/LICENSE"
+      },
+      "pin": {
+        "kind": "sha256",
+        "value": "1f93b6525a7e437508a78109873290f798592f53da359a5c25304cfcdc8c52ee"
+      }
+    },
+    {
+      "id": "oasis-stix-pattern-validator",
+      "role": "validation-aid",
+      "version": "2.1.2 (e1d38d6895339976888fe243782e8da5b574657e)",
+      "url": "https://github.com/oasis-open/cti-pattern-validator/archive/e1d38d6895339976888fe243782e8da5b574657e.tar.gz",
+      "license": {
+        "name": "BSD 3-Clause License",
+        "url": "https://github.com/oasis-open/cti-pattern-validator/blob/e1d38d6895339976888fe243782e8da5b574657e/LICENSE"
+      },
+      "pin": {
+        "kind": "sha256",
+        "value": "6e3042b7928884dfa4d9cc777616c237110f99e51761a2de4ac8b44524451b3d"
+      }
+    },
+    {
+      "id": "obsidian-api",
+      "role": "framework-api",
+      "version": "1.13.1",
+      "url": "https://registry.npmjs.org/obsidian/-/obsidian-1.13.1.tgz",
+      "license": {
+        "name": "MIT License",
+        "url": "https://github.com/obsidianmd/obsidian-api/blob/master/LICENSE"
+      },
+      "pin": {
+        "kind": "sha256",
+        "value": "2717b5d31dd9025a4e1ded1fa8686d199bc16c025352a0f4722a2a874e721292"
+      }
+    },
+    {
+      "id": "obsidian-sample-plugin",
+      "role": "reference-implementation",
+      "version": "23c165fd362d4049330cb3edad6a52914ff2007a",
+      "url": "https://github.com/obsidianmd/obsidian-sample-plugin/archive/23c165fd362d4049330cb3edad6a52914ff2007a.tar.gz",
+      "license": {
+        "name": "MIT License",
+        "url": "https://github.com/obsidianmd/obsidian-sample-plugin/blob/23c165fd362d4049330cb3edad6a52914ff2007a/LICENSE"
+      },
+      "pin": {
+        "kind": "sha256",
+        "value": "9cf32981fe9db746c638cc80996cb821ee7270cfa955bee8de99b705836c4f2e"
+      }
+    },
+    {
+      "id": "json-canvas-1.0",
+      "role": "format-specification",
+      "version": "1.0 (2024-03-11)",
+      "url": "https://jsoncanvas.org/spec/1.0/",
+      "license": {
+        "name": "MIT License",
+        "url": "https://github.com/obsidianmd/jsoncanvas/blob/main/LICENSE"
+      },
+      "pin": {
+        "kind": "sha256",
+        "value": "7d23d4ddbde745140aed26b1ad8b9428f78d09498f819a9f622bc2f2f89e4329"
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+.cti-stix-property-editor-modal {
+  width: min(960px, calc(100vw - 32px));
+}
+
+.cti-stix-property-editor-modal .modal-content {
+  max-height: min(80vh, 900px);
+  overflow-y: auto;
+}
+
+.cti-stix-property-editor-intro,
+.cti-stix-property-editor-note {
+  color: var(--text-muted);
+}
+
+.cti-stix-nested-field {
+  margin-block: var(--size-4-4);
+  padding: var(--size-4-3);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+}
+
+.cti-stix-nested-item {
+  margin-block-start: var(--size-4-3);
+  padding: var(--size-4-3);
+  background: var(--background-secondary);
+  border-radius: var(--radius-s);
+}
+
+.cti-stix-empty-field {
+  margin: var(--size-4-2) 0;
+  color: var(--text-faint);
+}
+
+.cti-stix-json-input {
+  min-width: min(420px, 50vw);
+  font-family: var(--font-monospace);
+}
+
+.cti-stix-property-editor-actions {
+  position: sticky;
+  bottom: 0;
+  padding-block-start: var(--size-4-3);
+  background: var(--background-primary);
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+@media (max-width: 600px) {
+  .cti-stix-property-editor-modal {
+    width: calc(100vw - 16px);
+  }
+
+  .cti-stix-json-input {
+    min-width: 100%;
+  }
+}

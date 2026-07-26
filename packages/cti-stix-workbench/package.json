@@ -1,0 +1,26 @@
+{
+  "name": "cti-stix-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run prepare:validation && node esbuild.config.mjs production",
+    "dev": "node esbuild.config.mjs",
+    "install:dev": "npm run build && node scripts/install-dev.mjs",
+    "lint": "eslint .",
+    "prepare:validation": "node scripts/build-validation.mjs",
+    "smoke": "npm run build && node scripts/smoke-bundle.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.13.3",
+    "eslint": "10.8.0",
+    "globals": "17.7.0",
+    "obsidian": "1.13.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.65.0",
+    "vitest": "4.1.10"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "cti-stix-workbench-repository",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm --workspace packages/cti-stix-workbench run build",
+    "check:release": "npm run package:plugin && node scripts/check-release.mjs",
+    "lint": "npm --workspace packages/cti-stix-workbench run lint",
+    "package:plugin": "npm run build && node scripts/package-release.mjs plugin",
+    "smoke": "npm --workspace packages/cti-stix-workbench run smoke",
+    "test": "npm --workspace packages/cti-stix-workbench run prepare:validation && npm --workspace packages/cti-stix-workbench run test",
+    "typecheck": "npm --workspace packages/cti-stix-workbench run typecheck",
+    "verify:sources": "node scripts/verify-sources.mjs standards/sources.json"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "ajv-formats-draft2019": "^1.6.1",
+    "antlr-ng": "^1.0.10",
+    "antlr4ng": "^3.0.16",
+    "esbuild": "^0.28.1"
+  },
+  "packageManager": "npm@11.16.0"
+}

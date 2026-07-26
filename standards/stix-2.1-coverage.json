@@ -1,0 +1,1710 @@
+{
+  "contract_version": 1,
+  "standard": "STIX 2.1 Errata 01",
+  "generated_from": "scripts/coverage-data.mjs",
+  "rows": [
+    {
+      "id": "attack-pattern",
+      "title": "Attack Pattern",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.1",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "campaign",
+      "title": "Campaign",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.2",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "course-of-action",
+      "title": "Course of Action",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.3",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "grouping",
+      "title": "Grouping",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.4",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "identity",
+      "title": "Identity",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.5",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "incident",
+      "title": "Incident",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.6",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "indicator",
+      "title": "Indicator",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.7",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "infrastructure",
+      "title": "Infrastructure",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.8",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "intrusion-set",
+      "title": "Intrusion Set",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.9",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "location",
+      "title": "Location",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.10",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "malware",
+      "title": "Malware",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.11",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "malware-analysis",
+      "title": "Malware Analysis",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.12",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "note",
+      "title": "Note",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.13",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "observed-data",
+      "title": "Observed Data",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.14",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "opinion",
+      "title": "Opinion",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.15",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "report",
+      "title": "Report",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.16",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "threat-actor",
+      "title": "Threat Actor",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.17",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "tool",
+      "title": "Tool",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.18",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "vulnerability",
+      "title": "Vulnerability",
+      "family": "sdo",
+      "spec_section": "STIX 2.1 Errata 01 §4.19",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "relationship",
+      "title": "Relationship",
+      "family": "sro",
+      "spec_section": "STIX 2.1 Errata 01 §5.1",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "sighting",
+      "title": "Sighting",
+      "family": "sro",
+      "spec_section": "STIX 2.1 Errata 01 §5.2",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "artifact",
+      "title": "Artifact",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.1",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "autonomous-system",
+      "title": "Autonomous System",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.2",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "directory",
+      "title": "Directory",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.3",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "domain-name",
+      "title": "Domain Name",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.4",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "email-addr",
+      "title": "Email Address",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.5",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "email-message",
+      "title": "Email Message",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.6",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "file",
+      "title": "File",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.7",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "ipv4-addr",
+      "title": "IPv4 Address",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.8",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "ipv6-addr",
+      "title": "IPv6 Address",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.9",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "mac-addr",
+      "title": "MAC Address",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.10",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "mutex",
+      "title": "Mutex",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.11",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "network-traffic",
+      "title": "Network Traffic",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.12",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "process",
+      "title": "Process",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.13",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "software",
+      "title": "Software",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.14",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "url",
+      "title": "URL",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.15",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "user-account",
+      "title": "User Account",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.16",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "windows-registry-key",
+      "title": "Windows Registry Key",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.17",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "x509-certificate",
+      "title": "X.509 Certificate",
+      "family": "sco",
+      "spec_section": "STIX 2.1 Errata 01 §6.18",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "language-content",
+      "title": "Language Content",
+      "family": "smo",
+      "spec_section": "STIX 2.1 Errata 01 §7.1",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "marking-definition",
+      "title": "Marking Definition",
+      "family": "smo",
+      "spec_section": "STIX 2.1 Errata 01 §7.2.1",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "extension-definition",
+      "title": "Extension Definition",
+      "family": "smo",
+      "spec_section": "STIX 2.1 Errata 01 §7.3",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "bundle",
+      "title": "Bundle",
+      "family": "bundle",
+      "spec_section": "STIX 2.1 Errata 01 §8",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "planned",
+          "evidence": []
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "archive-ext",
+      "title": "Archive File Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.7.2",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "ntfs-ext",
+      "title": "NTFS File Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.7.3",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "pdf-ext",
+      "title": "PDF File Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.7.4",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "raster-image-ext",
+      "title": "Raster Image File Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.7.5",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "windows-pebinary-ext",
+      "title": "Windows PE Binary Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.7.6",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "http-request-ext",
+      "title": "HTTP Request Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.12.2",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "icmp-ext",
+      "title": "ICMP Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.12.3",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "socket-ext",
+      "title": "Network Socket Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.12.4",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "tcp-ext",
+      "title": "TCP Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.12.5",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "windows-process-ext",
+      "title": "Windows Process Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.13.2",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "windows-service-ext",
+      "title": "Windows Service Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.13.3",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "id": "unix-account-ext",
+      "title": "UNIX Account Extension",
+      "family": "predefined-extension",
+      "spec_section": "STIX 2.1 Errata 01 §6.16.2",
+      "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+      "capabilities": {
+        "template": {
+          "status": "complete",
+          "evidence": [
+            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
+          ]
+        },
+        "authoring": {
+          "status": "planned",
+          "evidence": []
+        },
+        "validation": {
+          "status": "planned",
+          "evidence": []
+        },
+        "mapping": {
+          "status": "planned",
+          "evidence": []
+        },
+        "fixture": {
+          "status": "planned",
+          "evidence": []
+        }
+      }
+    }
+  ]
+}

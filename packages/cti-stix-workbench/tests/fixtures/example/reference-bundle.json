@@ -1,0 +1,122 @@
+{
+  "type": "bundle",
+  "id": "bundle--dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+  "objects": [
+    {
+      "type": "domain-name",
+      "id": "domain-name--415ecb74-ed6a-5329-8970-b2eeb7774e06",
+      "spec_version": "2.1",
+      "value": "signal-lantern.invalid"
+    },
+    {
+      "type": "grouping",
+      "id": "grouping--44444444-4444-4444-8444-444444444444",
+      "spec_version": "2.1",
+      "created_by_ref": "identity--11111111-1111-4111-8111-111111111111",
+      "created": "2026-07-26T09:00:00.000Z",
+      "modified": "2026-07-26T09:00:00.000Z",
+      "confidence": 70,
+      "name": "Example Investigation",
+      "context": "suspicious-activity",
+      "object_refs": [
+        "identity--11111111-1111-4111-8111-111111111111",
+        "threat-actor--22222222-2222-4222-8222-222222222222",
+        "indicator--33333333-3333-4333-8333-333333333333",
+        "domain-name--415ecb74-ed6a-5329-8970-b2eeb7774e06",
+        "ipv4-addr--cec0294c-86c8-52cc-8448-ba43593736df"
+      ],
+      "description": "The fictional Frost Lantern activity cluster is used to demonstrate a complete\nlocal STIX workflow. A fabricated indicator combines\n[[Signal Lantern Domain]] with [[Reserved Address]] and points to the fictional\n[[Frost Lantern]] actor hypothesis. No claim in this note describes real\ninfrastructure or activity."
+    },
+    {
+      "type": "identity",
+      "id": "identity--11111111-1111-4111-8111-111111111111",
+      "spec_version": "2.1",
+      "created": "2026-07-26T09:00:00.000Z",
+      "modified": "2026-07-26T09:00:00.000Z",
+      "confidence": 100,
+      "labels": [
+        "fictional-example"
+      ],
+      "name": "Fictional CTI Team",
+      "identity_class": "organization",
+      "description": "A fictional producer identity used only to demonstrate `created_by_ref`\nresolution in the example investigation."
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--33333333-3333-4333-8333-333333333333",
+      "spec_version": "2.1",
+      "created_by_ref": "identity--11111111-1111-4111-8111-111111111111",
+      "created": "2026-07-26T09:20:00.000Z",
+      "modified": "2026-07-26T09:20:00.000Z",
+      "confidence": 70,
+      "labels": [
+        "fictional-example"
+      ],
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "name": "Frost Lantern Indicator",
+      "pattern": "[(domain-name:value = 'signal-lantern.invalid') AND (ipv4-addr:value = '198.51.100.23')]",
+      "pattern_type": "stix",
+      "pattern_version": "2.1",
+      "valid_from": "2026-07-26T09:20:00.000Z",
+      "description": "A fictional compound indicator joining a reserved domain and documentation-only\nIPv4 address. It is safe test data and must not be treated as a real detection."
+    },
+    {
+      "type": "ipv4-addr",
+      "id": "ipv4-addr--cec0294c-86c8-52cc-8448-ba43593736df",
+      "spec_version": "2.1",
+      "value": "198.51.100.23"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "created": "2026-07-26T12:00:00.000Z",
+      "modified": "2026-07-26T12:00:00.000Z",
+      "relationship_type": "indicates",
+      "source_ref": "indicator--33333333-3333-4333-8333-333333333333",
+      "target_ref": "threat-actor--22222222-2222-4222-8222-222222222222"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "created": "2026-07-26T12:00:00.000Z",
+      "modified": "2026-07-26T12:00:00.000Z",
+      "relationship_type": "based-on",
+      "source_ref": "indicator--33333333-3333-4333-8333-333333333333",
+      "target_ref": "domain-name--415ecb74-ed6a-5329-8970-b2eeb7774e06"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "created": "2026-07-26T12:00:00.000Z",
+      "modified": "2026-07-26T12:00:00.000Z",
+      "relationship_type": "based-on",
+      "source_ref": "indicator--33333333-3333-4333-8333-333333333333",
+      "target_ref": "ipv4-addr--cec0294c-86c8-52cc-8448-ba43593736df"
+    },
+    {
+      "type": "threat-actor",
+      "id": "threat-actor--22222222-2222-4222-8222-222222222222",
+      "spec_version": "2.1",
+      "created_by_ref": "identity--11111111-1111-4111-8111-111111111111",
+      "created": "2026-07-26T09:10:00.000Z",
+      "modified": "2026-07-26T09:10:00.000Z",
+      "confidence": 40,
+      "labels": [
+        "fictional-example"
+      ],
+      "threat_actor_types": [
+        "unknown"
+      ],
+      "name": "Frost Lantern",
+      "aliases": [
+        "Lantern Exercise Cluster"
+      ],
+      "description": "A fictional actor hypothesis used to teach the difference between an observed\nindicator and an analytical attribution."
+    }
+  ]
+}
