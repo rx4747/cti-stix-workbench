@@ -1,0 +1,64 @@
+name: Release Obsidian plugin
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify pinned standards
+        run: npm run verify:sources
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Build and verify release assets
+        run: npm run check:release
+
+      - name: Verify tag and manifest versions
+        run: node scripts/check-release-version.mjs
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+
+      - name: Create draft GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          release_dir="dist/release/cti-stix-workbench-${GITHUB_REF_NAME}"
+          gh release create "${GITHUB_REF_NAME}" \
+            "${release_dir}/main.js" \
+            "${release_dir}/manifest.json" \
+            "${release_dir}/styles.css" \
+            --draft \
+            --title "${GITHUB_REF_NAME}" \
+            --verify-tag

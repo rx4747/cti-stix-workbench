@@ -29,6 +29,22 @@ The GitHub Actions workflow runs the same commands for pushes and pull
 requests. Validation and export use pinned local standards data and make no
 runtime network requests.
 
+## Release
+
+Update `manifest.json`, `versions.json`, the package version, and the changelog
+in one commit. Then create and push an annotated tag that exactly matches the
+manifest version:
+
+```bash
+git tag -a 0.1.0 -m "0.1.0"
+git push origin 0.1.0
+```
+
+The release workflow reruns every quality gate, verifies the version match,
+builds the plugin, and creates a draft GitHub release containing only
+`main.js`, `manifest.json`, and `styles.css`. Review its notes and assets before
+publishing it.
+
 ## v0.1 scope
 
 Version 0.1 provides catalog-driven STIX property editing plus validation and
