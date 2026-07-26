@@ -10,10 +10,6 @@ Workflow templates, generated STIX note templates, analyst folders, example
 notes, and Canvas files belong to the separate vault repository:
 `cti-investigation-vault`.
 
-Templates are not installed or required by the plugin at runtime. This source
-repository contains only small fictional fixtures needed to exercise plugin
-behavior in CI.
-
 ## Development
 
 Requirements: Node.js 22 or newer and npm.
