@@ -98,8 +98,10 @@ body:
     id: diagnostics
     attributes:
       label: Sanitized diagnostics
-      description: Paste relevant console output or a minimal fictional example. Remove paths, identities, indicators, credentials, and private intelligence first.
+      description: Paste relevant diagnostic codes, console output, or a minimal fictional example. Enter `none` if no diagnostics are available. Remove paths, identities, indicators, credentials, and private intelligence first.
       render: text
+    validations:
+      required: true
 
   - type: textarea
     id: additional-context
