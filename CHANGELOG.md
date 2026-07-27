@@ -2,12 +2,14 @@
 
 ## Unreleased
 
+## Released
+
+## 1.0.1 — 2026-07-27
+
 ### Fixed
 
 - Added Obsidian funding metadata so the plugin details page can link directly
   to GitHub Sponsors.
-
-## Released
 
 ## 1.0.0 — 2026-07-27
 
