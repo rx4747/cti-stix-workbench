@@ -1,6 +1,11 @@
 import { validateCompiledBundle } from "../validation/schema-runtime";
 
 import { createDiagnostic, DIAGNOSTIC_CODES, type Diagnostic } from "./diagnostics";
+import type { ExtensionRegistry } from "./extension-registry";
+import {
+  type SemanticValidationMode,
+  validateBundleSemantics,
+} from "./semantic-validator";
 import type { StixBundle } from "./types";
 
 function fieldFromError(
@@ -32,27 +37,27 @@ function notePathForError(
 export function validateBundleSchema(
   bundle: StixBundle,
   notePathById: ReadonlyMap<string, string> = new Map(),
+  mode: SemanticValidationMode = "strict",
+  registry?: ExtensionRegistry,
 ): readonly Diagnostic[] {
   const validated = validateCompiledBundle(bundle);
-  if (validated.valid) {
-    return [];
-  }
-
-  return Object.freeze(
-    validated.errors.map((error) => {
-      const field = fieldFromError(error.instancePath, error.params);
-      const notePath = notePathForError(bundle, error.instancePath, notePathById);
-      return createDiagnostic({
-        authority: "schema",
-        code: DIAGNOSTIC_CODES.schemaInvalid,
-        severity: "error",
-        message:
-          `STIX schema ${error.keyword} validation failed` +
-          (error.message === undefined ? "." : `: ${error.message}.`),
-        objectPath: error.instancePath === "" ? "$" : `$${error.instancePath}`,
-        ...(field === undefined ? {} : { field }),
-        ...(notePath === undefined ? {} : { notePath }),
-      });
-    }),
-  );
+  const schemaDiagnostics = validated.errors.map((error) => {
+    const field = fieldFromError(error.instancePath, error.params);
+    const notePath = notePathForError(bundle, error.instancePath, notePathById);
+    return createDiagnostic({
+      authority: "schema",
+      code: DIAGNOSTIC_CODES.schemaInvalid,
+      severity: "error",
+      message:
+        `STIX schema ${error.keyword} validation failed` +
+        (error.message === undefined ? "." : `: ${error.message}.`),
+      objectPath: error.instancePath === "" ? "$" : `$${error.instancePath}`,
+      ...(field === undefined ? {} : { field }),
+      ...(notePath === undefined ? {} : { notePath }),
+    });
+  });
+  return Object.freeze([
+    ...schemaDiagnostics,
+    ...validateBundleSemantics(bundle, notePathById, mode, registry),
+  ]);
 }

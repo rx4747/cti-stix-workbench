@@ -57,6 +57,7 @@ export interface RelationshipDeclaration {
   readonly sourceNotePath: string;
   readonly relationshipType: string;
   readonly targetLink: string;
+  readonly targetNotePath?: string;
   readonly location?: {
     readonly line: number;
     readonly column: number;

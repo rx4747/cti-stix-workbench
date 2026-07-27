@@ -207,6 +207,7 @@ export function parseMarkdownNote(input: unknown): MarkdownParseResult {
 
   const definition =
     stixType === undefined ? undefined : stixCatalog.getObjectType(stixType);
+  const customType = stixType?.startsWith("x-") === true;
   if (stixType === undefined) {
     diagnostics.push(
       createDiagnostic({
@@ -218,7 +219,7 @@ export function parseMarkdownNote(input: unknown): MarkdownParseResult {
         field: "stix_type",
       }),
     );
-  } else if (definition === undefined) {
+  } else if (definition === undefined && !customType) {
     diagnostics.push(
       createDiagnostic({
         authority: "input",
@@ -246,12 +247,16 @@ export function parseMarkdownNote(input: unknown): MarkdownParseResult {
     if (key === "stix_type" || key === "stix_id" || key === "type" || key === "id") {
       continue;
     }
+    if (customType) {
+      properties[key] = value;
+      continue;
+    }
     if (!allowedFields.has(key) && !key.startsWith("x_")) {
       diagnostics.push(
         createDiagnostic({
           authority: "input",
           code: DIAGNOSTIC_CODES.fieldUnsupported,
-          severity: "warning",
+          severity: "error",
           message: `${key} is not a STIX property for ${stixType ?? "this note"}.`,
           notePath: path,
           field: key,
@@ -265,7 +270,7 @@ export function parseMarkdownNote(input: unknown): MarkdownParseResult {
   const seenSections = new Set<MappedSection["field"]>();
   for (const section of mappedSections(markdown)) {
     const applies =
-      allowedFields.has(section.field) &&
+      (allowedFields.has(section.field) || customType) &&
       (section.field === "description" ||
         (section.field === "content" && stixType === "note") ||
         (section.field === "explanation" && stixType === "opinion"));

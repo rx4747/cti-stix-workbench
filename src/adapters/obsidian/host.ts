@@ -6,6 +6,7 @@ import type {
   UntrustedNoteInput,
 } from "../../core/types";
 import type { ActiveGraphHost } from "./active-graph";
+import type { ScopedGraphHost } from "./scoped-export";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
@@ -29,7 +30,7 @@ function frontmatterWithoutCacheMetadata(
   );
 }
 
-export class ObsidianActiveGraphHost implements ActiveGraphHost {
+export class ObsidianActiveGraphHost implements ActiveGraphHost, ScopedGraphHost {
   constructor(
     private readonly app: App,
     private readonly identityStore: RelationshipIdentityStore,
@@ -67,6 +68,23 @@ export class ObsidianActiveGraphHost implements ActiveGraphHost {
       markdown: await this.app.vault.cachedRead(file),
       links,
     };
+  }
+
+  async readTextFile(path: string): Promise<string | undefined> {
+    const file = this.app.vault.getFileByPath(normalizePath(path));
+    return file === null ? undefined : this.app.vault.cachedRead(file);
+  }
+
+  listMarkdownPaths(folderPath?: string): readonly string[] {
+    const prefix =
+      folderPath === undefined || folderPath === ""
+        ? ""
+        : `${normalizePath(folderPath)}/`;
+    return this.app.vault
+      .getMarkdownFiles()
+      .map((file) => file.path)
+      .filter((path) => prefix === "" || path.startsWith(prefix))
+      .sort();
   }
 
   async persistStixId(path: string, id: string): Promise<void> {

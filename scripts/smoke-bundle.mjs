@@ -32,12 +32,18 @@ class PluginSettingTabStub {
 }
 
 class ModalStub {}
+class FuzzySuggestModalStub extends ModalStub {}
 class TFileStub {}
 class TFolderStub {}
 
 const source = await readFile(new URL("../main.js", import.meta.url), "utf8");
+assert.ok(
+  Buffer.byteLength(source) <= 1_500_000,
+  "Production main.js exceeds the 1.5 MB v1 bundle budget.",
+);
 const module = { exports: {} };
 const obsidian = {
+  FuzzySuggestModal: FuzzySuggestModalStub,
   Modal: ModalStub,
   Notice: class {},
   normalizePath: (value) => value.replaceAll("\\", "/"),
@@ -76,7 +82,18 @@ assert.equal(
 );
 assert.deepEqual(
   plugin.commands.map((command) => command.id),
-  ["edit-stix-properties", "validate-active-stix-graph", "export-active-stix-graph"],
+  [
+    "create-stix-object",
+    "validate-active-stix-canvas",
+    "export-active-stix-canvas",
+    "validate-current-stix-folder",
+    "export-current-stix-folder",
+    "validate-stix-vault",
+    "export-stix-vault",
+    "edit-stix-properties",
+    "validate-active-stix-graph",
+    "export-active-stix-graph",
+  ],
 );
 assert.equal(
   plugin.commands.some((command) => Object.hasOwn(command, "hotkeys")),

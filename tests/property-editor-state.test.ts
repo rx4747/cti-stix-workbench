@@ -19,6 +19,34 @@ function requireValue<T>(value: T | undefined, message: string): T {
 }
 
 describe("STIX property editor state", () => {
+  it("exposes every authorable catalog field without dropping structured values", () => {
+    const definitions = stixCatalog
+      .listObjectTypes()
+      .filter(
+        (definition) =>
+          definition.family !== "bundle" &&
+          definition.family !== "predefined-extension",
+      );
+
+    expect(definitions).toHaveLength(42);
+    for (const definition of definitions) {
+      expect(editableStixDefinition({ stix_type: definition.type })).toBe(definition);
+      const values = createEditorValues(definition, {
+        stix_type: definition.type,
+      });
+      const expectedKeys = definition.fields
+        .map((field) =>
+          field.name === "type"
+            ? "stix_type"
+            : field.name === "id"
+              ? "stix_id"
+              : field.name,
+        )
+        .filter((key) => !["content", "description", "explanation"].includes(key));
+      expect(Object.keys(values).sort(), definition.type).toEqual(expectedKeys.sort());
+    }
+  });
+
   it("creates all external-reference child fields only when an item is added", () => {
     const definition = stixCatalog.getObjectType("indicator");
     const field = requireValue(
@@ -161,15 +189,15 @@ describe("STIX property editor state", () => {
   });
 
   it("creates every field for a predefined extension", () => {
-    const extension = requireValue(
-      stixCatalog.getObjectType("archive-ext"),
-      "Archive extension definition is missing.",
-    );
-
-    expect(createExtensionValue(extension)).toEqual({
-      contains_refs: [],
-      comment: "",
-    });
+    const extensions = stixCatalog
+      .listObjectTypes()
+      .filter((definition) => definition.family === "predefined-extension");
+    expect(extensions).toHaveLength(12);
+    for (const extension of extensions) {
+      expect(Object.keys(createExtensionValue(extension)).sort()).toEqual(
+        extension.fields.map((field) => field.name).sort(),
+      );
+    }
   });
 
   it("enables editing only for authorable standard STIX notes", () => {

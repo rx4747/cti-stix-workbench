@@ -63,6 +63,7 @@ export interface ActiveGraphDependencies extends GraphMapperDependencies {
   readonly validateBundle: (
     bundle: StixBundle,
     notePathById: ReadonlyMap<string, string>,
+    mode: WorkbenchSettings["validationMode"],
   ) => readonly Diagnostic[];
 }
 
@@ -210,6 +211,7 @@ export async function validateActiveGraph(
   const schemaDiagnostics = dependencies.validateBundle(
     mapped.bundle,
     notePathsById(collected.drafts, mapped.identities),
+    settings.validationMode,
   );
   const combined = splitDiagnostics([
     ...parsedDiagnostics.warnings,

@@ -2,6 +2,26 @@
   width: min(960px, calc(100vw - 32px));
 }
 
+.cti-stix-validation-report small,
+.cti-stix-validation-report button {
+  display: block;
+  margin-top: var(--size-2-2);
+}
+
+.cti-stix-validation-success {
+  color: var(--text-success);
+}
+
+.cti-stix-diagnostic-error {
+  border-inline-start: 3px solid var(--text-error);
+  padding-inline-start: var(--size-4-2);
+}
+
+.cti-stix-diagnostic-warning {
+  border-inline-start: 3px solid var(--text-warning);
+  padding-inline-start: var(--size-4-2);
+}
+
 .cti-stix-property-editor-modal .modal-content {
   max-height: min(80vh, 900px);
   overflow-y: auto;
