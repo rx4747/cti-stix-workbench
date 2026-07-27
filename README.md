@@ -25,7 +25,7 @@ your vault to a hosted service.
 - Gives explicit, readable diagnostics instead of silently changing bad data.
 - Persists missing STIX identifiers safely and keeps them stable across exports.
 - Exports collision-safe JSON Bundles to a vault-relative folder.
-- Runs on desktop and mobile without runtime network calls or telemetry.
+- Runs offline on Obsidian desktop without runtime network calls or telemetry.
 
 ## Plugin or vault template?
 
@@ -54,7 +54,7 @@ Restart Obsidian, open **Settings → Community plugins**, and enable
 
 ## A five-minute first run
 
-1. Open a Markdown note with a supported `stix_type` property.
+1. Run **Create STIX object** and search for one of the 42 standalone types.
 2. Run **Edit STIX properties** to fill in catalog-defined fields.
 3. Link related STIX notes with ordinary `[[wiki links]]`.
 4. Add an exportable relationship as a list item, for example:
@@ -69,6 +69,23 @@ Restart Obsidian, open **Settings → Community plugins**, and enable
 Ordinary links remain useful context and appear in Graph view. They become STIX
 Relationships only when you use the explicit `stix:<relationship-type>` form.
 
+Canvas, folder, and whole-vault commands are also available. Canvas semantics
+come only from directed file-node edges labeled `stix:<relationship-type>`.
+Whole-vault export always requires confirmation and can be cancelled before any
+Bundle is written.
+
+## Documentation
+
+- [User guide and fictional tutorial](docs/user-guide.md)
+- [Mapping rules](docs/mapping.md)
+- [Canvas semantics](docs/canvas.md)
+- [Patterns](docs/patterns.md)
+- [Markings](docs/markings.md)
+- [Custom content](docs/extensions.md)
+- [Compatibility and limitations](docs/compatibility.md)
+- [Troubleshooting](docs/troubleshooting.md)
+- [Architecture](docs/architecture.md)
+
 ## Privacy and safety
 
 Validation and export happen on your device. The installed plugin does not call
@@ -77,6 +94,10 @@ remote APIs, load schemas from the internet, or transmit vault contents.
 Keep operational vaults private. Do not commit credentials, customer data,
 restricted intelligence, malware samples, exploit payloads, or personal data to
 a public repository.
+
+Version 1.0 targets Obsidian desktop. Mobile is not declared supported because
+the complete large-scope, modal, and release-install workflow has not passed a
+mobile acceptance gate.
 
 ## Development
 
