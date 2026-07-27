@@ -42,6 +42,15 @@ jobs:
       - name: Verify pinned standards
         run: pnpm verify:sources
 
+      - name: Verify generated catalog and coverage
+        run: pnpm check:generated
+
+      - name: Check documentation links
+        run: pnpm check:docs
+
+      - name: Check runtime security boundary
+        run: pnpm check:security
+
       - name: Test
         run: pnpm test
 
@@ -59,3 +68,6 @@ jobs:
 
       - name: Verify release artifacts
         run: pnpm check:release
+
+      - name: Audit dependencies
+        run: pnpm audit --audit-level high

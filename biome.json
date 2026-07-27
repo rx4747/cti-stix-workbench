@@ -14,6 +14,7 @@
       "!!node_modules",
       "!!src/catalog/stix-2.1.generated.ts",
       "!!src/validation/generated",
+      "!!standards/stix-2.1-coverage.json",
       "!!standards/vendor",
       "!!tests/fixtures"
     ]
