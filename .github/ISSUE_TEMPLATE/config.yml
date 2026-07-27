@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask the community
+    url: https://community.obsidian.md/plugins/cti-stix-workbench
+    about: Ask usage questions and discuss analyst workflows in the Obsidian community.
+  - name: Report a security vulnerability
+    url: https://github.com/rx4747/cti-stix-workbench/security/advisories/new
+    about: Privately report vulnerabilities or sensitive security concerns.

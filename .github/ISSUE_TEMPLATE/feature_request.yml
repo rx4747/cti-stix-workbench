@@ -1,0 +1,83 @@
+name: Feature request
+description: Suggest an improvement to an analyst workflow.
+title: "feat: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the analyst problem first, then the solution you would find useful. Please use fictional examples and preserve the plugin's local-first privacy boundary.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and did not find this request.
+          required: true
+        - label: This request contains no real operational CTI or other sensitive material.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Analyst problem
+      description: What is difficult today, and who does it affect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-workflow
+    attributes:
+      label: Proposed workflow
+      description: Explain how the feature should work from an analyst's point of view.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: Affected area
+      options:
+        - Object creation or editing
+        - Relationships or Canvas
+        - Validation
+        - Export
+        - Templates
+        - Settings or developer experience
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: stix-context
+    attributes:
+      label: STIX context
+      description: List any relevant STIX object types, properties, relationships, or standards requirements.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe any workaround you use today.
+
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Local-first and privacy considerations
+      description: Note whether this would access vault-wide data, local files, or any network service.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: Would you like to contribute this change?
+      options:
+        - "Yes"
+        - "Maybe, with guidance"
+        - "No"
+    validations:
+      required: true
