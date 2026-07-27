@@ -1,7 +1,10 @@
 {
-  "contract_version": 1,
+  "contract_version": 2,
   "standard": "STIX 2.1 Errata 01",
-  "generated_from": "scripts/coverage-data.mjs",
+  "generated_from": [
+    "standards/catalog/stix-2.1.json",
+    "standards/conformance-evidence.json"
+  ],
   "rows": [
     {
       "id": "attack-pattern",
@@ -11,24 +14,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -40,24 +53,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -69,24 +92,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -98,24 +131,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -127,24 +170,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -156,24 +209,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -185,24 +248,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -214,24 +287,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -243,24 +326,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -272,24 +365,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -301,24 +404,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -330,24 +443,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -359,24 +482,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -388,24 +521,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -417,24 +560,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -446,24 +599,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -475,24 +638,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -504,24 +677,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -533,24 +716,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sdo-conformance.test.ts"
+          ]
         }
       }
     },
@@ -562,24 +755,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         }
       }
     },
@@ -591,24 +794,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         }
       }
     },
@@ -620,24 +833,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -649,24 +872,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -678,24 +911,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -707,24 +950,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -736,24 +989,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -765,24 +1028,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -794,24 +1067,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -823,24 +1106,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -852,24 +1145,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -881,24 +1184,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -910,24 +1223,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -939,24 +1262,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -968,24 +1301,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -997,24 +1340,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1026,24 +1379,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1055,24 +1418,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1084,24 +1457,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1113,24 +1496,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1142,24 +1535,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1171,24 +1574,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1200,24 +1613,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sro-meta-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1229,24 +1652,32 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "planned",
-          "evidence": []
+          "status": "not-applicable",
+          "evidence": [],
+          "rationale": "Bundles are export containers, not notes."
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "not-applicable",
+          "evidence": [],
+          "rationale": "Bundles are assembled by the exporter."
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/active-graph-export.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/graph-bundle.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/fixtures/example/reference-bundle.json"
+          ]
         }
       }
     },
@@ -1258,24 +1689,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1287,24 +1728,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1316,24 +1767,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1345,24 +1806,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1374,24 +1845,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1403,24 +1884,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1432,24 +1923,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1461,24 +1962,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1490,24 +2001,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1519,24 +2040,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1548,24 +2079,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     },
@@ -1577,24 +2118,34 @@
       "spec_url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
       "capabilities": {
         "template": {
-          "status": "complete",
-          "evidence": ["tests/templates/full-coverage.test.ts"]
+          "status": "verified",
+          "evidence": [
+            "scripts/generate-catalog.mjs"
+          ]
         },
         "authoring": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/property-editor-state.test.ts"
+          ]
         },
         "validation": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "mapping": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         },
         "fixture": {
-          "status": "planned",
-          "evidence": []
+          "status": "verified",
+          "evidence": [
+            "tests/sco-extension-conformance.test.ts"
+          ]
         }
       }
     }

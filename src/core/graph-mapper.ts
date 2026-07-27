@@ -1,6 +1,7 @@
 import { stixCatalog } from "../catalog/stix-2.1";
 import type { CatalogField, ObjectTypeDefinition } from "../catalog/types";
 import { createDiagnostic, DIAGNOSTIC_CODES, type Diagnostic } from "./diagnostics";
+import { isCustomObjectType } from "./extension-registry";
 import { createIdentifierService, validateStixIdentifier } from "./identifiers";
 import { canonicalizeJson, createDeterministicScoId } from "./sco-id";
 import type {
@@ -38,6 +39,21 @@ interface AssignedDraft {
   readonly draft: NormalizedStixDraft;
   readonly definition: ObjectTypeDefinition;
   readonly id: string;
+}
+
+function customDefinition(type: string): ObjectTypeDefinition {
+  return {
+    type,
+    title: type,
+    family: "sdo",
+    description: "Locally registered custom STIX object type.",
+    fields: [],
+    citation: {
+      section: "STIX 2.1 §11.2",
+      url: "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html",
+    },
+    schemaSource: "local-extension-registry",
+  };
 }
 
 interface MappingContext {
@@ -485,7 +501,10 @@ async function assignDrafts(
       );
       continue;
     }
-    const definition = stixCatalog.getObjectType(type);
+    const catalogDefinition = stixCatalog.getObjectType(type);
+    const definition =
+      catalogDefinition ??
+      (isCustomObjectType(type) ? customDefinition(type) : undefined);
     if (definition === undefined || !AUTHORABLE_FAMILIES.has(definition.family)) {
       diagnostics.push(
         mappingDiagnostic(
@@ -702,14 +721,17 @@ function mapExtensions(
 }
 
 function targetIdForRelationship(
-  declarationTarget: string,
+  declaration: RelationshipDeclaration,
   source: AssignedDraft,
   assignedByPath: ReadonlyMap<string, AssignedDraft>,
 ): string | undefined {
+  if (declaration.targetNotePath !== undefined) {
+    return assignedByPath.get(declaration.targetNotePath)?.id;
+  }
   const link = source.draft.links.find(
     (candidate) =>
       candidate.targetPath !== undefined &&
-      normalizeWikiTarget(candidate.raw) === declarationTarget,
+      normalizeWikiTarget(candidate.raw) === declaration.targetLink,
   );
   return link?.targetPath === undefined
     ? undefined
@@ -805,11 +827,7 @@ export async function mapGraphToBundle(
       );
       continue;
     }
-    const targetId = targetIdForRelationship(
-      declaration.targetLink,
-      source,
-      assignedByPath,
-    );
+    const targetId = targetIdForRelationship(declaration, source, assignedByPath);
     if (targetId === undefined) {
       diagnostics.push(
         mappingDiagnostic(

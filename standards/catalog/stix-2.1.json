@@ -1,7 +1,4 @@
-// GENERATED FILE. Do not edit directly.
-import type { StixCatalogData } from "./types";
-
-export const STIX_2_1_CATALOG_DATA = {
+{
   "catalogVersion": 1,
   "standard": "STIX 2.1",
   "conformanceBaseline": "Errata 01",
@@ -27,9 +24,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -45,9 +40,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -131,9 +124,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -160,9 +151,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -238,9 +227,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -256,9 +243,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -342,9 +327,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -371,9 +354,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -447,9 +428,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -465,9 +444,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -551,9 +528,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -580,9 +555,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -632,9 +605,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -650,9 +621,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -736,9 +705,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -765,9 +732,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -803,9 +768,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The STIX Objects (SDOs and SROs) that  are referred to by this Grouping.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -835,9 +798,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -853,9 +814,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -939,9 +898,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -968,9 +925,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -1097,9 +1052,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -1115,9 +1068,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -1201,9 +1152,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -1230,9 +1179,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -1282,9 +1229,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -1300,9 +1245,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -1386,9 +1329,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -1415,9 +1356,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -1536,9 +1475,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -1554,9 +1491,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -1640,9 +1575,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -1669,9 +1602,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -1782,9 +1713,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -1800,9 +1729,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -1886,9 +1813,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -1915,9 +1840,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -2053,9 +1976,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -2071,9 +1992,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2157,9 +2076,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2186,9 +2103,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -2292,9 +2207,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -2310,9 +2223,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2396,9 +2307,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2425,9 +2334,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -2463,9 +2370,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The operating systems that the malware family or malware instance is executable on.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2568,9 +2473,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The sample_refs property specifies a list of identifiers of the SCO file or artifact objects associated with this malware instance(s) or family.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2677,9 +2580,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -2695,9 +2596,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2781,9 +2680,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2810,9 +2707,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -2896,9 +2791,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "A description of the virtual machine environment used to host the guest operating system (if applicable) that was used for the dynamic analysis of the malware instance or family.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2908,9 +2801,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The operating system that was used to perform the dynamic analysis.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2920,9 +2811,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Any non-standard software installed on the operating system used for the dynamic analysis of the malware instance or family.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2932,9 +2821,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of STIX objects that were captured during the analysis process.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -2944,9 +2831,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Refers to the object this analysis was performed against.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -2976,9 +2861,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -2994,9 +2877,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3080,9 +2961,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3109,9 +2988,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -3147,9 +3024,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The STIX Objects (SDOs and SROs) that the note is being applied to.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -3179,9 +3054,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -3197,9 +3070,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3283,9 +3154,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3312,9 +3181,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -3356,9 +3223,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "A list of SCOs and SROs representing the observation.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -3388,9 +3253,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -3406,9 +3269,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3492,9 +3353,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3521,9 +3380,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -3553,9 +3410,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The STIX Objects (SDOs and SROs) that the opinion is being applied to.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3602,9 +3457,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -3620,9 +3473,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3706,9 +3557,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3735,9 +3584,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -3779,9 +3626,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the STIX Objects that are referred to by this Report.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -3811,9 +3656,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -3829,9 +3672,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3915,9 +3756,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -3944,9 +3783,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -4166,9 +4003,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -4184,9 +4019,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4270,9 +4103,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4299,9 +4130,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -4403,9 +4232,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -4421,9 +4248,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4507,9 +4332,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4536,9 +4359,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -4588,9 +4409,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -4606,9 +4425,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4692,9 +4509,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4721,9 +4536,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -4753,9 +4566,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the source (from) object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4765,9 +4576,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the target (to) object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4809,9 +4618,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -4827,9 +4634,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4913,9 +4718,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4942,9 +4745,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -4986,9 +4787,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "An ID reference to the object that has been sighted.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -4998,9 +4797,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "A list of ID references to the Observed Data objects that contain the raw cyber data for this Sighting.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5010,9 +4807,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "A list of ID references to the Identity or Location objects describing the entities or types of entities that saw the sighting.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5048,9 +4843,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -5060,9 +4853,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5089,9 +4880,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -5156,10 +4945,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/artifact.json",
-      "idContributingProperties": [
-        "hashes",
-        "payload_bin"
-      ]
+      "idContributingProperties": ["hashes", "payload_bin"]
     },
     {
       "type": "autonomous-system",
@@ -5181,9 +4967,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -5193,9 +4977,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5222,9 +5004,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -5271,9 +5051,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/autonomous-system.json",
-      "idContributingProperties": [
-        "number"
-      ]
+      "idContributingProperties": ["number"]
     },
     {
       "type": "directory",
@@ -5295,9 +5073,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -5307,9 +5083,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5336,9 +5110,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -5398,9 +5170,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies a list of references to other File and/or Directory Objects contained within the directory.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -5409,9 +5179,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/directory.json",
-      "idContributingProperties": [
-        "path"
-      ]
+      "idContributingProperties": ["path"]
     },
     {
       "type": "domain-name",
@@ -5433,9 +5201,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -5445,9 +5211,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5474,9 +5238,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -5512,9 +5274,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies a list of references to one or more IP addresses or domain names that the domain name resolves to.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -5523,9 +5283,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/domain-name.json",
-      "idContributingProperties": [
-        "value"
-      ]
+      "idContributingProperties": ["value"]
     },
     {
       "type": "email-addr",
@@ -5547,9 +5305,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -5559,9 +5315,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5588,9 +5342,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -5632,9 +5384,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the user account that the email address belongs to, as a reference to a User Account Object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -5643,9 +5393,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/email-addr.json",
-      "idContributingProperties": [
-        "value"
-      ]
+      "idContributingProperties": ["value"]
     },
     {
       "type": "email-message",
@@ -5667,9 +5415,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -5679,9 +5425,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5708,9 +5452,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -5752,9 +5494,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the value of the 'From:' header of the email message.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5764,9 +5504,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the value of the 'From' field of the email message.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5776,9 +5514,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the mailboxes that are 'To:' recipients of the email message.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5788,9 +5524,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the mailboxes that are 'CC:' recipients of the email message.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5800,9 +5534,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the mailboxes that are 'BCC:' recipients of the email message.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5836,9 +5568,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the raw binary contents of the email message, including both the headers and body, as a reference to an Artifact Object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5877,9 +5607,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the contents of non-textual MIME parts, that is those whose content_type does not start with text/, as a reference to an Artifact Object or File Object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -5902,11 +5630,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/email-message.json",
-      "idContributingProperties": [
-        "from_ref",
-        "subject",
-        "body"
-      ]
+      "idContributingProperties": ["from_ref", "subject", "body"]
     },
     {
       "type": "file",
@@ -5928,9 +5652,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -5940,9 +5662,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -5969,9 +5689,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -6055,9 +5773,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the parent directory of the file, as a reference to a Directory Object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6067,9 +5783,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies a list of references to other Observable Objects contained within the file.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6079,9 +5793,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the content of the file, represented as an Artifact Object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -6117,9 +5829,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -6129,9 +5839,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6158,9 +5866,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -6196,9 +5902,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies a list of references to one or more Layer 2 Media Access Control (MAC) addresses that the IPv4 address resolves to.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6208,9 +5912,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies a reference to one or more autonomous systems (AS) that the IPv4 address belongs to.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -6219,9 +5921,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/ipv4-addr.json",
-      "idContributingProperties": [
-        "value"
-      ]
+      "idContributingProperties": ["value"]
     },
     {
       "type": "ipv6-addr",
@@ -6243,9 +5943,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -6255,9 +5953,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6284,9 +5980,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -6322,9 +6016,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies a list of references to one or more Layer 2 Media Access Control (MAC) addresses that the IPv6 address resolves to.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6334,9 +6026,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies a reference to one or more autonomous systems (AS) that the IPv6 address belongs to.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -6345,9 +6035,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/ipv6-addr.json",
-      "idContributingProperties": [
-        "value"
-      ]
+      "idContributingProperties": ["value"]
     },
     {
       "type": "mac-addr",
@@ -6369,9 +6057,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -6381,9 +6067,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6410,9 +6094,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -6447,9 +6129,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/mac-addr.json",
-      "idContributingProperties": [
-        "value"
-      ]
+      "idContributingProperties": ["value"]
     },
     {
       "type": "mutex",
@@ -6471,9 +6151,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -6483,9 +6161,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6512,9 +6188,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -6549,9 +6223,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/mutex.json",
-      "idContributingProperties": [
-        "name"
-      ]
+      "idContributingProperties": ["name"]
     },
     {
       "type": "network-traffic",
@@ -6573,9 +6245,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -6585,9 +6255,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6614,9 +6282,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -6658,9 +6324,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the source of the network traffic, as a reference to an Observable Object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6670,9 +6334,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the destination of the network traffic, as a reference to an Observable Object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6730,9 +6392,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the bytes sent from the source to the destination.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6742,9 +6402,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the bytes sent from the source to the destination.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6754,9 +6412,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Links to other network-traffic objects encapsulated by a network-traffic.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6766,9 +6422,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Links to another network-traffic object which encapsulates this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6819,9 +6473,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -6831,9 +6483,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6860,9 +6510,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -6928,9 +6576,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the list of network connections opened by the process, as a reference to one or more Network Traffic Objects.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6940,9 +6586,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the user that created the process, as a reference to a User Account Object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6952,9 +6596,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the executable binary that was executed as the process image, as a reference to a File Object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6964,9 +6606,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the other process that spawned (i.e. is the parent of) this one, as represented by a Process Object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -6976,9 +6616,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the other processes that were spawned by (i.e. children of) this process, as a reference to one or more other Process Objects.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -7009,9 +6647,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -7021,9 +6657,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -7050,9 +6684,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -7117,13 +6749,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/software.json",
-      "idContributingProperties": [
-        "name",
-        "cpe",
-        "swid",
-        "vendor",
-        "version"
-      ]
+      "idContributingProperties": ["name", "cpe", "swid", "vendor", "version"]
     },
     {
       "type": "url",
@@ -7145,9 +6771,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -7157,9 +6781,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -7186,9 +6808,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -7223,9 +6843,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/url.json",
-      "idContributingProperties": [
-        "value"
-      ]
+      "idContributingProperties": ["value"]
     },
     {
       "type": "user-account",
@@ -7247,9 +6865,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -7259,9 +6875,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -7288,9 +6902,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -7403,11 +7015,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/user-account.json",
-      "idContributingProperties": [
-        "account_type",
-        "user_id",
-        "account_login"
-      ]
+      "idContributingProperties": ["account_type", "user_id", "account_login"]
     },
     {
       "type": "windows-registry-key",
@@ -7429,9 +7037,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -7441,9 +7047,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -7470,9 +7074,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -7560,9 +7162,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies a reference to a user account, represented as a User Account Object, that created the registry key.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -7577,10 +7177,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/windows-registry-key.json",
-      "idContributingProperties": [
-        "key",
-        "values"
-      ]
+      "idContributingProperties": ["key", "values"]
     },
     {
       "type": "x509-certificate",
@@ -7602,9 +7199,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -7614,9 +7209,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -7643,9 +7236,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -7850,10 +7441,7 @@ export const STIX_2_1_CATALOG_DATA = {
         "url": "https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html"
       },
       "schemaSource": "standards/vendor/stix-2.1/schemas/observables/x509-certificate.json",
-      "idContributingProperties": [
-        "hashes",
-        "serial_number"
-      ]
+      "idContributingProperties": ["hashes", "serial_number"]
     },
     {
       "type": "language-content",
@@ -7875,9 +7463,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -7893,9 +7479,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -7979,9 +7563,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -8008,9 +7590,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -8028,9 +7608,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Identifies the object that this Language Content applies to.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -8066,10 +7644,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "definition_type-enum",
-            "values": [
-              "statement",
-              "tlp"
-            ]
+            "values": ["statement", "tlp"]
           }
         },
         {
@@ -8091,12 +7666,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "vocabulary": {
                 "kind": "closed",
                 "name": "tlp-enum",
-                "values": [
-                  "white",
-                  "green",
-                  "amber",
-                  "red"
-                ]
+                "values": ["white", "green", "amber", "red"]
               }
             }
           ]
@@ -8127,9 +7697,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -8145,9 +7713,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The created_by_ref property specifies the ID of the identity object that describes the entity that created this Marking Definition.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -8195,9 +7761,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The object_marking_refs property specifies a list of IDs of marking-definition objects that apply to this Marking Definition.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -8224,9 +7788,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -8264,9 +7826,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "vocabulary": {
             "kind": "closed",
             "name": "spec-version",
-            "values": [
-              "2.1"
-            ]
+            "values": ["2.1"]
           }
         },
         {
@@ -8282,9 +7842,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -8368,9 +7926,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -8397,9 +7953,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "required": true,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             }
           ]
@@ -8490,9 +8044,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "vocabulary": {
                 "kind": "closed",
                 "name": "spec-version",
-                "values": [
-                  "2.1"
-                ]
+                "values": ["2.1"]
               }
             },
             {
@@ -8503,9 +8055,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "vocabulary": {
                 "kind": "closed",
                 "name": "id-enum",
-                "values": [
-                  "marking-definition--5e57c739-391a-4eb3-b6be-7d15ca92d5ed"
-                ]
+                "values": ["marking-definition--5e57c739-391a-4eb3-b6be-7d15ca92d5ed"]
               }
             },
             {
@@ -8515,9 +8065,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "The ID of the Source object that describes who created this object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -8534,9 +8082,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "vocabulary": {
                 "kind": "closed",
                 "name": "created-enum",
-                "values": [
-                  "2017-01-20T00:00:00.000Z"
-                ]
+                "values": ["2017-01-20T00:00:00.000Z"]
               }
             },
             {
@@ -8608,9 +8154,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "The list of marking-definition objects to be applied to this object.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -8637,9 +8181,7 @@ export const STIX_2_1_CATALOG_DATA = {
                   "required": true,
                   "reference": {
                     "cardinality": "one",
-                    "targetTypes": [
-                      "*"
-                    ]
+                    "targetTypes": ["*"]
                   }
                 }
               ]
@@ -8664,9 +8206,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "vocabulary": {
                 "kind": "closed",
                 "name": "name-enum",
-                "values": [
-                  "TLP:RED"
-                ]
+                "values": ["TLP:RED"]
               }
             },
             {
@@ -8850,9 +8390,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "The operating systems that the malware family or malware instance is executable on.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -8895,9 +8433,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "The sample_refs property specifies a list of identifiers of the SCO file or artifact objects associated with this malware instance(s) or family.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -8995,9 +8531,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "A description of the virtual machine environment used to host the guest operating system (if applicable) that was used for the dynamic analysis of the malware instance or family.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9007,9 +8541,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "The operating system that was used to perform the dynamic analysis.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9019,9 +8551,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Any non-standard software installed on the operating system used for the dynamic analysis of the malware instance or family.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9031,9 +8561,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "The list of STIX objects that were captured during the analysis process.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9043,9 +8571,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Refers to the object this analysis was performed against.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9079,9 +8605,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the STIX Objects that are referred to by this Report.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9097,9 +8621,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "The ID of the source (from) object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9109,9 +8631,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "The ID of the target (to) object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9151,9 +8671,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "An ID reference to the object that has been sighted.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9163,9 +8681,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "A list of ID references to the Observed Data objects that contain the raw cyber data for this Sighting.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9175,9 +8691,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "A list of ID references to the Identity or Location objects describing the entities or types of entities that saw the sighting.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9327,9 +8841,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies a list of references to other Observable Objects contained within the file.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9345,9 +8857,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies a list of references to one or more Layer 2 Media Access Control (MAC) addresses that the IPv6 address resolves to.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9363,9 +8873,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the user account that the email address belongs to, as a reference to a User Account Object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9387,9 +8895,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the value of the 'From:' header of the email message.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9399,9 +8905,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the value of the 'From' field of the email message.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9411,9 +8915,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the mailboxes that are 'To:' recipients of the email message.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9423,9 +8925,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the mailboxes that are 'CC:' recipients of the email message.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9435,9 +8935,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the mailboxes that are 'BCC:' recipients of the email message.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9471,9 +8969,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the raw binary contents of the email message, including both the headers and body, as a reference to an Artifact Object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9512,9 +9008,7 @@ export const STIX_2_1_CATALOG_DATA = {
                   "description": "Specifies the contents of non-textual MIME parts, that is those whose content_type does not start with text/, as a reference to an Artifact Object or File Object.",
                   "reference": {
                     "cardinality": "one",
-                    "targetTypes": [
-                      "*"
-                    ]
+                    "targetTypes": ["*"]
                   }
                 },
                 {
@@ -9556,9 +9050,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the parent directory of the file, as a reference to a Directory Object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9568,9 +9060,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the content of the file, represented as an Artifact Object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9580,9 +9070,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies a reference to one or more autonomous systems (AS) that the IPv6 address belongs to.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9604,9 +9092,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the source of the network traffic, as a reference to an Observable Object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9616,9 +9102,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the destination of the network traffic, as a reference to an Observable Object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9676,9 +9160,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the bytes sent from the source to the destination.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9688,9 +9170,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the bytes sent from the source to the destination.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9700,9 +9180,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Links to other network-traffic objects encapsulated by a network-traffic.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9712,9 +9190,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Links to another network-traffic object which encapsulates this object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9771,9 +9247,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the list of network connections opened by the process, as a reference to one or more Network Traffic Objects.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9783,9 +9257,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies a reference to a user account, represented as a User Account Object, that created the registry key.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9795,9 +9267,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the executable binary that was executed as the process image, as a reference to a File Object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9807,9 +9277,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the other process that spawned (i.e. is the parent of) this one, as represented by a Process Object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -9819,9 +9287,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Specifies the other processes that were spawned by (i.e. children of) this process, as a reference to one or more other Process Objects.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -10155,9 +9621,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "description": "Identifies the object that this Language Content applies to.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": [
-                  "*"
-                ]
+                "targetTypes": ["*"]
               }
             },
             {
@@ -10180,9 +9644,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "vocabulary": {
                 "kind": "closed",
                 "name": "definition_type-enum",
-                "values": [
-                  "tlp"
-                ]
+                "values": ["tlp"]
               }
             },
             {
@@ -10204,9 +9666,7 @@ export const STIX_2_1_CATALOG_DATA = {
                   "vocabulary": {
                     "kind": "closed",
                     "name": "tlp-enum",
-                    "values": [
-                      "red"
-                    ]
+                    "values": ["red"]
                   }
                 }
               ]
@@ -10233,9 +9693,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the files contained in the archive, as a reference to one or more other File Objects. The objects referenced in this list MUST be of type file-object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -10728,9 +10186,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the data contained in the HTTP message body, if included.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         }
       ],
@@ -10984,9 +10440,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Specifies the DLLs loaded by the service, as a reference to one or more File Objects.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": [
-              "*"
-            ]
+            "targetTypes": ["*"]
           }
         },
         {
@@ -11071,4 +10525,4 @@ export const STIX_2_1_CATALOG_DATA = {
       "extensionOf": "user-account"
     }
   ]
-} as const satisfies StixCatalogData;
+}

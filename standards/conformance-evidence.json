@@ -1,0 +1,49 @@
+{
+  "contract_version": 2,
+  "capability_states": ["planned", "implemented", "verified", "not-applicable"],
+  "defaults": {
+    "sdo": {
+      "template": ["verified", "scripts/generate-catalog.mjs"],
+      "authoring": ["verified", "tests/property-editor-state.test.ts"],
+      "validation": ["verified", "tests/sdo-conformance.test.ts"],
+      "mapping": ["verified", "tests/sdo-conformance.test.ts"],
+      "fixture": ["verified", "tests/sdo-conformance.test.ts"]
+    },
+    "sro": {
+      "template": ["verified", "scripts/generate-catalog.mjs"],
+      "authoring": ["verified", "tests/property-editor-state.test.ts"],
+      "validation": ["verified", "tests/sro-meta-conformance.test.ts"],
+      "mapping": ["verified", "tests/sro-meta-conformance.test.ts"],
+      "fixture": ["verified", "tests/sro-meta-conformance.test.ts"]
+    },
+    "sco": {
+      "template": ["verified", "scripts/generate-catalog.mjs"],
+      "authoring": ["verified", "tests/property-editor-state.test.ts"],
+      "validation": ["verified", "tests/sco-extension-conformance.test.ts"],
+      "mapping": ["verified", "tests/sco-extension-conformance.test.ts"],
+      "fixture": ["verified", "tests/sco-extension-conformance.test.ts"]
+    },
+    "smo": {
+      "template": ["verified", "scripts/generate-catalog.mjs"],
+      "authoring": ["verified", "tests/property-editor-state.test.ts"],
+      "validation": ["verified", "tests/sro-meta-conformance.test.ts"],
+      "mapping": ["verified", "tests/sro-meta-conformance.test.ts"],
+      "fixture": ["verified", "tests/sro-meta-conformance.test.ts"]
+    },
+    "predefined-extension": {
+      "template": ["verified", "scripts/generate-catalog.mjs"],
+      "authoring": ["verified", "tests/property-editor-state.test.ts"],
+      "validation": ["verified", "tests/sco-extension-conformance.test.ts"],
+      "mapping": ["verified", "tests/sco-extension-conformance.test.ts"],
+      "fixture": ["verified", "tests/sco-extension-conformance.test.ts"]
+    },
+    "bundle": {
+      "template": ["not-applicable", "Bundles are export containers, not notes."],
+      "authoring": ["not-applicable", "Bundles are assembled by the exporter."],
+      "validation": ["verified", "tests/active-graph-export.test.ts"],
+      "mapping": ["verified", "tests/graph-bundle.test.ts"],
+      "fixture": ["verified", "tests/fixtures/example/reference-bundle.json"]
+    }
+  },
+  "overrides": {}
+}

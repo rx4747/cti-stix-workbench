@@ -1,0 +1,37 @@
+import { describe, expect, it, vi } from "vitest";
+
+import { parseStixPattern } from "../src/validation/pattern-validator";
+
+describe("STIX pattern conformance", () => {
+  it.each([
+    "[ipv4-addr:value = '198.51.100.10']",
+    "[file:hashes.'SHA-256' = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa']",
+    "[file:name MATCHES '^Final_Report.*[.]exe$']",
+    "[network-traffic:dst_port = 443 AND network-traffic:protocols[*] = 'tcp']",
+    "([ipv4-addr:value = '198.51.100.10'] OR [domain-name:value = 'example.invalid'])",
+    "[file:size > 1024] WITHIN 300 SECONDS",
+    "[ipv4-addr:value = '198.51.100.10'] REPEATS 5 TIMES",
+    "[ipv4-addr:value = '198.51.100.10'] START t'2026-07-27T10:00:00Z' STOP t'2026-07-27T11:00:00Z'",
+  ])("accepts a standard pattern example: %s", (pattern) => {
+    expect(parseStixPattern(pattern)).toEqual([]);
+  });
+
+  it("returns line and column diagnostics without logging pattern content", () => {
+    const log = vi.spyOn(console, "log").mockImplementation(() => {});
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const diagnostics = parseStixPattern(
+      "[ipv4-addr:value = '198.51.100.10'] AND\n[file:size = ]",
+    );
+
+    expect(diagnostics).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ line: 2, column: expect.any(Number) }),
+      ]),
+    );
+    expect(log).not.toHaveBeenCalled();
+    expect(error).not.toHaveBeenCalled();
+    log.mockRestore();
+    error.mockRestore();
+  });
+});

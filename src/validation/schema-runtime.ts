@@ -83,6 +83,9 @@ export function validateCompiledBundle(value: unknown): SchemaValidationResult {
       isRecord(object) && typeof object.type === "string" ? object.type : undefined;
     const validator = type === undefined ? undefined : objectSchemaValidators[type];
     if (validator === undefined) {
+      if (type?.startsWith("x-") === true) {
+        continue;
+      }
       errors.push({
         instancePath: `/objects/${index}/type`,
         schemaPath: "#/properties/objects/items/type",

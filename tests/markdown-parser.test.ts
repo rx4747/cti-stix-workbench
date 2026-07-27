@@ -213,7 +213,7 @@ describe("parseMarkdownNote", () => {
     expect(result.diagnostics).toEqual([
       expect.objectContaining({
         code: DIAGNOSTIC_CODES.fieldUnsupported,
-        severity: "warning",
+        severity: "error",
         field: "workflow_status",
       }),
     ]);
