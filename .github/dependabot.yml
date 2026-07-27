@@ -9,8 +9,17 @@ updates:
       timezone: Europe/Belgrade
     open-pull-requests-limit: 10
     versioning-strategy: increase
+    cooldown:
+      default-days: 1
     commit-message:
       prefix: "chore(deps)"
+    ignore:
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
+      - dependency-name: "@types/node"
+        update-types:
+          - version-update:semver-major
     groups:
       production-dependencies:
         dependency-type: production
