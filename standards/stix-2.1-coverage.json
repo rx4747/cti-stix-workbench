@@ -12,9 +12,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -43,9 +41,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -74,9 +70,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -105,9 +99,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -136,9 +128,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -167,9 +157,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -198,9 +186,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -229,9 +215,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -260,9 +244,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -291,9 +273,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -322,9 +302,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -353,9 +331,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -384,9 +360,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -415,9 +389,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -446,9 +418,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -477,9 +447,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -508,9 +476,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -539,9 +505,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -570,9 +534,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -601,9 +563,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -632,9 +592,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -663,9 +621,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -694,9 +650,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -725,9 +679,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -756,9 +708,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -787,9 +737,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -818,9 +766,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -849,9 +795,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -880,9 +824,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -911,9 +853,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -942,9 +882,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -973,9 +911,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1004,9 +940,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1035,9 +969,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1066,9 +998,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1097,9 +1027,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1128,9 +1056,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1159,9 +1085,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1190,9 +1114,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1221,9 +1143,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1252,9 +1172,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1283,9 +1201,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1343,9 +1259,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1374,9 +1288,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1405,9 +1317,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1436,9 +1346,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1467,9 +1375,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1498,9 +1404,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1529,9 +1433,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1560,9 +1462,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1591,9 +1491,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1622,9 +1520,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1653,9 +1549,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",
@@ -1684,9 +1578,7 @@
       "capabilities": {
         "template": {
           "status": "complete",
-          "evidence": [
-            "packages/cti-stix-workbench/tests/templates/full-coverage.test.ts"
-          ]
+          "evidence": ["tests/templates/full-coverage.test.ts"]
         },
         "authoring": {
           "status": "planned",

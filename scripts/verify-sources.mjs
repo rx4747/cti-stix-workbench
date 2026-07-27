@@ -69,9 +69,7 @@ export async function verifyRemoteSource(source, fetchImplementation = fetch) {
     signal: AbortSignal.timeout(30_000),
   });
   if (!response.ok) {
-    throw new Error(
-      `unable to fetch ${source.id}: HTTP ${response.status}`,
-    );
+    throw new Error(`unable to fetch ${source.id}: HTTP ${response.status}`);
   }
   const bytes = new Uint8Array(await response.arrayBuffer());
   const digest = createHash("sha256").update(bytes).digest("hex");
@@ -91,9 +89,7 @@ export async function readManifest(path) {
 async function main() {
   const [, , manifestPath, mode] = process.argv;
   if (!manifestPath) {
-    throw new Error(
-      "usage: node scripts/verify-sources.mjs <manifest> [--remote]",
-    );
+    throw new Error("usage: node scripts/verify-sources.mjs <manifest> [--remote]");
   }
   const manifest = await readManifest(manifestPath);
   if (mode === "--remote") {
@@ -104,15 +100,10 @@ async function main() {
   if (mode !== undefined) {
     throw new Error(`unknown option: ${mode}`);
   }
-  console.log(
-    `Validated ${manifest.sources.length} pinned source records offline.`,
-  );
+  console.log(`Validated ${manifest.sources.length} pinned source records offline.`);
 }
 
-if (
-  process.argv[1] &&
-  import.meta.url === pathToFileURL(process.argv[1]).href
-) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
     console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
