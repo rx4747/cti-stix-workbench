@@ -1,0 +1,108 @@
+name: Bug report
+description: Report a reproducible problem with CTI STIX Workbench.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem. Please use fictional or sanitized data only. Report security vulnerabilities privately through the repository Security tab.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I am using the latest stable plugin release.
+          required: true
+        - label: I searched existing issues and did not find this problem.
+          required: true
+        - label: This report contains no real operational CTI, credentials, personal data, malware, or restricted material.
+          required: true
+
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      description: Find this in Obsidian under Settings, Community plugins.
+      placeholder: 1.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: obsidian-version
+    attributes:
+      label: Obsidian version
+      placeholder: 1.8.10
+    validations:
+      required: true
+
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Android
+        - iOS or iPadOS
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected-scope
+    attributes:
+      label: Affected scope
+      description: Select the smallest scope that reproduces the problem.
+      options:
+        - Active note
+        - Active Canvas
+        - Folder
+        - Whole vault
+        - Settings or startup
+        - Template generation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the problem and its effect on your workflow.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Create a fictional Indicator note.
+        2. Run Validate active STIX graph.
+        3. Observe the error.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Sanitized diagnostics
+      description: Paste relevant console output or a minimal fictional example. Remove paths, identities, indicators, credentials, and private intelligence first.
+      render: text
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add anything else that may help, such as whether Restricted Mode or another plugin affects the result.
