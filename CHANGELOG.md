@@ -4,6 +4,42 @@
 
 ## Released
 
+## 1.0.0 — 2026-07-27
+
+### Added
+
+- Added catalog-driven creation and editing for every standard STIX 2.1 object
+  type and predefined SCO extension, with generated analyst-ready vault
+  templates kept in a separate public template repository.
+- Added active-note, Canvas, folder, and whole-vault scopes for graph
+  validation and deterministic Bundle export, including progress, cancellation,
+  confirmation, and collision-safe output handling.
+- Added Canvas parsing, semantic relationship and marking validation, STIX
+  pattern conformance checks, and an actionable validation report UI.
+- Added generated catalog, conformance-evidence, documentation-link, runtime
+  boundary, large-vault, and release-package verification gates.
+- Added automated pull requests that synchronize only the safe generated
+  template tree to the public CTI Investigation Vault repository.
+
+### Fixed
+
+- Prevented cancelled scoped exports from persisting object identities or
+  writing a Bundle after cancellation was requested.
+- Required granular marking selectors to resolve owned STIX properties instead
+  of accepting inherited JavaScript properties.
+- Preserved nested predefined-extension field guidance in generated templates
+  and removed excess generated whitespace.
+
+### Changed
+
+- Declared the plugin desktop-only because full-vault and Canvas workflows use
+  desktop Obsidian capabilities.
+- Expanded CI and release checks to verify generated coverage, documentation,
+  runtime boundaries, dependency audit results, production builds, and exact
+  three-file release packages before a draft release can be reviewed.
+- Reworked the public documentation around the analyst workflow, local-first
+  data handling, support, funding, contribution, and licensing boundaries.
+
 ## 0.1.3 — 2026-07-27
 
 ### Fixed
