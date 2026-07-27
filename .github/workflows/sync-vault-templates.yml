@@ -21,7 +21,7 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ secrets.VAULT_SYNC_APP_ID }}
+          client-id: ${{ secrets.VAULT_SYNC_CLIENT_ID }}
           private-key: ${{ secrets.VAULT_SYNC_PRIVATE_KEY }}
           owner: rx4747
           repositories: cti-investigation-vault
