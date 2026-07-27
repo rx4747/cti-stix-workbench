@@ -78,7 +78,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch --create "${release_branch}"
           git add CHANGELOG.md manifest.json package.json versions.json
-          git commit --message "chore: prepare ${RELEASE_VERSION} release"
+          git commit --signoff --message "chore: prepare ${RELEASE_VERSION} release"
           git push origin "HEAD:refs/heads/${release_branch}"
           gh pr create \
             --base "${DEFAULT_BRANCH}" \
