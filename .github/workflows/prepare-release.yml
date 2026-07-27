@@ -1,0 +1,87 @@
+name: Prepare release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version component to increment
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: prepare-release
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out default branch
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Require the default branch
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          if [[ "${GITHUB_REF}" != "refs/heads/${DEFAULT_BRANCH}" ]]; then
+            echo "Release preparation must run from the default branch (${DEFAULT_BRANCH})." >&2
+            exit 1
+          fi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Enable pnpm through Corepack
+        run: corepack enable pnpm
+
+      - name: Increment all release metadata
+        id: release
+        run: |
+          version="$(node scripts/bump-release-version.mjs "${{ inputs.bump }}")"
+          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+
+      - name: Validate prepared release
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.version }}
+        run: |
+          node scripts/check-release-version.mjs
+          node scripts/extract-release-notes.mjs "${RELEASE_TAG}" release-notes.md
+          test -s release-notes.md
+
+      - name: Create release preparation pull request
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          release_branch="release/${RELEASE_VERSION}"
+          if git ls-remote --exit-code --heads origin "refs/heads/${release_branch}" >/dev/null 2>&1; then
+            echo "Branch ${release_branch} already exists." >&2
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch --create "${release_branch}"
+          git add CHANGELOG.md manifest.json package.json versions.json
+          git commit --message "chore: prepare ${RELEASE_VERSION} release"
+          git push origin "HEAD:refs/heads/${release_branch}"
+          gh pr create \
+            --base "${DEFAULT_BRANCH}" \
+            --head "${release_branch}" \
+            --title "chore: prepare ${RELEASE_VERSION} release" \
+            --body "Automatically increments all plugin version records and promotes the reviewed Unreleased changelog notes for ${RELEASE_VERSION}. Merge this PR before running the Release Obsidian plugin workflow."

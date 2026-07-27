@@ -1,0 +1,8 @@
+allowBuilds:
+  esbuild: true
+confirmModulesPurge: false
+peerDependencyRules:
+  allowedVersions:
+    "@eslint/js": "10"
+    eslint: "10"
+    obsidian: "1.13.1"

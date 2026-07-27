@@ -1,6 +1,35 @@
 # Changelog
 
+## Unreleased
+
 ## Released
+
+## 0.1.3 — 2026-07-27
+
+### Fixed
+
+- Flattened the plugin package into Obsidian's conventional repository-root
+  layout so Marketplace source scanners resolve the implementation, metadata,
+  build configuration, tests, and real type dependencies without workspace
+  indirection.
+- Added a zero-warning, type-aware Obsidian Marketplace lint gate while
+  preserving the committed declaration contracts for generated STIX schema and
+  pattern modules.
+- Made release validation reject prefixed, prerelease, mismatched, duplicate,
+  or metadata-inconsistent versions and require non-empty matching changelog
+  notes.
+
+### Changed
+
+- Added a default-branch release dispatch that creates and pushes an annotated
+  numeric tag, builds the release in the same run, attests all three plugin
+  assets with GitHub provenance, and creates a notes-backed draft for manual
+  review before publication.
+- Switched development and CI to a Corepack-pinned pnpm toolchain and added
+  weekly Dependabot updates for JavaScript dependencies and GitHub Actions.
+- Split the clean analyst vault into its own downloadable template repository,
+  removed the obsolete in-repository design notes, and refreshed the public
+  project documentation and funding links.
 
 ## 0.1.2 — 2026-07-26
 
