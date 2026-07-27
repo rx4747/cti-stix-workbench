@@ -25,6 +25,8 @@ jobs:
           private-key: ${{ secrets.VAULT_SYNC_PRIVATE_KEY }}
           owner: rx4747
           repositories: cti-investigation-vault
+          permission-contents: write
+          permission-pull-requests: write
 
       - name: Check out plugin catalog
         uses: actions/checkout@v7
