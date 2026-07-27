@@ -97,7 +97,7 @@ corepack pnpm check:release
 
 Corepack pins pnpm for reproducible installs. Biome handles fast formatting and
 baseline checks, while the Obsidian ESLint rules remain the type-aware
-Marketplace gate. Husky and lint-staged check changed files before a commit;
+Marketplace gate. Husky and nano-staged check changed files before a commit;
 commitlint keeps commit messages in the Conventional Commits format.
 
 The validation toolchain uses checksum-pinned OASIS STIX 2.1 sources under
