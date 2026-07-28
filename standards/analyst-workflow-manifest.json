@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "libraryVersion": "1.2.0",
+  "libraryVersion": "1.3.0",
   "workflowCount": 6,
   "files": {
     "Templates/CTI Workflows/Intake and Triage.md": "40481b15ada6e0973177e1767181a6adaf0fbfd0c40b0bf4c743a264626493d1",
