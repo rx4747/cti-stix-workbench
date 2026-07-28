@@ -46,7 +46,7 @@ the complete title remains available on hover and in the property panel.
 | Project | Use it for |
 | --- | --- |
 | **CTI STIX Workbench** (this repository) | Editing, validation, graph traversal, and Bundle export. |
-| [**CTI Investigation Vault**](https://github.com/rx4747/cti-investigation-vault) | A clean starting structure with all STIX templates and the official OASIS APT1 example Bundle. |
+| [**CTI Investigation Vault**](https://github.com/rx4747/cti-investigation-vault) | A clean starting structure with all STIX templates, the official OASIS APT1 Bundle, and 76 browseable generated notes. |
 
 They are independent. The plugin never creates, replaces, or uploads your vault.
 
@@ -156,8 +156,42 @@ review.
 ## Support the project
 
 If this saves you time, you can support ongoing maintenance through
-[GitHub Sponsors](https://github.com/sponsors/rx4747). Bug reports, careful
-testing, and focused pull requests are equally welcome.
+[GitHub Sponsors](https://github.com/sponsors/rx4747).
+
+Financial recognition is opt-in: only sponsors who explicitly want public
+credit are listed. [Sponsor the project](https://github.com/sponsors/rx4747)
+or get in touch after sponsoring to add a name or logo.
+
+| Tier | Recognition |
+| --- | --- |
+| 💎 **Platinum** | Prominent name or logo and project link. [Become the first Platinum sponsor](https://github.com/sponsors/rx4747). |
+| 🥇 **Gold** | Name and project link. [Become the first Gold sponsor](https://github.com/sponsors/rx4747). |
+| 🥈 **Silver** | Name in the supporter roll. [Become the first Silver sponsor](https://github.com/sponsors/rx4747). |
+
+Bug reports, careful testing, documentation, and focused pull requests are
+equally valuable ways to support the project.
+
+## Contributors
+
+Thank you to everyone who improves the Workbench. This wall is refreshed by a
+reviewable monthly pull request; bots and the repository's explicit OPSEC
+denylist are never rendered.
+
+<!-- contributors:start -->
+<table>
+<tbody>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/rx4747">
+        <img src="https://avatars.githubusercontent.com/u/300010528?v=4" width="72" alt="rx4747" />
+        <br />
+        <sub><b>@rx4747</b></sub>
+      </a>
+    </td>
+  </tr>
+</tbody>
+</table>
+<!-- contributors:end -->
 
 ## License
 

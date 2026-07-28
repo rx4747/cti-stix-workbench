@@ -1,0 +1,41 @@
+name: Update contributors
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 1 * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24
+
+      - name: Refresh the contributor wall
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/update-contributors.mjs
+
+      - name: Open a reviewable documentation pull request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          branch: automation/update-contributors
+          commit-message: "docs: update contributor wall"
+          delete-branch: true
+          title: "docs: update contributor wall"
+          body: |
+            Refreshes the public contributor wall from the GitHub Contributors API.
+
+            Bots and the repository's explicit OPSEC denylist remain excluded.

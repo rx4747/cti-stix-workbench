@@ -15,6 +15,8 @@
   commands for creating and revoking versions, and cross-version validation.
 - Added an evidence-gated STIX 2.1 producer, consumer, markings, extensions,
   versioning, and Level 3 pattern-syntax conformance profile.
+- Added a reviewable monthly contributor-wall refresh that excludes bots and
+  privacy-denied profiles.
 
 ### Changed
 
@@ -24,8 +26,10 @@
 - Preserved valid external STIX references with warnings instead of rejecting
   them solely because their targets are outside the exported Bundle.
 - Updated vault synchronization to propose the attributed OASIS APT1 Bundle,
-  license, and import walkthrough without adding `.obsidian` state or
-  pre-expanded generated notes.
+  license, import walkthrough, and 76 pre-expanded browseable notes with a
+  checksum manifest, while continuing to exclude `.obsidian` state.
+- Added opt-in Platinum, Gold, and Silver sponsor recognition to the project
+  README without exposing private sponsors.
 
 ### Fixed
 
