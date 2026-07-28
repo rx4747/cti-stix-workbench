@@ -4,6 +4,7 @@ import {
   CONTRIBUTORS_END,
   CONTRIBUTORS_START,
   loginDigest,
+  parseExcludedLoginHashes,
   replaceContributorSection,
   visibleContributors,
 } from "../scripts/update-contributors.mjs";
@@ -35,6 +36,15 @@ describe("README contributor automation", () => {
     expect(
       visibleContributors(contributors, excluded).map((item) => item.login),
     ).toEqual(["rx4747"]);
+  });
+
+  it("fails closed when the private denylist is missing or malformed", () => {
+    expect(() => parseExcludedLoginHashes(undefined)).toThrow("required");
+    expect(() => parseExcludedLoginHashes("  ")).toThrow("cannot be empty");
+    expect(() => parseExcludedLoginHashes("not valid!")).toThrow("Invalid");
+    expect(parseExcludedLoginHashes("private-legacy-profile")).toEqual(
+      new Set([loginDigest("private-legacy-profile")]),
+    );
   });
 
   it("updates only the bounded contributor section", () => {

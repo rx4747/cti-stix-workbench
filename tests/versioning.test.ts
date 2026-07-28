@@ -4,6 +4,7 @@ import {
   createNewStixVersion,
   latestStixVersion,
   revokeStixObject,
+  stixDraftPathsById,
   stixObjectVersionKey,
 } from "../src/core/versioning";
 
@@ -29,6 +30,16 @@ describe("STIX object versioning", () => {
       created: base.created,
       modified: "2026-07-02T10:00:00.000Z",
       confidence: 80,
+    });
+    expect(
+      createNewStixVersion(base, "2026-07-02T11:00:00.000Z", {
+        created_by_ref: "identity--22222222-2222-4222-8222-222222222222",
+        type: "malware",
+        spec_version: "2.0",
+      }),
+    ).toMatchObject({
+      type: "indicator",
+      spec_version: "2.1",
     });
     expect(
       createNewStixVersion(base, "2026-07-02T11:00:00.000Z", {
@@ -62,5 +73,42 @@ describe("STIX object versioning", () => {
         "2026-07-04T11:00:00.000Z",
       ),
     ).toThrow("do not use STIX versioning");
+  });
+
+  it("orders invalid or tied timestamps deterministically", () => {
+    const first = { ...base, modified: "invalid", name: "Zulu" };
+    const second = { ...base, modified: "invalid", name: "Alpha" };
+
+    expect(latestStixVersion([first, second])).toBe(first);
+    expect(latestStixVersion([second, first])).toBe(first);
+  });
+
+  it("maps a plain STIX id to its latest version independent of draft order", () => {
+    const paths = stixDraftPathsById(
+      [
+        {
+          path: "Objects/New.md",
+          basename: "New",
+          stixType: base.type,
+          stixId: base.id,
+          properties: { ...base, modified: "2026-07-02T10:00:00.000Z" },
+          links: [],
+          relationships: [],
+        },
+        {
+          path: "Objects/Old.md",
+          basename: "Old",
+          stixType: base.type,
+          stixId: base.id,
+          properties: base,
+          links: [],
+          relationships: [],
+        },
+      ],
+      [],
+    );
+
+    expect(paths.get(base.id)).toBe("Objects/New.md");
+    expect(paths.get(`${base.id}@${base.modified}`)).toBe("Objects/Old.md");
   });
 });

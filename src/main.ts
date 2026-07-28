@@ -20,6 +20,7 @@ import {
   parseExtensionRegistry,
 } from "./core/extension-registry";
 import type { PersistedRelationshipIdentity } from "./core/types";
+import { advanceStixTimestamp } from "./core/versioning";
 import { parseStixBundleJson, planBundleImport } from "./import/bundle-import";
 import { parsePluginData, serializePluginData } from "./plugin-data";
 import { parseWorkbenchSettings, type WorkbenchSettings } from "./settings";
@@ -272,13 +273,14 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
       const frontmatter: unknown =
         this.app.metadataCache.getFileCache(file)?.frontmatter;
       const current = isRecord(frontmatter) ? frontmatter.modified : undefined;
-      const previous = typeof current === "string" ? Date.parse(current) : Number.NaN;
-      let nextTime = Date.now();
-      if (Number.isFinite(previous) && nextTime <= previous) nextTime = previous + 1;
-      const modified = new Date(nextTime).toISOString();
+      const modified = advanceStixTimestamp(
+        typeof current === "string" ? current : undefined,
+        new Date(),
+      );
       const suffix = modified.replaceAll(/[^0-9]/gu, "").slice(0, 14);
       const parent = file.parent?.path === "/" ? "" : (file.parent?.path ?? "");
-      const path = normalizePath(`${parent}/${file.basename} - ${suffix}.md`);
+      const baseName = file.basename.replace(/ - \d{14}$/u, "");
+      const path = normalizePath(`${parent}/${baseName} - ${suffix}.md`);
       if (this.app.vault.getAbstractFileByPath(path) !== null) {
         throw new Error(`A version note already exists at ${path}.`);
       }
@@ -496,7 +498,14 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
         this.settings.importFolder,
         file.basename,
       );
-      new Notice(`Imported ${plan.objectCount} STIX objects into ${output}.`);
+      const warnings = diagnostics.filter((item) => item.severity === "warning");
+      if (warnings.length > 0) {
+        openValidationReport(this.app, { scope: file.path, errors: [], warnings });
+      }
+      new Notice(
+        `Imported ${plan.objectCount} STIX objects into ${output}. ` +
+          `${warnings.length} warning(s).`,
+      );
     } catch (error) {
       new Notice(`STIX import failed: ${this.errorMessage(error)}`, 10_000);
     }

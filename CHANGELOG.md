@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Changed
+
+- Simplified the STIX viewer to icon-led nodes in a Maltego-style component
+  layout with object names and types, semantic connection labels, on-demand
+  metadata references, and complete data shown on selection in the side panel.
+
 ## Released
 
 ## 1.2.0 — 2026-07-28

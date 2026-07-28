@@ -6,6 +6,10 @@ export declare class STIXPatternListener implements ParseTreeListener {
   exitObservationExpressionStartStop?: (ctx: ParserRuleContext) => void;
   exitObservationExpressionWithin?: (ctx: ParserRuleContext) => void;
   exitObservationExpressionRepeated?: (ctx: ParserRuleContext) => void;
+  exitPropTestEqual?: (ctx: ParserRuleContext) => void;
+  exitPropTestSet?: (ctx: ParserRuleContext) => void;
+  exitPropTestLike?: (ctx: ParserRuleContext) => void;
+  exitPropTestRegex?: (ctx: ParserRuleContext) => void;
   visitTerminal: ParseTreeListener["visitTerminal"];
   visitErrorNode: ParseTreeListener["visitErrorNode"];
   enterEveryRule: ParseTreeListener["enterEveryRule"];

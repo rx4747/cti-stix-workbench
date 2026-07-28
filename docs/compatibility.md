@@ -3,7 +3,7 @@
 - STIX baseline: 2.1 Errata 01, validated with a pinned normative specification
   and pinned local OASIS validation aids.
 - Obsidian baseline: 1.8.10 or newer.
-- Platform: desktop only for v1.0.
+- Platform: desktop only.
 - Runtime network and telemetry: none.
 - Supported scopes: active graph, active Canvas, recursive folder, whole vault.
 - Import: local STIX 2.1 JSON Bundles become typed notes through an atomic,

@@ -38,8 +38,11 @@ zoom, rearrange, filter, and inspect the real STIX properties without modifying
 the source or sending investigation data off-device.
 
 The viewer follows Obsidian desktop themes and adapts to desktop split panes and
-popout windows. Long object names are measured and safely truncated in nodes;
-the complete title remains available on hover and in the property panel.
+popout windows. Its Maltego-style component graph groups connected intelligence
+around relationship hubs and shows authored Relationships by default, with
+dense metadata references available on demand. Hover or focus a connection for
+its semantic label, then select an icon or connection to inspect its complete
+data in the side panel.
 
 ## Plugin or vault template?
 
@@ -95,7 +98,7 @@ Bundle is written.
 
 ## Documentation
 
-- [User guide and fictional tutorial](docs/user-guide.md)
+- [User guide and official OASIS APT1 example](docs/user-guide.md)
 - [Mapping rules](docs/mapping.md)
 - [Canvas semantics](docs/canvas.md)
 - [STIX viewer](docs/viewer.md)

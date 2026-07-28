@@ -1,5 +1,6 @@
 import { stixCatalog } from "../catalog/stix-2.1";
 import type { CatalogField, ObjectTypeDefinition } from "../catalog/types";
+import { advanceStixTimestamp } from "../core/versioning";
 
 const bodyMappedFields = new Set(["content", "description", "explanation"]);
 
@@ -272,10 +273,9 @@ export function advanceModifiedForEdit(
   ) {
     return next;
   }
-  const previous =
-    typeof before.modified === "string" ? Date.parse(before.modified) : NaN;
-  let timestamp = now.getTime();
-  if (Number.isFinite(previous) && timestamp <= previous) timestamp = previous + 1;
-  next.modified = new Date(timestamp).toISOString();
+  next.modified = advanceStixTimestamp(
+    typeof before.modified === "string" ? before.modified : undefined,
+    now,
+  );
   return next;
 }

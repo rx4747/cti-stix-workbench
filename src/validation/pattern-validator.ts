@@ -3,6 +3,7 @@ import {
   BaseErrorListener,
   CharStream,
   CommonTokenStream,
+  ParserRuleContext,
   ParseTreeWalker,
   type RecognitionException,
   type Recognizer,
@@ -35,40 +36,66 @@ const HASH_LENGTHS: Readonly<Record<string, readonly number[]>> = Object.freeze(
   WHIRLPOOL: [128],
 });
 
-function locationAt(
-  input: string,
-  offset: number,
+function contextLocation(
+  context: ParserRuleContext,
 ): Pick<PatternSyntaxError, "line" | "column"> {
-  const prefix = input.slice(0, offset);
-  const lines = prefix.split("\n");
-  return { line: lines.length, column: lines.at(-1)?.length ?? 0 };
+  return {
+    line: context.start?.line ?? 1,
+    column: context.start?.column ?? 0,
+  };
 }
 
-function validateHashLiterals(input: string): PatternSyntaxError[] {
+function trailingRuleLocation(
+  context: ParserRuleContext,
+): Pick<PatternSyntaxError, "line" | "column"> {
+  const trailingChild = context.children.at(-1);
+  return contextLocation(
+    trailingChild instanceof ParserRuleContext ? trailingChild : context,
+  );
+}
+
+function validateHashComparisons(
+  tree: ReturnType<STIXPatternParser["pattern"]>,
+): PatternSyntaxError[] {
   const errors: PatternSyntaxError[] = [];
-  const comparison =
-    /\b[a-z0-9-]+:hashes\.(?:'([^']+)'|([a-z0-9-]+))\s*(?:NOT\s+)?(?:=|!=)\s*'([^']*)'/giu;
-  for (const match of input.matchAll(comparison)) {
-    const algorithm = (match[1] ?? match[2] ?? "").toUpperCase().replaceAll("-", "");
-    const value = match[3] ?? "";
-    const lengths = HASH_LENGTHS[algorithm];
-    const validSsdeep =
-      algorithm === "SSDEEP" && /^[a-zA-Z0-9/+:.]{1,128}$/u.test(value);
-    if (
-      lengths !== undefined &&
-      (!lengths.includes(value.length) || !/^[a-fA-F0-9]+$/u.test(value))
-    ) {
-      errors.push({
-        ...locationAt(input, match.index),
-        message: `'${value}' is not a valid ${match[1] ?? match[2] ?? algorithm} hash`,
-      });
-    } else if (algorithm === "SSDEEP" && !validSsdeep) {
-      errors.push({
-        ...locationAt(input, match.index),
-        message: `'${value}' is not a valid SSDEEP hash`,
-      });
+  const check = (context: ParserRuleContext): void => {
+    const comparison = context.getText();
+    const path =
+      /^\b[a-z0-9-]+:hashes\.(?:'([^']+)'|([a-z0-9-]+?))(?=(?:NOT)?(?:IN|LIKE|MATCHES)|[=!<>])/iu.exec(
+        comparison,
+      );
+    if (path === null) return;
+    const algorithmName = path[1] ?? path[2] ?? "";
+    const algorithm = algorithmName.toUpperCase().replaceAll("-", "");
+    const values = [...comparison.slice(path[0].length).matchAll(/'([^']*)'/gu)].map(
+      (match) => match[1] ?? "",
+    );
+    for (const value of values) {
+      const lengths = HASH_LENGTHS[algorithm];
+      const validSsdeep =
+        algorithm === "SSDEEP" && /^[a-zA-Z0-9/+:.]{1,128}$/u.test(value);
+      if (
+        lengths !== undefined &&
+        (!lengths.includes(value.length) || !/^[a-fA-F0-9]+$/u.test(value))
+      ) {
+        errors.push({
+          ...contextLocation(context),
+          message: `'${value}' is not a valid ${algorithmName} hash`,
+        });
+      } else if (algorithm === "SSDEEP" && !validSsdeep) {
+        errors.push({
+          ...contextLocation(context),
+          message: `'${value}' is not a valid SSDEEP hash`,
+        });
+      }
     }
-  }
+  };
+  const listener = new STIXPatternListener();
+  listener.exitPropTestEqual = check;
+  listener.exitPropTestSet = check;
+  listener.exitPropTestLike = check;
+  listener.exitPropTestRegex = check;
+  ParseTreeWalker.DEFAULT.walk(listener, tree);
   return errors;
 }
 
@@ -84,21 +111,21 @@ function validateQualifierUniqueness(
   listener.exitObservationExpressionCompound = () => {
     qualifierTypes = undefined;
   };
-  const check = (type: string): void => {
+  const check = (type: string, context: ParserRuleContext): void => {
     if (qualifierTypes === undefined) return;
     if (qualifierTypes.has(type)) {
       errors.push({
-        line: 1,
-        column: 0,
+        ...trailingRuleLocation(context),
         message: `Duplicate qualifier type encountered: ${type}`,
       });
       return;
     }
     qualifierTypes.add(type);
   };
-  listener.exitObservationExpressionWithin = () => check("WITHIN");
-  listener.exitObservationExpressionRepeated = () => check("REPEATS");
-  listener.exitObservationExpressionStartStop = () => check("STARTSTOP");
+  listener.exitObservationExpressionWithin = (context) => check("WITHIN", context);
+  listener.exitObservationExpressionRepeated = (context) => check("REPEATS", context);
+  listener.exitObservationExpressionStartStop = (context) =>
+    check("STARTSTOP", context);
   ParseTreeWalker.DEFAULT.walk(listener, tree);
   return errors;
 }
@@ -132,7 +159,7 @@ export function parseStixPattern(input: string): PatternSyntaxError[] {
 
   if (listener.errors.length === 0) {
     listener.errors.push(
-      ...validateHashLiterals(input),
+      ...validateHashComparisons(tree),
       ...validateQualifierUniqueness(tree),
     );
   }

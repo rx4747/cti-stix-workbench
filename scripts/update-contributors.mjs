@@ -7,13 +7,29 @@ import { fileURLToPath } from "node:url";
 export const CONTRIBUTORS_START = "<!-- contributors:start -->";
 export const CONTRIBUTORS_END = "<!-- contributors:end -->";
 
-const EXCLUDED_LOGIN_HASHES = new Set([
-  "41e77822cff24bdd593908deb87afe4e0e8424436282d07c91d9e3b59035cd9d",
-  "0d8ea29d809398fccf97599c05626a9fb5ef376a3d4f9e9007ebc41283b03362",
-]);
-
 export function loginDigest(login) {
   return createHash("sha256").update(login.toLowerCase()).digest("hex");
+}
+
+export function parseExcludedLoginHashes(value) {
+  assert.equal(typeof value, "string", "CONTRIBUTOR_EXCLUDED_LOGINS is required.");
+  const logins = [
+    ...new Set(
+      value
+        .split(/[\n,]/u)
+        .map((login) => login.trim().toLowerCase())
+        .filter((login) => login !== ""),
+    ),
+  ];
+  assert.ok(logins.length > 0, "CONTRIBUTOR_EXCLUDED_LOGINS cannot be empty.");
+  for (const login of logins) {
+    assert.match(
+      login,
+      /^(?!-)[a-z0-9-]{1,39}(?<!-)$/u,
+      `Invalid GitHub login: ${login}`,
+    );
+  }
+  return new Set(logins.map(loginDigest));
 }
 
 function escapeHtml(value) {
@@ -25,10 +41,7 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-export function visibleContributors(
-  contributors,
-  excludedLoginHashes = EXCLUDED_LOGIN_HASHES,
-) {
+export function visibleContributors(contributors, excludedLoginHashes) {
   return contributors.filter((contributor) => {
     const login = contributor.login.toLowerCase();
     return (
@@ -39,11 +52,7 @@ export function visibleContributors(
   });
 }
 
-export function renderContributorTable(
-  contributors,
-  columns = 7,
-  excludedLoginHashes = EXCLUDED_LOGIN_HASHES,
-) {
+export function renderContributorTable(contributors, columns = 7, excludedLoginHashes) {
   const visible = visibleContributors(contributors, excludedLoginHashes);
   if (visible.length === 0) {
     return "_The contributor wall will appear after the first accepted contribution._";
@@ -69,11 +78,7 @@ export function renderContributorTable(
   return ["<table>", "<tbody>", ...rows, "</tbody>", "</table>"].join("\n");
 }
 
-export function replaceContributorSection(
-  readme,
-  contributors,
-  excludedLoginHashes = EXCLUDED_LOGIN_HASHES,
-) {
+export function replaceContributorSection(readme, contributors, excludedLoginHashes) {
   const start = readme.indexOf(CONTRIBUTORS_START);
   const end = readme.indexOf(CONTRIBUTORS_END);
   assert.ok(start >= 0, `README is missing ${CONTRIBUTORS_START}.`);
@@ -125,18 +130,21 @@ async function main() {
   assert.match(repository, /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u);
   const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
   const readmePath = path.join(repositoryRoot, "README.md");
+  const excludedLoginHashes = parseExcludedLoginHashes(
+    process.env.CONTRIBUTOR_EXCLUDED_LOGINS,
+  );
   const [readme, contributors] = await Promise.all([
     readFile(readmePath, "utf8"),
     fetchContributors(repository, process.env.GITHUB_TOKEN),
   ]);
-  const updated = replaceContributorSection(readme, contributors);
+  const updated = replaceContributorSection(readme, contributors, excludedLoginHashes);
   if (updated === readme) {
     console.log("Contributor wall is already current.");
     return;
   }
   await writeFile(readmePath, updated, "utf8");
   console.log(
-    `Updated contributor wall with ${visibleContributors(contributors).length} profile(s).`,
+    `Updated contributor wall with ${visibleContributors(contributors, excludedLoginHashes).length} profile(s).`,
   );
 }
 

@@ -109,4 +109,24 @@ describe("STIX Bundle import", () => {
       );
     }
   });
+
+  it("keeps fractional seconds distinct in imported version paths", () => {
+    const id = "indicator--11111111-1111-4111-8111-111111111111";
+    const plan = planBundleImport({
+      type: "bundle",
+      id: "bundle--22222222-2222-4222-8222-222222222222",
+      objects: [
+        { type: "indicator", id, modified: "2026-07-28T10:00:00.001Z" },
+        { type: "indicator", id, modified: "2026-07-28T10:00:00.002Z" },
+      ],
+    });
+
+    expect(new Set(plan.notes.map((note) => note.relativePath)).size).toBe(2);
+    expect(plan.notes.map((note) => note.relativePath)).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining("20260728100000001"),
+        expect.stringContaining("20260728100000002"),
+      ]),
+    );
+  });
 });

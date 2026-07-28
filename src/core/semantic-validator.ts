@@ -349,8 +349,8 @@ function validateCrossObjectReferences(
     object: StixObject,
     reference: string,
     field: string,
-    expected: string,
-    valid: (target: StixObject) => boolean,
+    expected?: string,
+    valid?: (target: StixObject) => boolean,
   ): void => {
     const target = byId.get(reference);
     if (target === undefined) {
@@ -359,13 +359,15 @@ function validateCrossObjectReferences(
           object,
           notePathById,
           DIAGNOSTIC_CODES.referenceUnresolved,
-          `${field} references external STIX ID "${reference}"; its ${expected} type cannot be verified in this Bundle.`,
+          expected === undefined
+            ? `${field} references external STIX ID "${reference}"; the target is not included in this Bundle.`
+            : `${field} references external STIX ID "${reference}"; the Bundle does not include it, so it cannot be confirmed to be ${expected}.`,
           field,
           "warning",
           "mapping",
         ),
       );
-    } else if (!valid(target)) {
+    } else if (valid !== undefined && !valid(target)) {
       diagnostics.push(
         diagnostic(
           object,
@@ -455,21 +457,9 @@ function validateCrossObjectReferences(
       const target = byId.get(object.target_ref);
       if (source === undefined || target === undefined) {
         if (source === undefined)
-          referenceTarget(
-            object,
-            object.source_ref,
-            "source_ref",
-            "a STIX object",
-            () => true,
-          );
+          referenceTarget(object, object.source_ref, "source_ref");
         if (target === undefined)
-          referenceTarget(
-            object,
-            object.target_ref,
-            "target_ref",
-            "a STIX object",
-            () => true,
-          );
+          referenceTarget(object, object.target_ref, "target_ref");
         continue;
       }
       if (
@@ -666,7 +656,9 @@ function validateObjectVersions(
       }
       modifiedValues.add(object.modified);
       const timestamp = Date.parse(object.modified);
-      if (object.revoked === true) revokedAt = Math.min(revokedAt, timestamp);
+      if (object.revoked === true && Number.isFinite(timestamp)) {
+        revokedAt = Math.min(revokedAt, timestamp);
+      }
     }
     if (Number.isFinite(revokedAt)) {
       for (const object of versions) {

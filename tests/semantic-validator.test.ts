@@ -37,6 +37,7 @@ describe("normative STIX semantics", () => {
       ]),
     );
     expect(diagnostics).toHaveLength(2);
+    expect(diagnostics[0]?.message).toContain("cannot be confirmed to be");
   });
 
   it("rejects an included created_by_ref target with the wrong type", () => {
@@ -104,6 +105,24 @@ describe("normative STIX semantics", () => {
         }),
       ]),
     );
+  });
+
+  it("reports external Relationship endpoints without claiming a type check", () => {
+    const diagnostics = validateBundleSemantics(
+      bundle({
+        type: "relationship",
+        id: `relationship--${uuid}`,
+        relationship_type: "related-to",
+        source_ref: "indicator--00000000-0000-4000-8000-000000000090",
+        target_ref: "malware--00000000-0000-4000-8000-000000000091",
+      }),
+    );
+
+    expect(diagnostics).toHaveLength(2);
+    expect(diagnostics.every((item) => item.message.includes("not included"))).toBe(
+      true,
+    );
+    expect(diagnostics.every((item) => !item.message.includes("type"))).toBe(true);
   });
 
   it("validates granular selectors and marking reference types", () => {
@@ -263,8 +282,14 @@ describe("normative STIX semantics", () => {
       modified: "2026-07-03T10:00:00.000Z",
       revoked: false,
     } satisfies StixObject;
+    const malformedRevoked = {
+      ...original,
+      modified: "not-a-timestamp",
+    } satisfies StixObject;
 
-    expect(validateBundleSemantics(bundle(original, invalidLater))).toEqual(
+    expect(
+      validateBundleSemantics(bundle(original, malformedRevoked, invalidLater)),
+    ).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ field: "created" }),
         expect.objectContaining({

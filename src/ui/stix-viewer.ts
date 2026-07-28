@@ -1,5 +1,14 @@
 import { ItemView, setIcon, type ViewStateResult, type WorkspaceLeaf } from "obsidian";
 import { stixIconDataUrl } from "../viewer/icons";
+import {
+  layoutStixViewerNodes,
+  STIX_VIEWER_NODE_LABEL_WIDTH,
+  STIX_VIEWER_NODE_RADIUS,
+  STIX_VIEWER_NODE_SIZE,
+  type StixViewerPoint,
+  stixViewerEdgePath,
+  wrapStixViewerLabel,
+} from "../viewer/layout";
 import type { StixViewerEdge, StixViewerModel, StixViewerNode } from "../viewer/model";
 
 export const STIX_VIEWER_VIEW_TYPE = "cti-stix-viewer";
@@ -20,11 +29,6 @@ export interface StixViewerDependencies {
   openNote(path: string): Promise<void>;
 }
 
-interface Point {
-  x: number;
-  y: number;
-}
-
 interface ViewportTransform {
   x: number;
   y: number;
@@ -32,12 +36,9 @@ interface ViewportTransform {
 }
 
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
-const NODE_WIDTH = 208;
-const NODE_HEIGHT = 82;
-const HORIZONTAL_GAP = 116;
-const VERTICAL_GAP = 54;
-const NODE_TEXT_X = 68;
-const NODE_TEXT_WIDTH = NODE_WIDTH - NODE_TEXT_X - 14;
+const NODE_ICON_SIZE = 52;
+const NODE_LABEL_LINE_HEIGHT = 14;
+const MINIMUM_SCALE = 0.08;
 let nextViewerInstance = 0;
 
 function nextMarkerId(): string {
@@ -73,72 +74,6 @@ function clamp(value: number, minimum: number, maximum: number): number {
   return Math.min(maximum, Math.max(minimum, value));
 }
 
-function layoutNodes(model: StixViewerModel): Map<string, Point> {
-  const positions = new Map<string, Point>();
-  const outgoing = new Map<string, string[]>();
-  const incoming = new Map<string, number>();
-  for (const node of model.nodes) {
-    outgoing.set(node.key, []);
-    incoming.set(node.key, 0);
-  }
-  for (const edge of model.edges) {
-    outgoing.get(edge.sourceKey)?.push(edge.targetKey);
-    incoming.set(edge.targetKey, (incoming.get(edge.targetKey) ?? 0) + 1);
-  }
-
-  const depth = new Map<string, number>();
-  const roots = model.nodes
-    .filter((node) => (incoming.get(node.key) ?? 0) === 0)
-    .map((node) => node.key);
-  const queue = roots.length > 0 ? roots.map((id) => ({ id, depth: 0 })) : [];
-  while (queue.length > 0) {
-    const current = queue.shift();
-    if (current === undefined) break;
-    const previous = depth.get(current.id);
-    if (previous !== undefined && previous <= current.depth) continue;
-    depth.set(current.id, current.depth);
-    for (const targetId of outgoing.get(current.id) ?? []) {
-      queue.push({ id: targetId, depth: current.depth + 1 });
-    }
-  }
-  let cycleDepth = Math.max(-1, ...depth.values()) + 1;
-  for (const node of model.nodes) {
-    if (!depth.has(node.key)) {
-      depth.set(node.key, cycleDepth);
-      cycleDepth += 1;
-    }
-  }
-
-  const layers = new Map<number, StixViewerNode[]>();
-  for (const node of model.nodes) {
-    const nodeDepth = depth.get(node.key) ?? 0;
-    const layer = layers.get(nodeDepth) ?? [];
-    layer.push(node);
-    layers.set(nodeDepth, layer);
-  }
-  for (const [layerIndex, nodes] of [...layers.entries()].sort(
-    ([left], [right]) => left - right,
-  )) {
-    nodes.sort((left, right) => left.label.localeCompare(right.label));
-    for (const [row, node] of nodes.entries()) {
-      positions.set(node.key, {
-        x: 72 + layerIndex * (NODE_WIDTH + HORIZONTAL_GAP),
-        y: 72 + row * (NODE_HEIGHT + VERTICAL_GAP),
-      });
-    }
-  }
-  return positions;
-}
-
-function edgePath(source: Point, target: Point): string {
-  const startX = source.x + NODE_WIDTH;
-  const startY = source.y + NODE_HEIGHT / 2;
-  const endX = target.x;
-  const endY = target.y + NODE_HEIGHT / 2;
-  const bend = Math.max(48, Math.abs(endX - startX) * 0.45);
-  return `M ${startX} ${startY} C ${startX + bend} ${startY}, ${endX - bend} ${endY}, ${endX} ${endY}`;
-}
-
 function humanSource(source: StixViewerSource): string {
   return source.kind === "json" ? "JSON file" : "Note graph";
 }
@@ -147,36 +82,13 @@ function countLabel(count: number, singular: string): string {
   return `${count} ${singular}${count === 1 ? "" : "s"}`;
 }
 
-function fitSvgText(
-  element: SVGTextElement,
-  value: string,
-  maximumWidth: number,
-): void {
-  element.textContent = value;
-  if (element.getComputedTextLength() <= maximumWidth) return;
-
-  const characters = [...value];
-  let lower = 0;
-  let upper = characters.length;
-  while (lower < upper) {
-    const candidateLength = Math.ceil((lower + upper) / 2);
-    element.textContent = `${characters.slice(0, candidateLength).join("")}…`;
-    if (element.getComputedTextLength() <= maximumWidth) {
-      lower = candidateLength;
-    } else {
-      upper = candidateLength - 1;
-    }
-  }
-  element.textContent = `${characters.slice(0, lower).join("")}…`;
-}
-
 export class StixViewerView extends ItemView {
   private source?: StixViewerSource;
   private loaded?: LoadedStixViewerSource;
   private loadSequence = 0;
   private renderAbort?: AbortController;
   private transform: ViewportTransform = { x: 24, y: 24, scale: 1 };
-  private positions = new Map<string, Point>();
+  private positions = new Map<string, StixViewerPoint>();
   private world?: SVGGElement;
   private svg?: SVGSVGElement;
   private details?: HTMLElement;
@@ -283,7 +195,7 @@ export class StixViewerView extends ItemView {
       const loaded = await this.dependencies.load(source);
       if (sequence !== this.loadSequence) return;
       this.loaded = loaded;
-      this.positions = layoutNodes(loaded.model);
+      this.positions = layoutStixViewerNodes(loaded.model);
       this.renderGraph(loaded);
     } catch (error) {
       if (sequence !== this.loadSequence) return;
@@ -346,7 +258,13 @@ export class StixViewerView extends ItemView {
     });
     metadata.createSpan({
       cls: "cti-stix-viewer-stat",
-      text: countLabel(loaded.model.edges.length, "edge"),
+      text: `${countLabel(
+        loaded.model.edges.filter((edge) => edge.kind === "relationship").length,
+        "relationship",
+      )} · ${countLabel(
+        loaded.model.edges.filter((edge) => edge.kind === "reference").length,
+        "reference",
+      )}`,
     });
     const controls = header.createDiv({ cls: "cti-stix-viewer-controls" });
     const search = controls.createEl("input", {
@@ -354,6 +272,32 @@ export class StixViewerView extends ItemView {
       placeholder: "Filter objects",
       attr: { "aria-label": "Filter STIX objects" },
     });
+    let showReferences = false;
+    const referenceToggle = this.iconButton(
+      "git-branch",
+      "Show reference connections",
+      () => {
+        showReferences = !showReferences;
+        referenceToggle.setAttribute("aria-pressed", String(showReferences));
+        referenceToggle.setAttribute(
+          "title",
+          showReferences ? "Hide reference connections" : "Show reference connections",
+        );
+        referenceToggle.setAttribute(
+          "aria-label",
+          showReferences ? "Hide reference connections" : "Show reference connections",
+        );
+        referenceToggle.toggleClass("is-active", showReferences);
+        this.world
+          ?.querySelectorAll(
+            ".cti-stix-viewer-edge-reference, .cti-stix-viewer-edge-label-reference",
+          )
+          .forEach((element) => {
+            element.toggleClass("is-reference-hidden", !showReferences);
+          });
+      },
+    );
+    referenceToggle.setAttribute("aria-pressed", "false");
     const zoomControls = controls.createDiv({ cls: "cti-stix-viewer-button-group" });
     zoomControls.append(
       this.iconButton("minus", "Zoom out", () => this.zoomBy(0.8)),
@@ -361,6 +305,7 @@ export class StixViewerView extends ItemView {
       this.iconButton("plus", "Zoom in", () => this.zoomBy(1.25)),
     );
     controls.append(
+      referenceToggle,
       this.iconButton("refresh-cw", "Refresh source", () => {
         void this.reload();
       }),
@@ -394,17 +339,6 @@ export class StixViewerView extends ItemView {
     });
     marker.append(svgElement("path", { d: "M 0 0 L 10 5 L 0 10 z" }));
     definitions.append(marker);
-    const nodeCopyClipId = `${this.markerId}-node-copy`;
-    const nodeCopyClip = svgElement("clipPath", { id: nodeCopyClipId });
-    nodeCopyClip.append(
-      svgElement("rect", {
-        x: String(NODE_TEXT_X),
-        y: "12",
-        width: String(NODE_TEXT_WIDTH),
-        height: "52",
-      }),
-    );
-    definitions.append(nodeCopyClip);
     svg.append(definitions);
     const world = svgElement("g", { class: "cti-stix-viewer-world" });
     svg.append(world);
@@ -417,8 +351,10 @@ export class StixViewerView extends ItemView {
       const targetPoint = this.positions.get(edge.targetKey);
       if (sourcePoint === undefined || targetPoint === undefined) continue;
       const path = svgElement("path", {
-        class: `cti-stix-viewer-edge cti-stix-viewer-edge-${edge.kind}`,
-        d: edgePath(sourcePoint, targetPoint),
+        class: `cti-stix-viewer-edge cti-stix-viewer-edge-${edge.kind}${
+          edge.kind === "reference" ? " is-reference-hidden" : ""
+        }`,
+        d: stixViewerEdgePath(sourcePoint, targetPoint),
         "marker-end": `url(#${this.markerId})`,
         "data-edge-id": edge.key,
         tabindex: "0",
@@ -441,9 +377,11 @@ export class StixViewerView extends ItemView {
       world.append(path);
       edgeElements.set(edge.key, path);
       const label = svgElement("text", {
-        class: "cti-stix-viewer-edge-label",
-        x: String((sourcePoint.x + NODE_WIDTH + targetPoint.x) / 2),
-        y: String((sourcePoint.y + targetPoint.y + NODE_HEIGHT) / 2 - 7),
+        class: `cti-stix-viewer-edge-label cti-stix-viewer-edge-label-${edge.kind}${
+          edge.kind === "reference" ? " is-reference-hidden" : ""
+        }`,
+        x: String((sourcePoint.x + targetPoint.x) / 2 + STIX_VIEWER_NODE_RADIUS),
+        y: String((sourcePoint.y + targetPoint.y) / 2 + STIX_VIEWER_NODE_RADIUS - 7),
       });
       label.textContent = edge.label;
       world.append(label);
@@ -457,15 +395,15 @@ export class StixViewerView extends ItemView {
         if (sourcePoint === undefined || targetPoint === undefined) continue;
         edgeElements
           .get(edge.key)
-          ?.setAttribute("d", edgePath(sourcePoint, targetPoint));
+          ?.setAttribute("d", stixViewerEdgePath(sourcePoint, targetPoint));
         const label = edgeLabelElements.get(edge.key);
         label?.setAttribute(
           "x",
-          String((sourcePoint.x + NODE_WIDTH + targetPoint.x) / 2),
+          String((sourcePoint.x + targetPoint.x) / 2 + STIX_VIEWER_NODE_RADIUS),
         );
         label?.setAttribute(
           "y",
-          String((sourcePoint.y + targetPoint.y + NODE_HEIGHT) / 2 - 7),
+          String((sourcePoint.y + targetPoint.y) / 2 + STIX_VIEWER_NODE_RADIUS - 7),
         );
       }
     };
@@ -482,46 +420,49 @@ export class StixViewerView extends ItemView {
         "aria-label": `${node.type}: ${node.label}`,
         "data-node-id": node.key,
       });
-      const fullTitle = svgElement("title");
-      fullTitle.textContent = `${node.label} (${node.type})`;
-      group.append(fullTitle);
       group.append(
-        svgElement("rect", {
-          width: String(NODE_WIDTH),
-          height: String(NODE_HEIGHT),
-          rx: "12",
+        svgElement("circle", {
+          class: "cti-stix-viewer-node-halo",
+          cx: String(STIX_VIEWER_NODE_RADIUS),
+          cy: String(STIX_VIEWER_NODE_RADIUS),
+          r: String(STIX_VIEWER_NODE_RADIUS - 2),
         }),
       );
+      const iconInset = (STIX_VIEWER_NODE_SIZE - NODE_ICON_SIZE) / 2;
       const icon = svgElement("image", {
         href: stixIconDataUrl(node.type),
-        x: "14",
-        y: "14",
-        width: "42",
-        height: "42",
+        x: String(iconInset),
+        y: String(iconInset),
+        width: String(NODE_ICON_SIZE),
+        height: String(NODE_ICON_SIZE),
         preserveAspectRatio: "xMidYMid meet",
       });
       group.append(icon);
-      world.append(group);
-      const label = svgElement("text", {
-        x: String(NODE_TEXT_X),
-        y: "34",
-        class: "cti-stix-node-label",
-        "clip-path": `url(#${nodeCopyClipId})`,
+      const name = svgElement("text", {
+        class: "cti-stix-viewer-node-name",
+        x: String(STIX_VIEWER_NODE_RADIUS),
+        y: String(STIX_VIEWER_NODE_SIZE + 16),
       });
-      group.append(label);
-      fitSvgText(label, node.label, NODE_TEXT_WIDTH);
+      const nameLines = wrapStixViewerLabel(node.label);
+      for (const [index, line] of nameLines.entries()) {
+        const segment = svgElement("tspan", {
+          x: String(STIX_VIEWER_NODE_RADIUS),
+          dy: index === 0 ? "0" : String(NODE_LABEL_LINE_HEIGHT),
+        });
+        segment.textContent = line;
+        name.append(segment);
+      }
+      group.append(name);
       const type = svgElement("text", {
-        x: String(NODE_TEXT_X),
-        y: "56",
-        class: "cti-stix-node-type",
-        "clip-path": `url(#${nodeCopyClipId})`,
+        class: "cti-stix-viewer-node-type",
+        x: String(STIX_VIEWER_NODE_RADIUS),
+        y: String(
+          STIX_VIEWER_NODE_SIZE + 18 + nameLines.length * NODE_LABEL_LINE_HEIGHT,
+        ),
       });
+      type.textContent = node.placeholder ? `${node.type} · unresolved` : node.type;
       group.append(type);
-      fitSvgText(
-        type,
-        node.placeholder ? `${node.type} · unresolved` : node.type,
-        NODE_TEXT_WIDTH,
-      );
+      world.append(group);
       group.addEventListener("click", () => this.selectNode(node), {
         signal: abort.signal,
       });
@@ -641,7 +582,7 @@ export class StixViewerView extends ItemView {
         const previousScale = this.transform.scale;
         const nextScale = clamp(
           previousScale * (event.deltaY > 0 ? 0.88 : 1.14),
-          0.2,
+          MINIMUM_SCALE,
           3,
         );
         const graphX = (cursorX - this.transform.x) / previousScale;
@@ -697,7 +638,7 @@ export class StixViewerView extends ItemView {
   private zoomBy(factor: number): void {
     const svg = this.svg;
     if (svg === undefined) return;
-    const nextScale = clamp(this.transform.scale * factor, 0.2, 3);
+    const nextScale = clamp(this.transform.scale * factor, MINIMUM_SCALE, 3);
     const centerX = svg.clientWidth / 2;
     const centerY = svg.clientHeight / 2;
     const graphX = (centerX - this.transform.x) / this.transform.scale;
@@ -714,10 +655,21 @@ export class StixViewerView extends ItemView {
     const svg = this.svg;
     if (svg === undefined || this.positions.size === 0) return;
     const points = [...this.positions.values()];
-    const minimumX = Math.min(...points.map((point) => point.x));
+    const labelOverflow = (STIX_VIEWER_NODE_LABEL_WIDTH - STIX_VIEWER_NODE_SIZE) / 2;
+    const minimumX = Math.min(...points.map((point) => point.x - labelOverflow));
     const minimumY = Math.min(...points.map((point) => point.y));
-    const maximumX = Math.max(...points.map((point) => point.x + NODE_WIDTH));
-    const maximumY = Math.max(...points.map((point) => point.y + NODE_HEIGHT));
+    const maximumX = Math.max(
+      ...points.map((point) => point.x + STIX_VIEWER_NODE_SIZE + labelOverflow),
+    );
+    const maximumLabelLines = Math.max(
+      1,
+      ...(this.loaded?.model.nodes.map(
+        (node) => wrapStixViewerLabel(node.label).length,
+      ) ?? []),
+    );
+    const maximumNodeHeight =
+      STIX_VIEWER_NODE_SIZE + 32 + maximumLabelLines * NODE_LABEL_LINE_HEIGHT;
+    const maximumY = Math.max(...points.map((point) => point.y + maximumNodeHeight));
     const width = Math.max(1, maximumX - minimumX);
     const height = Math.max(1, maximumY - minimumY);
     const padding = 56;
@@ -726,7 +678,7 @@ export class StixViewerView extends ItemView {
         (svg.clientWidth - padding * 2) / width,
         (svg.clientHeight - padding * 2) / height,
       ),
-      0.2,
+      MINIMUM_SCALE,
       1.35,
     );
     this.transform = {

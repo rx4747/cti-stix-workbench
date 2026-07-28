@@ -49,6 +49,15 @@ describe("parseWorkbenchSettings", () => {
       DEFAULT_SETTINGS.linkTraversalDepth,
     );
   });
+
+  it("rejects unsafe import folders", () => {
+    expect(parseWorkbenchSettings({ importFolder: "../outside" }).importFolder).toBe(
+      DEFAULT_SETTINGS.importFolder,
+    );
+    expect(parseWorkbenchSettings({ importFolder: "/absolute" }).importFolder).toBe(
+      DEFAULT_SETTINGS.importFolder,
+    );
+  });
 });
 
 describe("workbench setting definitions", () => {

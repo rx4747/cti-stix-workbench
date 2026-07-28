@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
@@ -25,12 +27,14 @@ jobs:
 
       - name: Refresh the contributor wall
         env:
+          CONTRIBUTOR_EXCLUDED_LOGINS: ${{ secrets.CONTRIBUTOR_EXCLUDED_LOGINS }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/update-contributors.mjs
 
       - name: Open a reviewable documentation pull request
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: automation/update-contributors
           commit-message: "docs: update contributor wall"
           delete-branch: true

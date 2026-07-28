@@ -46,5 +46,22 @@ describe("STIX pattern conformance", () => {
         message: expect.stringContaining("Duplicate qualifier"),
       }),
     ]);
+    expect(
+      parseStixPattern("[file:hashes.'SHA-256' IN ('abcd', 'ef01')]").map(
+        (item) => item.message,
+      ),
+    ).toEqual([
+      expect.stringContaining("SHA-256 hash"),
+      expect.stringContaining("SHA-256 hash"),
+    ]);
+    expect(parseStixPattern("[file:hashes.MD5 LIKE 'xyz%']")).toEqual([
+      expect.objectContaining({ message: expect.stringContaining("MD5 hash") }),
+    ]);
+    expect(parseStixPattern("[file:hashes.MD5 MATCHES 'not-a-hash']")).toEqual([
+      expect.objectContaining({ message: expect.stringContaining("MD5 hash") }),
+    ]);
+    expect(
+      parseStixPattern("[file:size = 1]\nWITHIN 5 SECONDS WITHIN 10 SECONDS"),
+    ).toEqual([expect.objectContaining({ line: 2, column: expect.any(Number) })]);
   });
 });

@@ -134,7 +134,7 @@ export function planBundleImport(bundle: StixBundle): BundleImportPlan {
     const versionSuffix =
       (versionsById.get(object.id)?.length ?? 0) > 1 &&
       typeof object.modified === "string"
-        ? ` - ${object.modified.replaceAll(/[^0-9]/gu, "").slice(0, 14)}`
+        ? ` - ${object.modified.replaceAll(/[^0-9]/gu, "")}`
         : "";
     const title = safeNoteTitle(
       `${labelFor(object)} - ${idSuffix(object.id)}${versionSuffix}`,

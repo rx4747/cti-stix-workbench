@@ -70,6 +70,12 @@ describe("STIX viewer model", () => {
         notePath: "Relationships/Indicator indicates actor.md",
       }),
     );
+    expect(model.edges).toContainEqual(
+      expect.objectContaining({ field: "created_by_ref", label: "created by" }),
+    );
+    expect(model.edges).toContainEqual(
+      expect.objectContaining({ field: "object_marking_refs", label: "marked by" }),
+    );
   });
 
   it("creates placeholders for missing references and deduplicates equivalent edges", () => {
@@ -103,6 +109,9 @@ describe("STIX viewer model", () => {
           edge.sourceId.startsWith("grouping--") && edge.targetId === indicator.id,
       ),
     ).toHaveLength(1);
+    expect(model.edges).toContainEqual(
+      expect.objectContaining({ field: "object_refs", label: "contains" }),
+    );
   });
 
   it("preserves distinct reference fields with the same endpoints", () => {

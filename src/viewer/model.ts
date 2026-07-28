@@ -131,6 +131,25 @@ function isReferenceField(field: string, value: unknown): boolean {
   );
 }
 
+function referenceLabel(field: string): string {
+  const labels: Readonly<Record<string, string>> = {
+    created_by_ref: "created by",
+    object_marking_refs: "marked by",
+    object_ref: "references",
+    object_refs: "contains",
+    sample_refs: "samples",
+    contains_refs: "contains",
+    resolves_to_refs: "resolves to",
+    belongs_to_ref: "belongs to",
+    parent_directory_ref: "parent directory",
+    src_ref: "source",
+    dst_ref: "destination",
+  };
+  const knownLabel = labels[field];
+  if (knownLabel !== undefined) return knownLabel;
+  return humanize(field.replace(/_refs?$/u, "")).toLocaleLowerCase();
+}
+
 function edgeKey(edge: StixViewerEdge): string {
   if (edge.kind === "relationship") {
     return `${edge.kind}\u0000${edge.object === undefined ? edge.id : stixObjectVersionKey(edge.object)}`;
@@ -157,7 +176,7 @@ function relationshipEdge(
   const relationshipType = object.relationship_type;
   const label =
     typeof relationshipType === "string" && relationshipType.trim() !== ""
-      ? relationshipType.trim()
+      ? relationshipType.trim().replaceAll("-", " ")
       : "related-to";
   const notePath =
     notePathById.get(stixObjectVersionKey(object)) ?? notePathById.get(object.id);
@@ -262,7 +281,7 @@ export function buildStixViewerModel(
           targetId,
           sourceKey: stixObjectVersionKey(object),
           targetKey: latestKeyById.get(targetId) ?? targetId,
-          label: humanize(field.replace(/_refs?$/u, "")),
+          label: referenceLabel(field),
           kind: "reference",
           field,
         });

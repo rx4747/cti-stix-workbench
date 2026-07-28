@@ -169,6 +169,13 @@ describe("STIX property editor state", () => {
     ).toEqual(before);
     expect(
       advanceModifiedForEdit(
+        before,
+        { ...before, confidence: 90 },
+        new Date("2026-07-28T09:00:00.000Z"),
+      ).modified,
+    ).toBe("2026-07-28T10:00:00.001Z");
+    expect(
+      advanceModifiedForEdit(
         { stix_type: "ipv4-addr", value: "198.51.100.1" },
         { stix_type: "ipv4-addr", value: "198.51.100.2" },
         new Date("2026-07-28T11:00:00.000Z"),
