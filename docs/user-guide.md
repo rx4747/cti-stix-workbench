@@ -44,6 +44,22 @@ successful export assigns and persists the correct identifier. See the
 [property-editor guide](property-editor.md) for every control, nested lists,
 references, extensions, identity rules, timestamps, and a worked Indicator.
 
+## Create an analyst workflow
+
+1. Open the investigation, report, or typed STIX note that should provide
+   context.
+2. Run **Create analyst workflow** and search the 15 workflow names.
+3. Review the suggested title and path. Investigation work defaults to
+   `02 Investigations`; review and dissemination work defaults to
+   `04 Reports`.
+4. Complete the generated prompts, add source and object links, and use the
+   property editor for STIX Note properties.
+
+The new note always links the active Markdown note in **Related notes**. When
+the active note is typed STIX, the same link is also placed in `object_refs`.
+Ordinary Markdown notes remain contextual and are never misrepresented as STIX
+object references. See the [complete workflow library](analyst-workflows.md).
+
 ## Connect objects
 
 Ordinary wiki links provide analyst context. To author a STIX Relationship,
@@ -121,8 +137,9 @@ Always review the validation report and exported JSON before sharing it.
 
 ## Find every command
 
-The plugin registers commands for creating and editing objects, importing
-Bundles, versioning and revocation, viewing, and four validation/export scopes.
+The plugin registers commands for creating analyst workflows, creating and
+editing objects, importing Bundles, versioning and revocation, viewing, and
+four validation/export scopes.
 See the [complete command reference](commands.md) for availability conditions,
 side effects, and scope rules.
 
