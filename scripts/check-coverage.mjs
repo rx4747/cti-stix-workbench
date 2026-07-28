@@ -7,6 +7,12 @@ const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
 const coverage = JSON.parse(
   await readFile(path.join(repositoryRoot, "standards/stix-2.1-coverage.json"), "utf8"),
 );
+const conformance = JSON.parse(
+  await readFile(
+    path.join(repositoryRoot, "standards/stix-2.1-conformance.json"),
+    "utf8",
+  ),
+);
 
 assert.equal(coverage.contract_version, 2);
 assert.equal(coverage.rows.length, 55);
@@ -29,6 +35,24 @@ for (const row of coverage.rows) {
   }
 }
 
+assert.equal(conformance.contract_version, 1);
+assert.ok(
+  ["release-review-required", "formally-reviewed"].includes(conformance.claim_status),
+);
+for (const [profile, result] of Object.entries(conformance.profiles)) {
+  assert.ok(
+    ["implemented", "verified"].includes(result.status),
+    `${profile} must be implemented or verified`,
+  );
+  assert.ok(result.evidence.length > 0, `${profile} requires evidence`);
+  for (const evidence of result.evidence) {
+    await access(path.join(repositoryRoot, evidence));
+  }
+  if (conformance.claim_status === "formally-reviewed") {
+    assert.equal(result.status, "verified", `${profile} requires formal verification`);
+  }
+}
+
 console.log(
-  `Coverage contract is consistent: ${verified}/${applicable} applicable capabilities verified.`,
+  `Coverage contract is consistent: ${verified}/${applicable} applicable capabilities verified; ${Object.keys(conformance.profiles).length} conformance profiles have evidence.`,
 );

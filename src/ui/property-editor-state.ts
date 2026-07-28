@@ -126,7 +126,11 @@ export function createEditorValues(
 ): Record<string, unknown> {
   return Object.fromEntries(
     definition.fields
-      .filter((field) => !bodyMappedFields.has(field.name))
+      .filter((field) => {
+        if (bodyMappedFields.has(field.name)) return false;
+        const key = frontmatterKey(field.name);
+        return field.required || Object.hasOwn(frontmatter, key);
+      })
       .map((field) => {
         const key = frontmatterKey(field.name);
         return [
@@ -137,6 +141,36 @@ export function createEditorValues(
         ];
       }),
   );
+}
+
+export function availableOptionalFields(
+  definition: ObjectTypeDefinition,
+  values: Readonly<Record<string, unknown>>,
+): readonly CatalogField[] {
+  return definition.fields.filter((field) => {
+    if (field.required || bodyMappedFields.has(field.name)) return false;
+    return !Object.hasOwn(values, frontmatterKey(field.name));
+  });
+}
+
+export function addOptionalEditorField(
+  values: Readonly<Record<string, unknown>>,
+  field: CatalogField,
+): Record<string, unknown> {
+  const initial = field.dataType.includes("array<object>")
+    ? addObjectListItem([], field)
+    : createEmptyFieldValue(field);
+  return { ...values, [frontmatterKey(field.name)]: initial };
+}
+
+export function removeOptionalEditorField(
+  values: Readonly<Record<string, unknown>>,
+  field: CatalogField,
+): Record<string, unknown> {
+  if (field.required) return { ...values };
+  const next = { ...values };
+  delete next[frontmatterKey(field.name)];
+  return next;
 }
 
 function cleanUnknownEditorValue(value: unknown): unknown {
@@ -220,5 +254,28 @@ export function applyEditorValues(
       }
     }
   }
+  return next;
+}
+
+export function advanceModifiedForEdit(
+  before: Readonly<Record<string, unknown>>,
+  after: Readonly<Record<string, unknown>>,
+  now: Date,
+): Record<string, unknown> {
+  const next = { ...after };
+  const type = typeof before.stix_type === "string" ? before.stix_type : before.type;
+  const definition =
+    typeof type === "string" ? stixCatalog.getObjectType(type) : undefined;
+  if (
+    definition?.fields.some((field) => field.name === "modified") !== true ||
+    JSON.stringify(before) === JSON.stringify(after)
+  ) {
+    return next;
+  }
+  const previous =
+    typeof before.modified === "string" ? Date.parse(before.modified) : NaN;
+  let timestamp = now.getTime();
+  if (Number.isFinite(previous) && timestamp <= previous) timestamp = previous + 1;
+  next.modified = new Date(timestamp).toISOString();
   return next;
 }

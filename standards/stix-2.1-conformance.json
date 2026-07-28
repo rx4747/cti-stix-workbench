@@ -1,0 +1,64 @@
+{
+  "contract_version": 1,
+  "standard": "STIX 2.1 Errata 01",
+  "claim_status": "release-review-required",
+  "profiles": {
+    "json_producer": {
+      "status": "implemented",
+      "evidence": [
+        "tests/graph-bundle.test.ts",
+        "tests/bundle-import.test.ts",
+        "tests/versioning.test.ts"
+      ]
+    },
+    "json_consumer": {
+      "status": "implemented",
+      "evidence": [
+        "tests/bundle-import.test.ts",
+        "tests/sdo-conformance.test.ts",
+        "tests/sro-meta-conformance.test.ts",
+        "tests/sco-extension-conformance.test.ts"
+      ]
+    },
+    "object_versioning": {
+      "status": "implemented",
+      "evidence": [
+        "tests/versioning.test.ts",
+        "tests/semantic-validator.test.ts",
+        "tests/stix-viewer-model.test.ts"
+      ]
+    },
+    "object_and_granular_markings": {
+      "status": "implemented",
+      "evidence": [
+        "tests/semantic-validator.test.ts",
+        "tests/sro-meta-conformance.test.ts"
+      ]
+    },
+    "standard_and_registry_declared_extensions": {
+      "status": "implemented",
+      "evidence": [
+        "tests/custom-content.test.ts",
+        "tests/sco-extension-conformance.test.ts"
+      ]
+    },
+    "pattern_syntax_level": {
+      "status": "implemented",
+      "level": 3,
+      "evidence": ["tests/pattern-conformance.test.ts"]
+    }
+  },
+  "not_claimed": [
+    "TAXII transport",
+    "pattern evaluation against observations",
+    "non-JSON serialization",
+    "semantic validation of arbitrary third-party extension schemas"
+  ],
+  "validation_aid_overrides": [
+    {
+      "path": "schemas/common/granular-marking.json",
+      "reason": "Errata 01 requires exactly one of lang or marking_ref; the pinned helper schema required marking_ref unconditionally.",
+      "evidence": "tests/sro-meta-conformance.test.ts"
+    }
+  ]
+}

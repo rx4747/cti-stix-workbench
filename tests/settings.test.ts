@@ -16,6 +16,7 @@ describe("parseWorkbenchSettings", () => {
     expect(
       parseWorkbenchSettings({
         exportFolder: "../outside",
+        importFolder: "Imported Bundles",
         linkTraversalDepth: 3,
         includeContextualLinks: false,
         readTypedCanvasEdges: false,
@@ -27,6 +28,7 @@ describe("parseWorkbenchSettings", () => {
     ).toEqual({
       ...DEFAULT_SETTINGS,
       exportFolder: DEFAULT_SETTINGS.exportFolder,
+      importFolder: "Imported Bundles",
       linkTraversalDepth: 3,
       includeContextualLinks: false,
       readTypedCanvasEdges: false,
@@ -60,6 +62,7 @@ describe("workbench setting definitions", () => {
 
     expect(keys).toEqual([
       "exportFolder",
+      "importFolder",
       "linkTraversalDepth",
       "includeContextualLinks",
       "readTypedCanvasEdges",

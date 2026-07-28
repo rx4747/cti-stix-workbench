@@ -5,219 +5,219 @@
   "files": [
     {
       "path": "Templates/STIX 2.1/SDOs/Attack Pattern.md",
-      "sha256": "d8b027497a84df98a18d488b137e1ae4a1a151b9045540ce55059b570385694a"
+      "sha256": "13282df7ff13ee1c3be9ac4e8f0ba07a27adb4c22f9d27a36b1920514bbb5316"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Campaign.md",
-      "sha256": "e9877d7320f8c1eac5934eb3af197595e5314c1bd6005a0902754982f867989a"
+      "sha256": "f8340db432687d82f61f4d1b5f7f7148ee7fc734e1c64b3c816fe87feee9b9d6"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Course of Action.md",
-      "sha256": "04a8cc137a61985aedca31112e214170f1f74f3cf5cfbb61260031f305b90f80"
+      "sha256": "3f980704f9eabbd8435b6c063de9070cc6a6753b4434faab299e6e7643dbf439"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Grouping.md",
-      "sha256": "8513a0d6807475a52998ae29e2ff720f896b77e313b2d5144a5611c37faeffa0"
+      "sha256": "06fc605126db74e5107a4ba5d19a95dcc020d94da2b38790780edcefaf63a0ef"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Identity.md",
-      "sha256": "25ea5bb0e33edb477c06f35872669362caf7f6fbf2c4dae62458e3b224cf8120"
+      "sha256": "3ecbbd561f83c887ed8ad97902b35f1e13ee677297ba26f43a1a578cb200e108"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Incident.md",
-      "sha256": "f25f71531b5b2e6e8f27f5dc6de1b81636d2e9aa4cfb90f367614206d70616f1"
+      "sha256": "d3d765383bae8b8f4c91346cd56de0cca75b3809552c49693c87f35e01c1b523"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Indicator.md",
-      "sha256": "d9b21c7c9dd5d78e063f9ce6326e5bd2cc5470f9093df962b986dc5a82c4530a"
+      "sha256": "1f205585c6abaafd3f579e20b745d2fbab9623b30ee1f96380449f6a2be8ca0f"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Infrastructure.md",
-      "sha256": "0f7c50f603ee8ecede942d1344c0cde770c043340bb53a72234dfd752f684392"
+      "sha256": "97ace46febc2afe45cad56096424396d6db59427408ba48ff6fd9052fd663e9f"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Intrusion Set.md",
-      "sha256": "c52c02146c08a426e9f4fdfddec9402d369a0c99ad64930d5d9a098691b64d6d"
+      "sha256": "d43396f80d0a77339435990edc2b09e3897f5fadb7b05e8a3892b7b32c408a65"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Location.md",
-      "sha256": "4c85fcb41aa1270a44938d15cbab38d2c93e6aed42706f5fb6cad73562e8321c"
+      "sha256": "32a89a05560d985fe5bc46ba6cbe3d6e340e10552bc1a03aa4910da7947160e9"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Malware.md",
-      "sha256": "691fce0777c8b80697e7a25ae77008e2ac13aedd92389b9c5f9bd25b01786d57"
+      "sha256": "2cf0914f2075fd7525a9f8fc5c7d1e3b2032816ce97f1f0dcc95966191905159"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Malware Analysis.md",
-      "sha256": "97f27600d6b09e8aab72b9bbcbc80093b2fe8d21bf7089a4f8f55ef0619f5068"
+      "sha256": "3c0a884ee75f00e1456aade44538b19c40cfa20cf06b7977dcdea4f834e33200"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Note.md",
-      "sha256": "bd3ef17b142757fd3753958a9b13606292efaf3d049fcac6e63864cc61434a0a"
+      "sha256": "084a66c16f389803cea4d7dbdb7c52954c9cbbaefc9227015b72a51dca53cfe4"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Observed Data.md",
-      "sha256": "2d0a99f4456f11fe44b2118153348d04c024a2f0567936f671b512eb6389c4b6"
+      "sha256": "051f1de62aadd49083b9523aad2abbafa20a8e887f9385d5701bc14a31554e43"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Opinion.md",
-      "sha256": "10c85dc4f08ce5d81528d547df80a220567c06ecac65deb6ec33b27733aea9ef"
+      "sha256": "4015cfa0d6bd82ab665e5dd010051987be477307bfa66e98048fe63bb852b0c5"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Report.md",
-      "sha256": "54a4cb22ec22762e653d285c7ca8b9da7c48356a6648819a1ce4b609f439dbce"
+      "sha256": "325dab75c6b80002032d95ca2510d69b8e56b622039844c201caaca5252bf8df"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Threat Actor.md",
-      "sha256": "4cc29c4110ad1983d951a055ba87002d4d9644e7200677c5c69ccee108982d0c"
+      "sha256": "6711ebdb2a2976cc111dde32a238cb1c98a1d93cff3cef73acd024263b2e3f02"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Tool.md",
-      "sha256": "2034c13ab87a513d1902653ecb4a91c7727e9a35688bb93692e26a0bff41e214"
+      "sha256": "6fe37121aa61330eb82a34c07dff3712df4458ece84af0c6a788f94567ab23ce"
     },
     {
       "path": "Templates/STIX 2.1/SDOs/Vulnerability.md",
-      "sha256": "8570c57e99a56c9cd347f8207a70f3b38ab8f4f843cb49d2f94dfdb7bf53695e"
+      "sha256": "11fd67cddf6a007a4165b70606eec8b984a414062d79a2eb6803ca32b578875f"
     },
     {
       "path": "Templates/STIX 2.1/SROs/Relationship.md",
-      "sha256": "14f7303b6308651ec836257d439b0748c1b621f8920cb859cb2380cb1f476316"
+      "sha256": "3b563224aa11508c7e3c5cc3ae9634b929ae319038b7b0e2b3ae38df24e4a3ee"
     },
     {
       "path": "Templates/STIX 2.1/SROs/Sighting.md",
-      "sha256": "56a2456c30e64ec043671bc9fe5703c50213df0153ddb01596a36bef6104bf8b"
+      "sha256": "0e0d8bb878af5cfa603c49f13400878cce8821112120d534818432d1dea850b0"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Artifact.md",
-      "sha256": "22c112b5286aa08c104d2bcda99e7c6d3b903ba35b0923c5d9ef069435b20e15"
+      "sha256": "c6a65696eb350572cf71709362d828a1ff6c9e155ce781100ba5be47d8779a6d"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Autonomous System.md",
-      "sha256": "d02aa00f8ab5058e5d8eaa9e3f949df3087521b1c2726c1d1ad03c579dca1a4f"
+      "sha256": "a03155169996b4bb6d2afd29ae009eee495fae2dd53649b24e28334c13577cb4"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Directory.md",
-      "sha256": "63d86a0f5f673fbdaf074490229409e9305375a9c7c6df0d4b5d220216487d8d"
+      "sha256": "fe6f65dceef0fdc2463a3a428aee436a6cd4f7f695087cca3716ff98819985bf"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Domain Name.md",
-      "sha256": "3c1ff88fa1b4d05006440a9e77fd2025cb6f6fd6842af6fdca9c3f89a4040b1e"
+      "sha256": "7183ad708d817f8787462361252ae52495403392a9541610ac8e989166e52bbd"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Email Address.md",
-      "sha256": "8ed9cd159361d5bc85623ef3442a6510dffee84766dad3d859b475c21bb9bade"
+      "sha256": "edaa868b220e742b2f3e1ca23c43721a8f0cfa4698167c1ce7bc82291cae23dc"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Email Message.md",
-      "sha256": "354a148a7b9cada97577b6af037aa3101331348f02b81635b75d1aaf45cb474e"
+      "sha256": "b0aec810b5204aabda5575ceefa2eaa06c1f0a881c21bc2a7739a032a7a73e64"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/File.md",
-      "sha256": "316df64f9c52b2c7fdacaa042fbd62f60f514202aa24f64fa2a3800c4bf690ce"
+      "sha256": "23dd25f8c4560728844788e3825f73ed40fe80e38f4a9324f1cbb9ede09fdad1"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/IPv4 Address.md",
-      "sha256": "aa6df5b1363f78364081844c3599b7a7303ebe9261a7970f31395fa37390d539"
+      "sha256": "ed8f80c15e28cef923e90a6af7a66aadb820ee7e1b5afd0555fdda47f40df7a8"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/IPv6 Address.md",
-      "sha256": "299ce0d4caa1d4b542b9ee7666211b59d00c9cf8726a9a90799190f208c95585"
+      "sha256": "d06a6b84e57a3e84d55853aa9467fdfcf283d3f6d6c39632da41c22691839e73"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/MAC Address.md",
-      "sha256": "ae2af8fea9f5bc04737594a7e4dd6d6bda1e68ef72a2f368f8c85750c598d647"
+      "sha256": "55f839bee001c21bab019fd05edf3236cd87f3737a6d2f2be02c6f10b91484bd"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Mutex.md",
-      "sha256": "2f40070c6b47a34f156f2b24c4ea7eb04e7d38a65d249f70d505da8a8cdab2ea"
+      "sha256": "fe5e17e90a00d3e66d661b55d1ee068e98a0a7758fcdf018bf44d29c6f919f7c"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Network Traffic.md",
-      "sha256": "be42238ed6c4dac58bfb085d5eb8d6da7fc3f5213c50cc5c039c09f9077d02d2"
+      "sha256": "6b94ca34c11cef3252508c65747b070331bd5d273dd3a95f174f2477803496f4"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Process.md",
-      "sha256": "776742c6d17a1d07be25eef28baa5be764f1c048c00ec7f4dd11a47eb58beb63"
+      "sha256": "b9e37a201b671f275b6f338ba1b789ee5237b05a9c0fb412c29c08972ea37349"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Software.md",
-      "sha256": "c9b031bfbbcaf762404d4ea2ff49e3efe7a2761bc5fbfa23bbb97ddd69f20f1c"
+      "sha256": "67e76bbedc7dcc920506e980445d70b76335ffae8a51368c1a734fe4a29c7212"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/URL.md",
-      "sha256": "6ed760a5960495497ea688d85a3a3469d9a3b55343749583c0b2f280c0dbbcaa"
+      "sha256": "3d13c78db647091c307771924ea1517a8ed894a52e96a9e3b21de89d065a3185"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/User Account.md",
-      "sha256": "39972c79e846e7af5261ac44cecf2af4bc8506aa5cfdcaf5c60c842d23b5f697"
+      "sha256": "0833c5b06aceb014017f4602c7057b07456f00586a2902a9a833fe0ae9734839"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/Windows Registry Key.md",
-      "sha256": "1a027487ddde19e3b647a326793cbf59e0cf22a86096e8568aae8c483c341922"
+      "sha256": "281f4abb2bcfaa17b6ef06675353ab4bef7d7de122349450a5530842f834538a"
     },
     {
       "path": "Templates/STIX 2.1/SCOs/X.509 Certificate.md",
-      "sha256": "d1202959858dfaa9f497f83d8c6814ab55e9a147c2da4cbf769741d66b240ed4"
+      "sha256": "4ba2eb4c5b13a92a9038e9e3ab105b79350e67bd5d6c1d74316dbb4dbeed0a56"
     },
     {
       "path": "Templates/STIX 2.1/Meta Objects/Language Content.md",
-      "sha256": "7b8aabe064becf1da07acf3b237aa588a3abfbb1dd0d49a57e1bab21538adadb"
+      "sha256": "fecc0836201cd319b03a78b15cbefd6e874bc3b9a5acd4ae889397319653007b"
     },
     {
       "path": "Templates/STIX 2.1/Meta Objects/Marking Definition.md",
-      "sha256": "f2882d07f4519637917e5ad225a70882b5821c6d90a2ce031ea6cc2a5a9ddf7b"
+      "sha256": "4ad441fd3e07ca69ae9a2aa625f11992baf238b9fc247e1abd5e5296223208ae"
     },
     {
       "path": "Templates/STIX 2.1/Meta Objects/Extension Definition.md",
-      "sha256": "ba50f1c63225cd4fb3e9a46bc956edc420f1298991a8429aa6e12253df9cfc84"
+      "sha256": "71538d6f9b002657d6483f208804bb5e503acc6e80b15034904bd9032ac73f47"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/File - Archive File Extension.md",
-      "sha256": "b41e483030aeb3d51860c385fe29df6415025db2933893e2e31eb9c1e5f76f74"
+      "sha256": "ac509663a660c3143b411bc22db62f5893579cec8a808360630f8d84c654cd41"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/File - NTFS File Extension.md",
-      "sha256": "36c6fd51c8f93a9573ec3fd7cc6cadfdc7a77d260573111f23bffe15961b3c2f"
+      "sha256": "4f133a18e6376698536017095dba99e3526a73b3ec9689a0cd0e03596e790613"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/File - PDF File Extension.md",
-      "sha256": "94e7224aec468cc671f273a1a07f82db3942f186e16b97f1b6be6203e85b6a1a"
+      "sha256": "b953b5ef7653ee9deda755f387fcc3da821693ddf16000b89f2c7603ffcda0cc"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/File - Raster Image File Extension.md",
-      "sha256": "60eb7b89bcff71c339efd173cc021094f1bd099920cfc2cdec8065262baf42b3"
+      "sha256": "9b5a88f1c37319e036b5c701b5a6148b7c941f37792f5e8c3c4aca83f4556d13"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/File - Windows PE Binary Extension.md",
-      "sha256": "07a1eb9d3302fffdfaf31ce1247f2ca90d792464b32b506c98340b9e91acce39"
+      "sha256": "b3df8e08fb37574af71e6fe9b1c5698da3627faed9d4b67104d530aa10cbd1ad"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/Network Traffic - HTTP Request Extension.md",
-      "sha256": "f3431b2837fec16ec658bdf7e3dc04f26e66d68940fb3e89e4eb118358fb4a7f"
+      "sha256": "9670924e5d1a6e2b1142793dbed662464e0f55922ea40843cd0072626a45384d"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/Network Traffic - ICMP Extension.md",
-      "sha256": "f0a95b8658bc1644846ecdce1b1200112000ad8e98e3d494fd485bccf6f5c6c9"
+      "sha256": "2ee87677b7f2c67b3688e83097260dec38f30ed42935f903c5a06efa4054dfa2"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/Network Traffic - Network Socket Extension.md",
-      "sha256": "68d651be37877fa8c660d8af81b687a4632d7e0c01924529172aff29b6ba797e"
+      "sha256": "ccd50b7e70a38f88d180790d247372062163fdfb7a0c1d7138af0b46153c4fda"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/Network Traffic - TCP Extension.md",
-      "sha256": "0b5e7f1a1f07d4746bf6eeb00294718f6fd56d17dc345c6dc005015fba44fd5f"
+      "sha256": "2d0d3d658fd87e94a6aac2949cc49aaee4685c6b6715ef58aa512dd88622db7d"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/Process - Windows Process Extension.md",
-      "sha256": "e7bee1c94c4da88666f967a8ebb901ef0e258f8fd76022cb8e1e014ac9420525"
+      "sha256": "c150c7da6c9d3198016780177503265088898e3f198ea259020fca8c13bc203e"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/Process - Windows Service Extension.md",
-      "sha256": "2832efd65f4f62ddac0627147c86e7e07388c4fddbcdc8cffc7c7a2629ac56f0"
+      "sha256": "cedf133f3488a555c88677f2be2c5aa7bb52b5ebbdeca2a6128acebfc0c028b8"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/User Account - UNIX Account Extension.md",
-      "sha256": "56531302d7e70fc1ceefc66ef89f6971ab364491a06d2e9e46e900034c2bcd2c"
+      "sha256": "d9ee21b333ff616b9a2f5c64716559345e91401586ce515cd81eb85ce3725383"
     }
   ]
 }

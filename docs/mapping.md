@@ -8,8 +8,9 @@ not obvious from a field table.
   `id`. Conflicting aliases are errors.
 - `## Summary`, `## Content`, and `## Explanation` map only to the object types
   that define `description`, Note `content`, or Opinion `explanation`.
-- Reference fields accept `[[wiki links]]`; the mapper resolves them to IDs only
-  when the target typed note is inside the export scope.
+- Reference fields accept `[[wiki links]]`; the mapper resolves included typed
+  notes to IDs. A valid raw ID outside the export scope is preserved with a
+  warning because STIX permits references to unavailable objects.
 - Only `stix:<type> [[target]]` relationship declarations and typed Canvas edges
   create Relationship Objects. Ordinary links are contextual.
 - SCO identifiers use the normative contributing properties and canonical JSON
@@ -19,5 +20,8 @@ not obvious from a field table.
   Strict mode reports a warning for an unusual but valid relationship.
 - Standard schemas remain authoritative for required fields, ranges,
   vocabularies, hashes, nested extension constraints, and reference shapes.
+- Multiple versions retain one ID and `created` value with distinct increasing
+  `modified` timestamps. References select the latest available version without
+  removing historical versions from the exported Bundle.
 
 Source: [STIX 2.1 Errata 01](https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html).

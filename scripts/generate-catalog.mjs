@@ -109,6 +109,17 @@ function nestedComment(field, indent = "#   ") {
   ];
 }
 
+function optionalFieldComments(definition, prefix = "# Optional properties") {
+  const optional = definition.fields
+    .filter(
+      (field) =>
+        !field.required &&
+        !["content", "description", "explanation"].includes(field.name),
+    )
+    .map((field) => field.name);
+  return optional.length === 0 ? [] : [`${prefix}: ${optional.join(", ")}`];
+}
+
 function templateBody(definition) {
   const mapped = new Map([
     ["description", "Summary"],
@@ -129,22 +140,32 @@ function templateBody(definition) {
 function templateFor(definition, extension) {
   const frontmatter = [`stix_type: ${definition.type}`, "stix_id:"];
   for (const field of definition.fields) {
+    if (!field.required && !(field.name === "extensions" && extension !== undefined)) {
+      continue;
+    }
     const value = yamlScalar(field, definition);
     if (value === undefined) continue;
     if (field.name === "extensions" && extension !== undefined) {
       frontmatter.push("extensions:", `  ${extension.type}:`);
-      for (const child of extension.fields) {
+      for (const child of extension.fields.filter((candidate) => candidate.required)) {
         const childValue = yamlScalar(child, extension);
         frontmatter.push(
           `    ${child.name}:${childValue === "" ? "" : ` ${childValue}`}`,
         );
         frontmatter.push(...nestedComment(child).map((line) => `    ${line}`));
       }
+      frontmatter.push(
+        ...optionalFieldComments(
+          extension,
+          `# Optional ${extension.type} properties`,
+        ).map((line) => `  ${line}`),
+      );
       continue;
     }
     frontmatter.push(`${field.name}:${value === "" ? "" : ` ${value}`}`);
     frontmatter.push(...nestedComment(field));
   }
+  frontmatter.push(...optionalFieldComments(definition));
   const required = definition.fields
     .filter((field) => field.required)
     .map((field) => `\`${field.name}\``);

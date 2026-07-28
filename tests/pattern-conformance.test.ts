@@ -34,4 +34,17 @@ describe("STIX pattern conformance", () => {
     log.mockRestore();
     error.mockRestore();
   });
+
+  it("matches the OASIS validator checks for known hashes and duplicate qualifiers", () => {
+    expect(parseStixPattern("[file:hashes.'SHA-256' = 'abcd']")).toEqual([
+      expect.objectContaining({ message: expect.stringContaining("SHA-256 hash") }),
+    ]);
+    expect(
+      parseStixPattern("[file:size = 1] WITHIN 5 SECONDS WITHIN 10 SECONDS"),
+    ).toEqual([
+      expect.objectContaining({
+        message: expect.stringContaining("Duplicate qualifier"),
+      }),
+    ]);
+  });
 });

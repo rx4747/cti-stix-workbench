@@ -78,18 +78,18 @@ function layoutNodes(model: StixViewerModel): Map<string, Point> {
   const outgoing = new Map<string, string[]>();
   const incoming = new Map<string, number>();
   for (const node of model.nodes) {
-    outgoing.set(node.id, []);
-    incoming.set(node.id, 0);
+    outgoing.set(node.key, []);
+    incoming.set(node.key, 0);
   }
   for (const edge of model.edges) {
-    outgoing.get(edge.sourceId)?.push(edge.targetId);
-    incoming.set(edge.targetId, (incoming.get(edge.targetId) ?? 0) + 1);
+    outgoing.get(edge.sourceKey)?.push(edge.targetKey);
+    incoming.set(edge.targetKey, (incoming.get(edge.targetKey) ?? 0) + 1);
   }
 
   const depth = new Map<string, number>();
   const roots = model.nodes
-    .filter((node) => (incoming.get(node.id) ?? 0) === 0)
-    .map((node) => node.id);
+    .filter((node) => (incoming.get(node.key) ?? 0) === 0)
+    .map((node) => node.key);
   const queue = roots.length > 0 ? roots.map((id) => ({ id, depth: 0 })) : [];
   while (queue.length > 0) {
     const current = queue.shift();
@@ -103,15 +103,15 @@ function layoutNodes(model: StixViewerModel): Map<string, Point> {
   }
   let cycleDepth = Math.max(-1, ...depth.values()) + 1;
   for (const node of model.nodes) {
-    if (!depth.has(node.id)) {
-      depth.set(node.id, cycleDepth);
+    if (!depth.has(node.key)) {
+      depth.set(node.key, cycleDepth);
       cycleDepth += 1;
     }
   }
 
   const layers = new Map<number, StixViewerNode[]>();
   for (const node of model.nodes) {
-    const nodeDepth = depth.get(node.id) ?? 0;
+    const nodeDepth = depth.get(node.key) ?? 0;
     const layer = layers.get(nodeDepth) ?? [];
     layer.push(node);
     layers.set(nodeDepth, layer);
@@ -121,7 +121,7 @@ function layoutNodes(model: StixViewerModel): Map<string, Point> {
   )) {
     nodes.sort((left, right) => left.label.localeCompare(right.label));
     for (const [row, node] of nodes.entries()) {
-      positions.set(node.id, {
+      positions.set(node.key, {
         x: 72 + layerIndex * (NODE_WIDTH + HORIZONTAL_GAP),
         y: 72 + row * (NODE_HEIGHT + VERTICAL_GAP),
       });
@@ -413,14 +413,14 @@ export class StixViewerView extends ItemView {
     const edgeElements = new Map<string, SVGPathElement>();
     const edgeLabelElements = new Map<string, SVGTextElement>();
     for (const edge of loaded.model.edges) {
-      const sourcePoint = this.positions.get(edge.sourceId);
-      const targetPoint = this.positions.get(edge.targetId);
+      const sourcePoint = this.positions.get(edge.sourceKey);
+      const targetPoint = this.positions.get(edge.targetKey);
       if (sourcePoint === undefined || targetPoint === undefined) continue;
       const path = svgElement("path", {
         class: `cti-stix-viewer-edge cti-stix-viewer-edge-${edge.kind}`,
         d: edgePath(sourcePoint, targetPoint),
         "marker-end": `url(#${this.markerId})`,
-        "data-edge-id": edge.id,
+        "data-edge-id": edge.key,
         tabindex: "0",
         role: "button",
         "aria-label": `${edge.label}: ${edge.sourceId} to ${edge.targetId}`,
@@ -439,7 +439,7 @@ export class StixViewerView extends ItemView {
         { signal: abort.signal },
       );
       world.append(path);
-      edgeElements.set(edge.id, path);
+      edgeElements.set(edge.key, path);
       const label = svgElement("text", {
         class: "cti-stix-viewer-edge-label",
         x: String((sourcePoint.x + NODE_WIDTH + targetPoint.x) / 2),
@@ -447,18 +447,18 @@ export class StixViewerView extends ItemView {
       });
       label.textContent = edge.label;
       world.append(label);
-      edgeLabelElements.set(edge.id, label);
+      edgeLabelElements.set(edge.key, label);
     }
 
     const updateConnectedEdges = (): void => {
       for (const edge of loaded.model.edges) {
-        const sourcePoint = this.positions.get(edge.sourceId);
-        const targetPoint = this.positions.get(edge.targetId);
+        const sourcePoint = this.positions.get(edge.sourceKey);
+        const targetPoint = this.positions.get(edge.targetKey);
         if (sourcePoint === undefined || targetPoint === undefined) continue;
         edgeElements
-          .get(edge.id)
+          .get(edge.key)
           ?.setAttribute("d", edgePath(sourcePoint, targetPoint));
-        const label = edgeLabelElements.get(edge.id);
+        const label = edgeLabelElements.get(edge.key);
         label?.setAttribute(
           "x",
           String((sourcePoint.x + NODE_WIDTH + targetPoint.x) / 2),
@@ -472,7 +472,7 @@ export class StixViewerView extends ItemView {
 
     const nodeElements = new Map<string, SVGGElement>();
     for (const node of loaded.model.nodes) {
-      const point = this.positions.get(node.id);
+      const point = this.positions.get(node.key);
       if (point === undefined) continue;
       const group = svgElement("g", {
         class: `cti-stix-viewer-node${node.placeholder ? " is-placeholder" : ""}`,
@@ -480,7 +480,7 @@ export class StixViewerView extends ItemView {
         tabindex: "0",
         role: "button",
         "aria-label": `${node.type}: ${node.label}`,
-        "data-node-id": node.id,
+        "data-node-id": node.key,
       });
       const fullTitle = svgElement("title");
       fullTitle.textContent = `${node.label} (${node.type})`;
@@ -543,8 +543,8 @@ export class StixViewerView extends ItemView {
         },
         { signal: abort.signal },
       );
-      this.bindNodeDrag(group, node.id, updateConnectedEdges, abort.signal);
-      nodeElements.set(node.id, group);
+      this.bindNodeDrag(group, node.key, updateConnectedEdges, abort.signal);
+      nodeElements.set(node.key, group);
     }
 
     search.addEventListener(
@@ -558,13 +558,13 @@ export class StixViewerView extends ItemView {
             node.label.toLocaleLowerCase().includes(query) ||
             node.type.toLocaleLowerCase().includes(query) ||
             node.id.toLocaleLowerCase().includes(query);
-          nodeElements.get(node.id)?.toggleClass("is-filtered", !matches);
-          if (matches) visible.add(node.id);
+          nodeElements.get(node.key)?.toggleClass("is-filtered", !matches);
+          if (matches) visible.add(node.key);
         }
         for (const edge of loaded.model.edges) {
-          const hidden = !visible.has(edge.sourceId) || !visible.has(edge.targetId);
-          edgeElements.get(edge.id)?.toggleClass("is-filtered", hidden);
-          edgeLabelElements.get(edge.id)?.toggleClass("is-filtered", hidden);
+          const hidden = !visible.has(edge.sourceKey) || !visible.has(edge.targetKey);
+          edgeElements.get(edge.key)?.toggleClass("is-filtered", hidden);
+          edgeLabelElements.get(edge.key)?.toggleClass("is-filtered", hidden);
         }
       },
       { signal: abort.signal },
@@ -743,7 +743,7 @@ export class StixViewerView extends ItemView {
       .forEach((element) => {
         element.removeClass("is-selected");
       });
-    const escapedId = CSS.escape(node.id);
+    const escapedId = CSS.escape(node.key);
     this.world
       ?.querySelector(`[aria-label][data-node-id="${escapedId}"]`)
       ?.addClass("is-selected");
@@ -756,7 +756,7 @@ export class StixViewerView extends ItemView {
       .forEach((element) => {
         element.removeClass("is-selected");
       });
-    const escapedId = CSS.escape(edge.id);
+    const escapedId = CSS.escape(edge.key);
     this.world?.querySelector(`[data-edge-id="${escapedId}"]`)?.addClass("is-selected");
     this.renderEdgeDetails(edge);
   }

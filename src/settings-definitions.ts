@@ -6,6 +6,7 @@ export type WorkbenchSettingKey = keyof WorkbenchSettings;
 
 const settingKeys = new Set<WorkbenchSettingKey>([
   "exportFolder",
+  "importFolder",
   "linkTraversalDepth",
   "includeContextualLinks",
   "readTypedCanvasEdges",
@@ -39,6 +40,16 @@ export function createWorkbenchSettingDefinitions(): SettingDefinitionItem<Workb
         type: "text",
         key: "exportFolder",
         placeholder: "Exports",
+        validate: validateVaultPath,
+      },
+    },
+    {
+      name: "Import folder",
+      desc: "Vault folder where imported STIX Bundles become typed notes.",
+      control: {
+        type: "text",
+        key: "importFolder",
+        placeholder: "STIX Imports",
         validate: validateVaultPath,
       },
     },

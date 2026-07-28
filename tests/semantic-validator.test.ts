@@ -15,6 +15,52 @@ function bundle(...objects: StixObject[]): StixBundle {
 }
 
 describe("normative STIX semantics", () => {
+  it("allows references to objects outside the Bundle and warns when type is unverifiable", () => {
+    const diagnostics = validateBundleSemantics(
+      bundle({
+        type: "indicator",
+        id: `indicator--${uuid}`,
+        created_by_ref: "identity--00000000-0000-4000-8000-000000000099",
+        object_marking_refs: [
+          "marking-definition--00000000-0000-4000-8000-000000000098",
+        ],
+      }),
+    );
+
+    expect(diagnostics).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ field: "created_by_ref", severity: "warning" }),
+        expect.objectContaining({
+          field: "object_marking_refs",
+          severity: "warning",
+        }),
+      ]),
+    );
+    expect(diagnostics).toHaveLength(2);
+  });
+
+  it("rejects an included created_by_ref target with the wrong type", () => {
+    const actorId = `threat-actor--${uuid}`;
+    const diagnostics = validateBundleSemantics(
+      bundle(
+        {
+          type: "indicator",
+          id: `indicator--${uuid}`,
+          created_by_ref: actorId,
+        },
+        { type: "threat-actor", id: actorId },
+      ),
+    );
+
+    expect(diagnostics).toEqual([
+      expect.objectContaining({
+        field: "created_by_ref",
+        severity: "error",
+        message: expect.stringContaining("Identity"),
+      }),
+    ]);
+  });
+
   it("reports pattern syntax with a source location", () => {
     const diagnostics = validateBundleSemantics(
       bundle({
@@ -120,6 +166,43 @@ describe("normative STIX semantics", () => {
     );
   });
 
+  it("enforces granular marking choice and fixed TLP marking definitions", () => {
+    const tlpId = "marking-definition--00000000-0000-4000-8000-000000000088";
+    const diagnostics = validateBundleSemantics(
+      bundle(
+        {
+          type: "indicator",
+          id: `indicator--${uuid}`,
+          name: "Example",
+          granular_markings: [{ lang: "en", marking_ref: tlpId, selectors: ["name"] }],
+        },
+        {
+          type: "marking-definition",
+          id: tlpId,
+          created: "2026-07-28T10:00:00.000Z",
+          name: "TLP:GREEN",
+          definition_type: "tlp",
+          definition: { tlp: "green" },
+          object_marking_refs: [tlpId],
+        },
+      ),
+    );
+
+    expect(diagnostics).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          message: expect.stringContaining("exactly one"),
+        }),
+        expect.objectContaining({
+          message: expect.stringContaining("four fixed"),
+        }),
+        expect.objectContaining({
+          message: expect.stringContaining("cannot mark itself"),
+        }),
+      ]),
+    );
+  });
+
   it("accepts the five standard Extension Definition modes", () => {
     const diagnostics = validateBundleSemantics(
       bundle({
@@ -163,5 +246,32 @@ describe("normative STIX semantics", () => {
       ]),
     );
     expect(validateBundleSemantics(graph, new Map(), "lenient")).toEqual([]);
+  });
+
+  it("enforces invariants across multiple versions of one object", () => {
+    const id = `indicator--${uuid}`;
+    const original = {
+      type: "indicator",
+      id,
+      created: "2026-07-01T10:00:00.000Z",
+      modified: "2026-07-01T10:00:00.000Z",
+      revoked: true,
+    } satisfies StixObject;
+    const invalidLater = {
+      ...original,
+      created: "2026-07-02T10:00:00.000Z",
+      modified: "2026-07-03T10:00:00.000Z",
+      revoked: false,
+    } satisfies StixObject;
+
+    expect(validateBundleSemantics(bundle(original, invalidLater))).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ field: "created" }),
+        expect.objectContaining({
+          field: "modified",
+          message: expect.stringContaining("revoked"),
+        }),
+      ]),
+    );
   });
 });

@@ -114,7 +114,9 @@ async function readJson(repositoryRoot, filename) {
 }
 
 async function main() {
-  const [bump, date = new Date().toISOString().slice(0, 10)] = process.argv.slice(2);
+  const [bump, date = new Date().toISOString().slice(0, 10)] = process.argv
+    .slice(2)
+    .filter((argument) => argument !== "--");
   assert.notEqual(
     bump,
     undefined,

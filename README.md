@@ -21,6 +21,7 @@ your vault to a hosted service.
 ## What it does
 
 - Provides catalog-driven property editing for standard STIX 2.1 objects.
+- Imports validated STIX 2.1 Bundles into typed, linked Markdown notes.
 - Validates an active note and its connected graph against pinned local schemas.
 - Visualizes STIX JSON or connected notes as an interactive, icon-based graph.
 - Gives explicit, readable diagnostics instead of silently changing bad data.
@@ -45,7 +46,7 @@ the complete title remains available on hover and in the property panel.
 | Project | Use it for |
 | --- | --- |
 | **CTI STIX Workbench** (this repository) | Editing, validation, graph traversal, and Bundle export. |
-| [**CTI Investigation Vault**](https://github.com/rx4747/cti-investigation-vault) | A clean starting structure with analyst workflows, all STIX templates, and fictional examples. |
+| [**CTI Investigation Vault**](https://github.com/rx4747/cti-investigation-vault) | A clean starting structure with all STIX templates and the official OASIS APT1 example Bundle. |
 
 They are independent. The plugin never creates, replaces, or uploads your vault.
 
@@ -67,7 +68,8 @@ Restart Obsidian, open **Settings → Community plugins**, and enable
 
 ## A five-minute first run
 
-1. Run **Create STIX object** and search for one of the 42 standalone types.
+1. Open the vault's `Examples/OASIS APT1/apt1.json` and run **Import STIX
+   Bundle as notes**, or create an object manually.
 2. Run **Edit STIX properties** to fill in catalog-defined fields.
 3. Link related STIX notes with ordinary `[[wiki links]]`.
 4. Add an exportable relationship as a list item, for example:
@@ -79,6 +81,9 @@ Restart Obsidian, open **Settings → Community plugins**, and enable
 5. Run **Validate active STIX graph** and review any diagnostics.
 6. Run **Open in STIX viewer** to inspect and arrange the local graph.
 7. Run **Export active STIX graph** to write a STIX Bundle to `Exports/`.
+
+The APT1 example imports 76 objects, including 30 typed Relationships. It is
+the official OASIS example and demonstrates that `created_by_ref` is optional.
 
 Ordinary links remain useful context and appear in Graph view. They become STIX
 Relationships only when you use the explicit `stix:<relationship-type>` form.

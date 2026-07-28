@@ -4,6 +4,40 @@
 
 ## Released
 
+## 1.2.0 — 2026-07-28
+
+### Added
+
+- Added atomic local Bundle import with a type-count preview, typed notes,
+  internal wiki links, an import overview, and semantic round-trip coverage
+  against the official 76-object OASIS APT1 example.
+- Added STIX object version identities, latest-version reference resolution,
+  commands for creating and revoking versions, and cross-version validation.
+- Added an evidence-gated STIX 2.1 producer, consumer, markings, extensions,
+  versioning, and Level 3 pattern-syntax conformance profile.
+
+### Changed
+
+- Changed generated templates and the property editor to expose required and
+  present properties by default, with an explicit add-property workflow for
+  optional and nested fields.
+- Preserved valid external STIX references with warnings instead of rejecting
+  them solely because their targets are outside the exported Bundle.
+- Updated vault synchronization to propose the attributed OASIS APT1 Bundle,
+  license, and import walkthrough without adding `.obsidian` state or
+  pre-expanded generated notes.
+
+### Fixed
+
+- Matched Errata 01 granular-marking semantics by accepting exactly one of
+  `lang` or `marking_ref`, rejecting circular self-markings, and enforcing the
+  four fixed STIX TLP definitions.
+- Advanced `modified` automatically when editing versioned objects, preserved
+  immutable creator metadata, and prevented non-versioned Marking Definitions
+  and SCOs from entering the version workflow.
+- Added the OASIS validator's known-hash and duplicate-qualifier checks to the
+  Level 3 STIX pattern parser.
+
 ## 1.1.0 — 2026-07-28
 
 ### Added

@@ -31,6 +31,29 @@ function draft(
 }
 
 describe("complete STIX graph mapping", () => {
+  it("preserves valid external STIX references with a warning", async () => {
+    const externalIdentity = `identity--${uuid4(777)}`;
+    const result = await mapGraphToBundle({
+      bundleId: `bundle--${uuid4(900)}`,
+      drafts: [
+        draft("Objects/Indicator.md", "indicator", `indicator--${uuid4(1)}`, {
+          created_by_ref: externalIdentity,
+        }),
+      ],
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.bundle.objects[0]?.created_by_ref).toBe(externalIdentity);
+      expect(result.warnings).toEqual([
+        expect.objectContaining({
+          code: DIAGNOSTIC_CODES.referenceUnresolved,
+          severity: "warning",
+        }),
+      ]);
+    }
+  });
+
   it("uses one mapping path for every authorable standard object type", async () => {
     const definitions = stixCatalog
       .listObjectTypes()

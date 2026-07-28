@@ -3,10 +3,14 @@ import { describe, expect, it } from "vitest";
 import { stixCatalog } from "../src/catalog/stix-2.1";
 import {
   addObjectListItem,
+  addOptionalEditorField,
+  advanceModifiedForEdit,
   applyEditorValues,
+  availableOptionalFields,
   createEditorValues,
   createExtensionValue,
   editableStixDefinition,
+  removeOptionalEditorField,
   scalarEditorText,
   updateObjectListItemField,
 } from "../src/ui/property-editor-state";
@@ -19,7 +23,7 @@ function requireValue<T>(value: T | undefined, message: string): T {
 }
 
 describe("STIX property editor state", () => {
-  it("exposes every authorable catalog field without dropping structured values", () => {
+  it("exposes required and existing fields while keeping absent optionals available", () => {
     const definitions = stixCatalog
       .listObjectTypes()
       .filter(
@@ -35,6 +39,7 @@ describe("STIX property editor state", () => {
         stix_type: definition.type,
       });
       const expectedKeys = definition.fields
+        .filter((field) => field.required)
         .map((field) =>
           field.name === "type"
             ? "stix_type"
@@ -44,7 +49,29 @@ describe("STIX property editor state", () => {
         )
         .filter((key) => !["content", "description", "explanation"].includes(key));
       expect(Object.keys(values).sort(), definition.type).toEqual(expectedKeys.sort());
+      expect(
+        availableOptionalFields(definition, values).every((field) => !field.required),
+      ).toBe(true);
     }
+  });
+
+  it("adds and removes optional fields without materializing unrelated properties", () => {
+    const definition = requireValue(
+      stixCatalog.getObjectType("indicator"),
+      "Indicator definition is missing.",
+    );
+    const killChain = requireValue(
+      definition.fields.find((field) => field.name === "kill_chain_phases"),
+      "kill_chain_phases is missing.",
+    );
+    const initial = createEditorValues(definition, { stix_type: "indicator" });
+    const added = addOptionalEditorField(initial, killChain);
+
+    expect(added.kill_chain_phases).toEqual([{ kill_chain_name: "", phase_name: "" }]);
+    expect(added).not.toHaveProperty("created_by_ref");
+    expect(removeOptionalEditorField(added, killChain)).not.toHaveProperty(
+      "kill_chain_phases",
+    );
   });
 
   it("creates all external-reference child fields only when an item is added", () => {
@@ -122,6 +149,31 @@ describe("STIX property editor state", () => {
       unrelated_plugin_key: true,
     });
     expect(saved).not.toBe(frontmatter);
+  });
+
+  it("advances modified for changed versioned objects but not SCOs or no-op saves", () => {
+    const before = {
+      stix_type: "indicator",
+      modified: "2026-07-28T10:00:00.000Z",
+      confidence: 50,
+    };
+    expect(
+      advanceModifiedForEdit(
+        before,
+        { ...before, confidence: 75 },
+        new Date("2026-07-28T11:00:00.000Z"),
+      ).modified,
+    ).toBe("2026-07-28T11:00:00.000Z");
+    expect(
+      advanceModifiedForEdit(before, before, new Date("2026-07-28T11:00:00.000Z")),
+    ).toEqual(before);
+    expect(
+      advanceModifiedForEdit(
+        { stix_type: "ipv4-addr", value: "198.51.100.1" },
+        { stix_type: "ipv4-addr", value: "198.51.100.2" },
+        new Date("2026-07-28T11:00:00.000Z"),
+      ),
+    ).not.toHaveProperty("modified");
   });
 
   it("omits untouched optional fields and empty optional nested children", () => {
@@ -217,7 +269,12 @@ describe("STIX property editor state", () => {
       stix_type: "ipv4-addr",
     });
 
-    expect(values.defanged).toBe("");
+    expect(values).not.toHaveProperty("defanged");
+    const field = requireValue(
+      definition.fields.find((candidate) => candidate.name === "defanged"),
+      "defanged field is missing.",
+    );
+    expect(addOptionalEditorField(values, field).defanged).toBe("");
   });
 
   it("preserves earlier edits when multiple child fields change", () => {

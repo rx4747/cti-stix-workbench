@@ -15,6 +15,7 @@ import type {
   StixBundle,
   StixObject,
 } from "./types";
+import { stixObjectVersionKey } from "./versioning";
 
 const AUTHORABLE_FAMILIES = new Set(["sdo", "sro", "sco", "smo"]);
 const STIX_ID_PATTERN =
@@ -187,15 +188,17 @@ function resolveReference(
       return value;
     }
     context.diagnostics.push(
-      mappingDiagnostic(
-        DIAGNOSTIC_CODES.referenceUnresolved,
-        `${field} references STIX ID "${value}", which is not in the export scope.`,
-        draft.path,
+      createDiagnostic({
+        authority: "mapping",
+        code: DIAGNOSTIC_CODES.referenceUnresolved,
+        severity: "warning",
+        message: `${field} references external STIX ID "${value}" outside the export scope; the ID was preserved.`,
+        notePath: draft.path,
         field,
         objectPath,
-      ),
+      }),
     );
-    return undefined;
+    return value;
   }
 
   const wikiMatch = WIKI_LINK_PATTERN.exec(value);
@@ -740,13 +743,14 @@ function targetIdForRelationship(
 
 function addObject(
   object: StixObject,
-  byId: Map<string, StixObject>,
+  byVersion: Map<string, StixObject>,
   diagnostics: Diagnostic[],
   notePath?: string,
 ): void {
-  const existing = byId.get(object.id);
+  const versionKey = stixObjectVersionKey(object);
+  const existing = byVersion.get(versionKey);
   if (existing === undefined) {
-    byId.set(object.id, object);
+    byVersion.set(versionKey, object);
     return;
   }
   let conflicts: boolean;
@@ -757,7 +761,7 @@ function addObject(
     diagnostics.push(
       mappingDiagnostic(
         DIAGNOSTIC_CODES.fieldTypeInvalid,
-        `Could not compare duplicate STIX ID "${object.id}": ${detail}`,
+        `Could not compare duplicate STIX object version "${versionKey}": ${detail}`,
         notePath,
         "id",
         "$.id",
@@ -769,7 +773,7 @@ function addObject(
     diagnostics.push(
       mappingDiagnostic(
         DIAGNOSTIC_CODES.fieldDuplicate,
-        `STIX ID "${object.id}" is assigned to conflicting object content.`,
+        `STIX object version "${versionKey}" is assigned conflicting content.`,
         notePath,
         "id",
         "$.id",
@@ -796,12 +800,12 @@ export async function mapGraphToBundle(
     includedIds: new Set(assigned.map((item) => item.id)),
     diagnostics,
   };
-  const objectsById = new Map<string, StixObject>();
+  const objectsByVersion = new Map<string, StixObject>();
 
   for (const item of assigned) {
     addObject(
       mapAssignedObject(item, context),
-      objectsById,
+      objectsByVersion,
       diagnostics,
       item.draft.path,
     );
@@ -882,7 +886,7 @@ export async function mapGraphToBundle(
         source_ref: source.id,
         target_ref: targetId,
       },
-      objectsById,
+      objectsByVersion,
       diagnostics,
       source.draft.path,
     );
@@ -908,9 +912,11 @@ export async function mapGraphToBundle(
     };
   }
 
-  const objects = [...objectsById.values()].sort((left, right) =>
-    left.id.localeCompare(right.id),
-  );
+  const objects = [...objectsByVersion.values()].sort((left, right) => {
+    const leftModified = typeof left.modified === "string" ? left.modified : "";
+    const rightModified = typeof right.modified === "string" ? right.modified : "";
+    return left.id.localeCompare(right.id) || leftModified.localeCompare(rightModified);
+  });
   const bundle: StixBundle = {
     type: "bundle",
     id: bundleIdentifier.id as `bundle--${string}`,

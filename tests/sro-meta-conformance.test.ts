@@ -149,6 +149,27 @@ function conformanceDrafts(): readonly NormalizedStixDraft[] {
 }
 
 describe("SRO and Meta Object conformance", () => {
+  it("accepts an Errata 01 language-only granular marking", () => {
+    const graph: StixBundle = {
+      type: "bundle",
+      id: `bundle--${uuid4(899)}`,
+      objects: [
+        {
+          type: "identity",
+          id: `identity--${uuid4(898)}`,
+          spec_version: "2.1",
+          created: CREATED,
+          modified: CREATED,
+          name: "Primer",
+          identity_class: "organization",
+          granular_markings: [{ lang: "sr-Latn", selectors: ["name"] }],
+        },
+      ],
+    };
+
+    expect(validateBundleSchema(graph)).toEqual([]);
+  });
+
   it("maps and schema-validates Relationships, Sightings, and all Meta Objects", async () => {
     const result = await mapGraphToBundle({
       bundleId: `bundle--${uuid4(900)}`,

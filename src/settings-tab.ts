@@ -36,6 +36,12 @@ export class WorkbenchSettingTab extends PluginSettingTab {
       "exportFolder",
       "Exports",
     );
+    this.addPathSetting(
+      "Import folder",
+      "Vault folder where imported STIX Bundles become typed notes.",
+      "importFolder",
+      "STIX Imports",
+    );
 
     new Setting(this.containerEl)
       .setName("Link traversal depth")
@@ -108,7 +114,7 @@ export class WorkbenchSettingTab extends PluginSettingTab {
   private addPathSetting(
     name: string,
     description: string,
-    key: "exportFolder" | "extensionRegistryPath",
+    key: "exportFolder" | "importFolder" | "extensionRegistryPath",
     placeholder: string,
   ): void {
     const setting = new Setting(this.containerEl).setName(name).setDesc(description);

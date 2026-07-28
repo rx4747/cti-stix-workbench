@@ -14,6 +14,7 @@ src/validation/generated/*
 src/validation/generated/antlr/*
 !src/validation/generated/antlr/STIXPatternLexer.d.ts
 !src/validation/generated/antlr/STIXPatternParser.d.ts
+!src/validation/generated/antlr/STIXPatternListener.d.ts
 
 .obsidian/
 Exports/

@@ -3,7 +3,8 @@
 The plugin is a local pipeline:
 
 ```text
-Obsidian Markdown or Canvas
+Local STIX JSON, Obsidian Markdown, or Canvas
+  -> schema validation and atomic note import when JSON is selected
   -> boundary parsing and link resolution
   -> normalized drafts
   -> identity and relationship mapping
@@ -29,3 +30,9 @@ request.
 Validation is read-only. Export first validates the complete scope, then
 persists generated IDs and relationship identities, and finally creates a new
 Bundle file. Existing export files are never overwritten.
+
+Bundle import plans all paths before writing, creates notes under a private
+staging folder, and renames that folder into place only after every file is
+complete. Object versions use `(id, modified)` identity; references select the
+latest available version while historical versions remain in the Bundle and
+viewer model.

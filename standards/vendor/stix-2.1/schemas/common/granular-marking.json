@@ -31,7 +31,16 @@
     }
   },
   "required": [
-    "selectors",
-    "marking_ref"
+    "selectors"
+  ],
+  "oneOf": [
+    {
+      "required": ["lang"],
+      "not": { "required": ["marking_ref"] }
+    },
+    {
+      "required": ["marking_ref"],
+      "not": { "required": ["lang"] }
+    }
   ]
 }

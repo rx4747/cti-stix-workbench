@@ -7,6 +7,7 @@ import type {
   RelationshipDeclaration,
   StixBundle,
 } from "../../core/types";
+import { stixVersionKey } from "../../core/versioning";
 import type { WorkbenchSettings } from "../../settings";
 import { parseCanvas } from "../canvas/parser";
 import { parseMarkdownNote } from "../markdown/parser";
@@ -93,7 +94,15 @@ function pathsById(
     const id =
       draft.stixId ??
       (typeof draft.properties.id === "string" ? draft.properties.id : undefined);
-    if (id !== undefined) paths.set(id, draft.path);
+    if (id !== undefined) {
+      paths.set(id, draft.path);
+      if (draft.stixType !== undefined) {
+        paths.set(
+          stixVersionKey(draft.stixType, id, draft.properties.modified),
+          draft.path,
+        );
+      }
+    }
   }
   for (const identity of identities) {
     if (identity.kind === "note") paths.set(identity.id, identity.notePath);

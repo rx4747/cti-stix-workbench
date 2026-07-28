@@ -2,6 +2,7 @@ export type ValidationMode = "strict" | "lenient";
 
 export interface WorkbenchSettings {
   exportFolder: string;
+  importFolder: string;
   linkTraversalDepth: number;
   includeContextualLinks: boolean;
   readTypedCanvasEdges: boolean;
@@ -12,6 +13,7 @@ export interface WorkbenchSettings {
 
 export const DEFAULT_SETTINGS: Readonly<WorkbenchSettings> = Object.freeze({
   exportFolder: "Exports",
+  importFolder: "STIX Imports",
   linkTraversalDepth: 1,
   includeContextualLinks: true,
   readTypedCanvasEdges: true,
@@ -64,6 +66,10 @@ export function parseWorkbenchSettings(value: unknown): WorkbenchSettings {
     exportFolder: parseVaultRelativePath(
       value.exportFolder,
       DEFAULT_SETTINGS.exportFolder,
+    ),
+    importFolder: parseVaultRelativePath(
+      value.importFolder,
+      DEFAULT_SETTINGS.importFolder,
     ),
     linkTraversalDepth: parseDepth(value.linkTraversalDepth),
     includeContextualLinks: parseBoolean(
