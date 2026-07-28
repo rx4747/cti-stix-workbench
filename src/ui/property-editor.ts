@@ -26,6 +26,7 @@ import {
   scalarEditorText,
   stixReferenceLink,
   updateObjectListItemField,
+  wikiLinkLabel,
   wikiLinkTarget,
 } from "./property-editor-state";
 
@@ -505,9 +506,8 @@ export class StixPropertyEditorModal extends Modal {
     const frontmatter: unknown =
       this.app.metadataCache.getFileCache(target)?.frontmatter;
     const stixType = isRecord(frontmatter) ? frontmatter.stix_type : undefined;
-    return typeof stixType === "string"
-      ? `${target.basename} · ${stixType}`
-      : target.basename;
+    const label = wikiLinkLabel(reference) ?? target.basename;
+    return typeof stixType === "string" ? `${label} · ${stixType}` : label;
   }
 
   private renderObjectList(
