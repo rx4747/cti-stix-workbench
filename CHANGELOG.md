@@ -4,6 +4,16 @@
 
 ## Released
 
+## 1.3.0 — 2026-07-28
+
+### Added
+
+- Added a guided **Create analyst workflow** command with safe vault-relative
+  placement and optional linking to the active Markdown note.
+- Added versioned Intake and Triage, IOC and Observable Triage, Pivot and
+  Enrichment Log, Analytic Timeline, Hypothesis Matrix, and Peer Review
+  workflows with generated vault templates and checksum verification.
+
 ## 1.2.0 — 2026-07-28
 
 ### Added
