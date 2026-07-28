@@ -66,7 +66,20 @@ jobs:
             "vault/Templates/STIX 2.1/"
           cp standards/vault-template-manifest.json vault/.cti-template-manifest.json
           mkdir -p "vault/Templates/CTI Workflows"
-          rsync --archive --delete \
+          if [[ -f vault/.cti-workflow-manifest.json ]]; then
+            jq --raw-output '.files | keys[]' vault/.cti-workflow-manifest.json |
+              while IFS= read -r generated_path; do
+                relative_path="${generated_path#Templates/CTI Workflows/}"
+                if [[ "${relative_path}" == "${generated_path}" ||
+                      "${relative_path}" == */* ||
+                      "${relative_path}" != *.md ]]; then
+                  echo "Refusing to remove unexpected workflow path: ${generated_path}" >&2
+                  exit 1
+                fi
+                rm --force -- "vault/${generated_path}"
+              done
+          fi
+          rsync --archive \
             "generated/analyst-workflows/Templates/CTI Workflows/" \
             "vault/Templates/CTI Workflows/"
           cp standards/analyst-workflow-manifest.json vault/.cti-workflow-manifest.json
