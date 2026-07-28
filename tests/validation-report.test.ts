@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 
 import { createDiagnostic, DIAGNOSTIC_CODES } from "../src/core/diagnostics";
-import { diagnosticGroup, groupDiagnostics } from "../src/ui/validation-report-state";
+import {
+  diagnosticGroup,
+  diagnosticHint,
+  groupDiagnostics,
+} from "../src/ui/validation-report-state";
 
 describe("validation report grouping", () => {
   it("distinguishes object, relationship, Canvas, and Bundle diagnostics", () => {
@@ -45,5 +49,16 @@ describe("validation report grouping", () => {
       "Canvas",
       "Bundle",
     ]);
+  });
+
+  it("provides human-readable repair guidance for common input errors", () => {
+    const diagnostic = createDiagnostic({
+      authority: "mapping",
+      code: DIAGNOSTIC_CODES.referenceUnresolved,
+      severity: "error",
+      message: "Target could not be resolved.",
+    });
+
+    expect(diagnosticHint(diagnostic)).toContain("typed STIX note");
   });
 });

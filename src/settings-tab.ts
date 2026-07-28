@@ -94,6 +94,19 @@ export class WorkbenchSettingTab extends PluginSettingTab {
       "extensionRegistryPath",
       "STIX Extensions/registry.json",
     );
+    new Setting(this.containerEl)
+      .setName("Folders excluded from broad scopes")
+      .setDesc(
+        "Comma-separated vault folders skipped by folder and whole-vault validation, export, and canvas generation.",
+      )
+      .addText((input) => {
+        input
+          .setPlaceholder("Templates")
+          .setValue(this.workbench.settings.scopeExcludedFolders)
+          .onChange(async (value) => {
+            await this.workbench.updateSettings({ scopeExcludedFolders: value });
+          });
+      });
   }
 
   private addToggleSetting(

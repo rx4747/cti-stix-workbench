@@ -1,5 +1,10 @@
-import type { Diagnostic } from "../../core/diagnostics";
+import {
+  createDiagnostic,
+  DIAGNOSTIC_CODES,
+  type Diagnostic,
+} from "../../core/diagnostics";
 import { mapGraphToBundle } from "../../core/graph-mapper";
+import { validateStixIdentifier } from "../../core/identifiers";
 import type {
   GeneratedIdentity,
   NormalizedStixDraft,
@@ -86,6 +91,32 @@ function splitDiagnostics(diagnostics: readonly Diagnostic[]): {
   };
 }
 
+async function externalIdsForLinks(
+  host: ScopedGraphHost,
+  drafts: readonly NormalizedStixDraft[],
+): Promise<ReadonlyMap<string, string>> {
+  const includedPaths = new Set(drafts.map((draft) => draft.path));
+  const targetPaths = new Set(
+    drafts.flatMap((draft) =>
+      draft.links.flatMap((link) =>
+        link.targetPath === undefined || includedPaths.has(link.targetPath)
+          ? []
+          : [link.targetPath],
+      ),
+    ),
+  );
+  const externalIds = new Map<string, string>();
+  for (const path of targetPaths) {
+    const input = await host.readNote(path);
+    if (input === undefined || !declaresStix(input.frontmatter)) continue;
+    const draft = parseMarkdownNote(input).draft;
+    if (draft?.stixType === undefined || draft.stixId === undefined) continue;
+    const identifier = validateStixIdentifier(draft.stixType, draft.stixId);
+    if (identifier.ok) externalIds.set(path, identifier.id);
+  }
+  return externalIds;
+}
+
 export async function validateScopedGraph(
   host: ScopedGraphHost,
   notePaths: readonly string[],
@@ -121,6 +152,7 @@ export async function validateScopedGraph(
   const mapped = await mapGraphToBundle(
     {
       drafts,
+      externalIdsByPath: await externalIdsForLinks(host, drafts),
       relationships,
       relationshipIdentities: await host.loadRelationshipIdentities(),
     },
@@ -131,6 +163,21 @@ export async function validateScopedGraph(
     return {
       ok: false,
       errors: mapped.errors,
+      warnings: [...parsed.warnings, ...mapped.warnings],
+      skippedCount,
+    };
+  }
+  if (mapped.bundle.objects.length === 0) {
+    return {
+      ok: false,
+      errors: [
+        createDiagnostic({
+          authority: "input",
+          code: DIAGNOSTIC_CODES.exportBlocked,
+          severity: "error",
+          message: "No typed STIX objects were found in this scope.",
+        }),
+      ],
       warnings: [...parsed.warnings, ...mapped.warnings],
       skippedCount,
     };

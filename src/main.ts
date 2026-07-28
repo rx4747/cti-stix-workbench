@@ -24,6 +24,7 @@ import type { PersistedRelationshipIdentity } from "./core/types";
 import { advanceStixTimestamp } from "./core/versioning";
 import { parseStixBundleJson, planBundleImport } from "./import/bundle-import";
 import { parsePluginData, serializePluginData } from "./plugin-data";
+import { filterExcludedScopePaths } from "./scope-exclusions";
 import { parseWorkbenchSettings, type WorkbenchSettings } from "./settings";
 import { WorkbenchSettingTab } from "./settings-tab";
 import { openAnalystWorkflowCreator } from "./ui/analyst-workflow";
@@ -61,6 +62,7 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
       STIX_VIEWER_VIEW_TYPE,
       (leaf) => new StixViewerView(leaf, viewerDependencies),
     );
+    this.registerExtensions(["json"], STIX_VIEWER_VIEW_TYPE);
     this.addRibbonIcon("waypoints", "Open in STIX viewer", () => {
       const source = this.activeViewerSource();
       if (source === undefined) {
@@ -85,8 +87,8 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
       id: "import-stix-bundle",
       name: "Import STIX bundle as notes",
       checkCallback: (checking) => {
-        const file = this.app.workspace.getActiveFile();
-        if (file === null || file.extension.toLowerCase() !== "json") return false;
+        const file = this.activeJsonFile();
+        if (file === null) return false;
         if (!checking) void this.runBundleImport(file);
         return true;
       },
@@ -286,6 +288,7 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
       frontmatter === undefined ||
       definition.type === "marking-definition" ||
       typeof frontmatter.stix_id !== "string" ||
+      !frontmatter.stix_id.startsWith(`${definition.type}--`) ||
       typeof frontmatter.modified !== "string" ||
       frontmatter.revoked === true
     ) {
@@ -356,8 +359,19 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
   }
 
   private activeViewerSource(): StixViewerSource | undefined {
+    const source = this.app.workspace.getActiveViewOfType(StixViewerView)?.getSource();
+    if (source !== undefined) return source;
     const file = this.app.workspace.getActiveFile();
     return file === null ? undefined : this.viewerSourceForFile(file);
+  }
+
+  private activeJsonFile(): TFile | null {
+    const source = this.activeViewerSource();
+    if (source?.kind === "json") {
+      return this.app.vault.getFileByPath(source.path);
+    }
+    const file = this.app.workspace.getActiveFile();
+    return file?.extension.toLowerCase() === "json" ? file : null;
   }
 
   private viewerDependencies(): StixViewerDependencies {
@@ -493,6 +507,16 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
     });
   }
 
+  private discoveredPaths(
+    host: ObsidianActiveGraphHost,
+    folder?: string,
+  ): readonly string[] {
+    return filterExcludedScopePaths(
+      host.listMarkdownPaths(folder),
+      this.settings.scopeExcludedFolders,
+    );
+  }
+
   private async runBundleImport(file: TFile): Promise<void> {
     try {
       const bundle = parseStixBundleJson(await this.app.vault.cachedRead(file));
@@ -597,7 +621,7 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
     try {
       const host = this.createActiveGraphHost();
       const registry = await this.loadExtensionRegistry();
-      const notePaths = host.listMarkdownPaths(folder);
+      const notePaths = this.discoveredPaths(host, folder);
       const result = await validateScopedGraph(
         host,
         notePaths,
@@ -740,7 +764,7 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
 
   private async runVaultExport(): Promise<void> {
     const host = this.createActiveGraphHost();
-    const paths = host.listMarkdownPaths();
+    const paths = this.discoveredPaths(host);
     if (!(await confirmWholeVaultExport(this.app, paths.length))) return;
     await this.runDiscoveredExport("Whole vault", undefined, host, paths);
   }
@@ -749,7 +773,7 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
     try {
       const host = this.createActiveGraphHost();
       const registry = await this.loadExtensionRegistry();
-      const paths = host.listMarkdownPaths(folder);
+      const paths = this.discoveredPaths(host, folder);
       const result = await withScopeProgress(
         this.app,
         `Validating ${scope}`,
@@ -780,7 +804,7 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
     try {
       const host = existingHost ?? this.createActiveGraphHost();
       const registry = await this.loadExtensionRegistry();
-      const paths = existingPaths ?? host.listMarkdownPaths(folder);
+      const paths = existingPaths ?? this.discoveredPaths(host, folder);
       const result = await withScopeProgress(
         this.app,
         `Exporting ${scope}`,

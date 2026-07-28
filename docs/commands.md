@@ -12,7 +12,7 @@ from the file menu for supported files.
 | **Create STIX object** | Always | Searches all authorable STIX 2.1 SDO, SRO, SCO, and Meta Object types, then creates a typed Markdown note at a vault-relative path. Required properties are added as draft values. |
 | **Create analyst workflow** | Always | Searches the 15 versioned analyst workflows, creates a STIX Note draft in its suggested investigation or report folder, and links the active Markdown note when one is open. Only an active typed STIX note enters `object_refs`; an ordinary note remains a contextual link. |
 | **Edit STIX properties** | A supported typed Markdown note is active | Opens the catalog-driven property editor for the note. It does not edit Bundles or standalone predefined-extension templates. |
-| **Import STIX bundle as notes** | A local `.json` file is active | Parses and validates a STIX 2.1 Bundle, previews its type counts and destination, then atomically creates one populated typed note per object plus an import overview. It does not create a Canvas. |
+| **Import STIX bundle as notes** | A local `.json` file is open in the STIX viewer | Parses and validates a STIX 2.1 Bundle, previews its type counts and destination, then atomically creates one populated typed note per object plus an import overview. It does not create a Canvas. |
 | **Generate canvas from active STIX graph** | A typed Markdown note is active | Validates the connected note graph, then creates a collision-safe Canvas with object-note file nodes and labeled Relationship edges. |
 | **Generate canvas from current folder** | Any vault file is active | Recursively validates typed notes below the file's folder, then creates the same deterministic Canvas representation. Open an imported `Import Overview.md` to generate a Canvas for the complete import. |
 | **Create new STIX object version** | An eligible, non-revoked versioned object with an ID and `modified` value is active | Copies the note, retains `id`, `created`, and `created_by_ref`, advances `modified`, and opens the new timestamped note. The original version remains. |
@@ -43,9 +43,14 @@ for its controls, relationship display, references, and side panel.
 | **Validate active STIX canvas** | Markdown file nodes in the active Canvas | Typed directed Canvas edges may become Relationships. |
 | **Export active STIX canvas** | The same Canvas scope | Validates before writing. Untyped visual Canvas content remains context only. |
 | **Validate current folder as STIX** | All typed Markdown notes below the active file's folder | Recurses through subfolders and reports skipped untyped notes. |
-| **Export current folder as STIX** | The same recursive folder scope | Does not follow links to pull files from outside the folder. |
+| **Export current folder as STIX** | The same recursive folder scope | Linked typed notes outside the folder resolve to their persisted STIX IDs, but their objects are not added to the Bundle. |
 | **Validate whole vault as STIX** | Every typed Markdown note in the vault | Shows progress and supports cancellation. Untyped notes are skipped. |
 | **Export whole vault as STIX** | Every typed Markdown note in the vault | Requires confirmation, shows progress, and can be cancelled before IDs or a Bundle are written. |
+
+Folder discovery, whole-vault discovery, and folder-based Canvas generation
+skip the comma-separated **Folders excluded from broad scopes** setting.
+`Templates` is excluded by default so unfilled Obsidian templates do not appear
+as invalid intelligence. Active-note and explicit Canvas scopes are unchanged.
 
 Validation reports separate blocking errors from warnings. Use an error's
 **Open** action to return to its source note. Export never overwrites an

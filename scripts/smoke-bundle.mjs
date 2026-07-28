@@ -10,6 +10,7 @@ class PluginStub {
     this.ribbonIcons = [];
     this.settingsTabs = [];
     this.views = new Map();
+    this.extensions = new Map();
   }
 
   addCommand(command) {
@@ -31,6 +32,10 @@ class PluginStub {
 
   registerView(type, creator) {
     this.views.set(type, creator);
+  }
+
+  registerExtensions(extensions, type) {
+    for (const extension of extensions) this.extensions.set(extension, type);
   }
 
   async loadData() {
@@ -132,6 +137,7 @@ assert.deepEqual(
   ],
 );
 assert.equal(plugin.views.has("cti-stix-viewer"), true);
+assert.equal(plugin.extensions.get("json"), "cti-stix-viewer");
 assert.deepEqual(
   plugin.ribbonIcons.map(({ icon, title }) => ({ icon, title })),
   [{ icon: "waypoints", title: "Open in STIX viewer" }],

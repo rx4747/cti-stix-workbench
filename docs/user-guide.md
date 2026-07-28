@@ -100,6 +100,10 @@ Object properties and nested values are retained; references to imported
 objects become wiki links, and Relationship Objects remain typed Relationship
 notes. You do not need to re-enter imported properties.
 
+The plugin registers `.json` files with its local STIX viewer so Bundle files
+open inside Obsidian instead of being handed to the system browser. Non-STIX
+JSON displays a clear parsing error and is never modified.
+
 The write is atomic. All paths are planned first, files are completed in a
 private staging folder, and the destination appears only after the entire
 import succeeds. An existing destination or a failed write leaves no partial
@@ -163,6 +167,11 @@ Canvas export when it represents the intended sharing boundary more precisely.
 Validation is read-only. Export validates again, then persists missing object
 and relationship identities, and finally creates a collision-safe Bundle file.
 It never overwrites an existing export.
+
+Broad folder and whole-vault commands exclude `Templates` by default because
+templates are intentionally incomplete drafts. Change **Folders excluded from
+broad scopes** in plugin settings when your template folder uses another path.
+Opening an actual draft directly still validates it normally.
 
 ## Import the official OASIS STIX 2.1 APT1 example
 

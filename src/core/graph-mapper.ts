@@ -25,6 +25,7 @@ const WIKI_LINK_PATTERN = /^\[\[([^\]]+)\]\]$/u;
 export interface GraphMapperInput {
   readonly drafts: readonly NormalizedStixDraft[];
   readonly bundleId?: string;
+  readonly externalIdsByPath?: ReadonlyMap<string, string>;
   readonly relationshipIdentities?: Readonly<
     Record<string, PersistedRelationshipIdentity>
   >;
@@ -59,6 +60,7 @@ function customDefinition(type: string): ObjectTypeDefinition {
 
 interface MappingContext {
   readonly assignedByPath: ReadonlyMap<string, AssignedDraft>;
+  readonly externalIdsByPath: ReadonlyMap<string, string>;
   readonly includedIds: ReadonlySet<string>;
   readonly diagnostics: Diagnostic[];
 }
@@ -217,6 +219,13 @@ function resolveReference(
       : context.assignedByPath.get(resolvedLink.targetPath);
   if (assigned !== undefined) {
     return assigned.id;
+  }
+  const externalId =
+    resolvedLink?.targetPath === undefined
+      ? undefined
+      : context.externalIdsByPath.get(resolvedLink.targetPath);
+  if (externalId !== undefined) {
+    return externalId;
   }
 
   context.diagnostics.push(
@@ -727,9 +736,13 @@ function targetIdForRelationship(
   declaration: RelationshipDeclaration,
   source: AssignedDraft,
   assignedByPath: ReadonlyMap<string, AssignedDraft>,
+  externalIdsByPath: ReadonlyMap<string, string>,
 ): string | undefined {
   if (declaration.targetNotePath !== undefined) {
-    return assignedByPath.get(declaration.targetNotePath)?.id;
+    return (
+      assignedByPath.get(declaration.targetNotePath)?.id ??
+      externalIdsByPath.get(declaration.targetNotePath)
+    );
   }
   const link = source.draft.links.find(
     (candidate) =>
@@ -738,7 +751,8 @@ function targetIdForRelationship(
   );
   return link?.targetPath === undefined
     ? undefined
-    : assignedByPath.get(link.targetPath)?.id;
+    : (assignedByPath.get(link.targetPath)?.id ??
+        externalIdsByPath.get(link.targetPath));
 }
 
 function addObject(
@@ -797,6 +811,7 @@ export async function mapGraphToBundle(
   const assignedByPath = new Map(assigned.map((item) => [item.draft.path, item]));
   const context: MappingContext = {
     assignedByPath,
+    externalIdsByPath: input.externalIdsByPath ?? new Map(),
     includedIds: new Set(assigned.map((item) => item.id)),
     diagnostics,
   };
@@ -831,7 +846,12 @@ export async function mapGraphToBundle(
       );
       continue;
     }
-    const targetId = targetIdForRelationship(declaration, source, assignedByPath);
+    const targetId = targetIdForRelationship(
+      declaration,
+      source,
+      assignedByPath,
+      context.externalIdsByPath,
+    );
     if (targetId === undefined) {
       diagnostics.push(
         mappingDiagnostic(

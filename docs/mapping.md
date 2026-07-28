@@ -9,8 +9,10 @@ not obvious from a field table.
 - `## Summary`, `## Content`, and `## Explanation` map only to the object types
   that define `description`, Note `content`, or Opinion `explanation`.
 - Reference fields accept `[[wiki links]]`; the mapper resolves included typed
-  notes to IDs. A valid raw ID outside the export scope is preserved with a
-  warning because STIX permits references to unavailable objects.
+  notes to IDs. Folder scopes also resolve linked typed notes outside the folder
+  to their persisted IDs without adding those objects to the Bundle. A valid
+  raw ID outside the export scope is preserved with a warning because STIX
+  permits references to unavailable objects.
 - Only `stix:<type> [[target]]` relationship declarations and typed Canvas edges
   create Relationship Objects. Ordinary links are contextual.
 - SCO identifiers use the normative contributing properties and canonical JSON

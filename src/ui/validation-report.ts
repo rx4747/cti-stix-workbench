@@ -1,7 +1,7 @@
 import { type App, Modal } from "obsidian";
 
 import type { Diagnostic } from "../core/diagnostics";
-import { groupDiagnostics } from "./validation-report-state";
+import { diagnosticHint, groupDiagnostics } from "./validation-report-state";
 
 export interface ValidationReportInput {
   readonly scope: string;
@@ -44,8 +44,17 @@ class ValidationReportModal extends Modal {
         const row = list.createEl("li", {
           cls: `cti-stix-diagnostic cti-stix-diagnostic-${diagnostic.severity}`,
         });
-        row.createEl("code", { text: diagnostic.code });
-        row.createSpan({ text: ` — ${diagnostic.message}` });
+        row.createDiv({
+          cls: "cti-stix-diagnostic-message",
+          text: diagnostic.message,
+        });
+        const hint = diagnosticHint(diagnostic);
+        if (hint !== undefined) {
+          row.createDiv({
+            cls: "cti-stix-diagnostic-hint",
+            text: `How to fix: ${hint}`,
+          });
+        }
         const details = [
           diagnostic.field === undefined ? undefined : `field ${diagnostic.field}`,
           diagnostic.objectPath,
@@ -56,6 +65,13 @@ class ValidationReportModal extends Modal {
         if (details.length > 0) {
           row.createEl("small", { text: details.join(" · ") });
         }
+        const technical = row.createEl("details", {
+          cls: "cti-stix-diagnostic-technical",
+        });
+        technical.createEl("summary", { text: "Technical details" });
+        technical.createEl("code", {
+          text: `${diagnostic.code} · ${diagnostic.authority}`,
+        });
         if (diagnostic.notePath !== undefined) {
           const path = diagnostic.notePath;
           row
