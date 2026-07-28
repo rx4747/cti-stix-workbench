@@ -34,7 +34,12 @@ jobs:
         env:
           COMMIT_FROM: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
           COMMIT_TO: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
-        run: pnpm exec commitlint --from "${COMMIT_FROM}" --to "${COMMIT_TO}" --verbose
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          if ! git cat-file -e "${COMMIT_FROM}^{commit}" 2>/dev/null; then
+            COMMIT_FROM="$(git merge-base "origin/${DEFAULT_BRANCH}" "${COMMIT_TO}")"
+          fi
+          pnpm exec commitlint --from "${COMMIT_FROM}" --to "${COMMIT_TO}" --verbose
 
       - name: Check formatting and baseline lint
         run: pnpm format:check
