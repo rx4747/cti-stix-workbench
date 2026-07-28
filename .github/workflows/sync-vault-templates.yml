@@ -89,6 +89,8 @@ jobs:
           rsync --archive --delete \
             "generated/vault-example/Generated Notes/" \
             "vault/Examples/OASIS APT1/Generated Notes/"
+          cp "generated/vault-example/APT1 Investigation.canvas" \
+            "vault/Examples/OASIS APT1/APT1 Investigation.canvas"
 
       - name: Open a reviewable vault pull request
         working-directory: vault

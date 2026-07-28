@@ -16,6 +16,8 @@ interface CanvasFileNode {
   readonly file: string;
 }
 
+const RELATIONSHIP_NOTE_FIELD = "ctiStixRelationshipNote";
+
 const RELATIONSHIP_TYPE = /^[a-z][a-z0-9-]*$/u;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -104,43 +106,57 @@ export function parseCanvas(
   }
 
   const relationships: RelationshipDeclaration[] = [];
-  if (readTypedEdges) {
-    for (const [index, edge] of document.edges.entries()) {
-      if (!isRecord(edge) || typeof edge.label !== "string") continue;
-      const label = edge.label.trim();
-      if (!label.startsWith("stix:")) continue;
-      const relationshipType = label.slice("stix:".length).trim();
-      if (!RELATIONSHIP_TYPE.test(relationshipType)) {
+  for (const [index, edge] of document.edges.entries()) {
+    if (!isRecord(edge)) continue;
+    const relationshipNote = edge[RELATIONSHIP_NOTE_FIELD];
+    if (relationshipNote !== undefined) {
+      if (
+        typeof relationshipNote !== "string" ||
+        !relationshipNote.toLowerCase().endsWith(".md")
+      ) {
         diagnostics.push(
           canvasDiagnostic(
             canvasPath,
-            `Canvas edge ${index + 1} has an invalid STIX relationship label "${label}".`,
+            `Canvas edge ${index + 1} has an invalid ${RELATIONSHIP_NOTE_FIELD} value.`,
           ),
         );
-        continue;
+      } else {
+        notePaths.add(relationshipNote);
       }
-      const source =
-        typeof edge.fromNode === "string"
-          ? filesByNodeId.get(edge.fromNode)
-          : undefined;
-      const target =
-        typeof edge.toNode === "string" ? filesByNodeId.get(edge.toNode) : undefined;
-      if (source === undefined || target === undefined) {
-        diagnostics.push(
-          canvasDiagnostic(
-            canvasPath,
-            `Canvas edge ${index + 1} must connect two Markdown file nodes.`,
-          ),
-        );
-        continue;
-      }
-      relationships.push({
-        sourceNotePath: source.file,
-        relationshipType,
-        targetLink: target.file,
-        targetNotePath: target.file,
-      });
     }
+    if (!readTypedEdges || typeof edge.label !== "string") continue;
+    const label = edge.label.trim();
+    if (!label.startsWith("stix:")) continue;
+    const relationshipType = label.slice("stix:".length).trim();
+    if (!RELATIONSHIP_TYPE.test(relationshipType)) {
+      diagnostics.push(
+        canvasDiagnostic(
+          canvasPath,
+          `Canvas edge ${index + 1} has an invalid STIX relationship label "${label}".`,
+        ),
+      );
+      continue;
+    }
+    const source =
+      typeof edge.fromNode === "string" ? filesByNodeId.get(edge.fromNode) : undefined;
+    const target =
+      typeof edge.toNode === "string" ? filesByNodeId.get(edge.toNode) : undefined;
+    if (source === undefined || target === undefined) {
+      diagnostics.push(
+        canvasDiagnostic(
+          canvasPath,
+          `Canvas edge ${index + 1} must connect two Markdown file nodes.`,
+        ),
+      );
+      continue;
+    }
+    if (typeof relationshipNote === "string") continue;
+    relationships.push({
+      sourceNotePath: source.file,
+      relationshipType,
+      targetLink: target.file,
+      targetNotePath: target.file,
+    });
   }
 
   return {

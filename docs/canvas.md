@@ -7,6 +7,21 @@ remain visual context.
 
 ## Build a Canvas scope
 
+You can create a Canvas manually or generate one from existing typed notes:
+
+- Run **Generate canvas from active STIX graph** from a typed note to use the
+  same connected scope as active-graph validation.
+- Run **Generate canvas from current folder** from an import overview or other
+  file to include typed notes recursively below that folder.
+
+Generated Canvases are written collision-safely under `Canvases/`. They use a
+deterministic component layout, object notes as file nodes, and Relationship
+notes as labeled edges. An edge backed by a Relationship note retains a private
+pointer to that note so validation and export preserve its original STIX ID
+instead of generating a duplicate Relationship.
+
+For a manual Canvas:
+
 1. Create a Canvas with Obsidian's normal **Create new canvas** action.
 2. Drag the STIX notes you want to validate or export onto it as file nodes.
 3. Draw directed edges from each source object to its target object.
@@ -34,8 +49,8 @@ using Canvas file nodes as the export scope.
 
 ## Understand what Canvas does not do
 
-- **Import STIX Bundle as notes** creates typed notes and an import overview,
-  not a Canvas.
+- **Import STIX Bundle as notes** creates typed notes and an import overview.
+  Canvas generation remains a separate, explicit command after import.
 - The STIX viewer has its own read-only, temporary graph layout. Moving nodes
   there does not create or edit a Canvas.
 - Canvas positions, colors, groups, text cards, and untyped edges are not STIX

@@ -22,6 +22,10 @@ by a regression test. The evidence suite is tracked locally; the
 project will publish a formal conformance claim only after the complete
 normative requirement matrix receives an independent release review.
 
+The Obsidian scorecard's three reported network calls are local `antlr4ng`
+token-buffer operations named `fetch`, not HTTP requests. The runtime has no
+network client and does not transmit vault data.
+
 The following remain outside the supported boundary: TAXII transport, MISP or
 OpenCTI synchronization, pattern evaluation against observations, remote
 extension-schema fetching, collaborative/multi-user editing, and hosted

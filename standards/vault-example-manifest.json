@@ -5,6 +5,12 @@
   "source_sha256": "2f22536e419a06c44198b5b4854e33124e76b604929a3da8bd013e0ab8676c30",
   "object_count": 76,
   "relationship_count": 30,
+  "canvas": {
+    "file": "APT1 Investigation.canvas",
+    "sha256": "6ba14b23905bc4da4c9218ca672185f11b19a63fd21f8f22f401545271d36046",
+    "node_count": 46,
+    "edge_count": 30
+  },
   "files": {
     "Import Overview.md": "1c605c899cec9bed38d7185ba7fdf4d1ee765919bf3d9af01d22fc6c8456fc2f",
     "SDOs/Appendix E MD5 hash '001dd76872d80801692ff942308c64e6' - 8d12f44f8ac0.md": "1ff9f93cffb06d9e1f5c2dd29b80ec83a8412e129c78dd1b5426bcf8ddc4273d",

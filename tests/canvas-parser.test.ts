@@ -59,4 +59,33 @@ describe("Canvas parser", () => {
       result.diagnostics.every((item) => item.code === DIAGNOSTIC_CODES.canvasInvalid),
     ).toBe(true);
   });
+
+  it("includes generated Relationship notes without duplicating their edges", () => {
+    const result = parseCanvas(
+      JSON.stringify({
+        nodes: [
+          { id: "a", type: "file", file: "Objects/A.md" },
+          { id: "b", type: "file", file: "Objects/B.md" },
+        ],
+        edges: [
+          {
+            id: "relationship",
+            fromNode: "a",
+            toNode: "b",
+            label: "stix:uses",
+            ctiStixRelationshipNote: "Relationships/A uses B.md",
+          },
+        ],
+      }),
+      "Generated.canvas",
+    );
+
+    expect(result.diagnostics).toEqual([]);
+    expect(result.notePaths).toEqual([
+      "Objects/A.md",
+      "Objects/B.md",
+      "Relationships/A uses B.md",
+    ]);
+    expect(result.relationships).toEqual([]);
+  });
 });

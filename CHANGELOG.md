@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+### Added
+
+- Added commands to generate deterministic Obsidian Canvases from an active
+  STIX graph or recursively from the current folder.
+- Added a generated APT1 example Canvas with 46 object-note nodes and 30
+  Relationship-note-backed edges.
+
+### Security
+
+- Documented that the Obsidian scorecard's three reported network calls are
+  local `antlr4ng` token-buffer operations named `fetch`, not HTTP requests.
+
 ## Released
 
 ## 1.5.0 — 2026-07-28

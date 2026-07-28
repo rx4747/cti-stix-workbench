@@ -100,6 +100,11 @@ Restart Obsidian, open **Settings → Community plugins**, and enable
 5. Run **Open in STIX viewer** to inspect and temporarily arrange the graph.
 6. Run **Export active STIX graph** to write a STIX Bundle to `Exports/`.
 
+For investigation-led work, keep the typed investigation Note active when you
+validate or export. Its `object_refs` wiki links provide the Bundle scope under
+the default traversal settings. Use folder or Canvas export when that is the
+more accurate sharing boundary.
+
 The APT1 example imports 76 objects, including 30 typed Relationships. It is
 the official OASIS example and demonstrates that `created_by_ref` is optional.
 
@@ -108,8 +113,11 @@ Relationships only when you use the explicit `stix:<relationship-type>` form.
 
 Canvas, folder, and whole-vault commands are also available. Canvas semantics
 come only from directed file-node edges labeled `stix:<relationship-type>`.
-Import creates Markdown notes and an import overview, not a Canvas. Create a
-Canvas in Obsidian and add those notes when you want a visual, explicit scope.
+Import creates Markdown notes and an import overview, while Canvas generation
+remains a separate action. Create one manually or run **Generate canvas from
+current folder** after importing when you want a visual, explicit scope.
+Existing Relationship notes become labeled edges without creating duplicate
+STIX Relationships.
 Whole-vault export always requires confirmation and can be cancelled before any
 Bundle is written.
 
@@ -142,6 +150,15 @@ a public repository.
 
 CTI STIX Workbench is a desktop-only Obsidian plugin. Mobile installations are
 not supported.
+
+### Obsidian scorecard network disclosure
+
+The Obsidian scorecard reports three network-request calls in `main.js`. These
+are a scanner false positive from the bundled `antlr4ng` STIX-pattern parser:
+one local token-buffer method named `fetch` and two calls to that method. They
+read lexer tokens from memory and are not the browser or Obsidian network API.
+The plugin contains no runtime HTTP client, telemetry, or remote-data path, and
+no vault data leaves the device.
 
 ## Development
 
