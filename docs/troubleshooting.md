@@ -34,11 +34,11 @@ uses lowercase `stix:`, and **Read typed Canvas edges** is enabled.
 
 ## Bundle import did not create a Canvas
 
-This is expected. Import creates one typed Markdown note per STIX object and an
-`Import Overview.md`; it does not create or auto-layout a Canvas. Create a
-Canvas in Obsidian, drag imported notes onto it as file nodes, and label directed
-relationship edges with values such as `stix:uses`. See
-[Canvas semantics](canvas.md).
+This is expected because import and Canvas generation are separate actions.
+Keep the generated `Import Overview.md` active and run **Generate canvas from
+current folder**. You can also create a Canvas manually, drag imported notes
+onto it as file nodes, and label directed relationship edges with values such
+as `stix:uses`. See [Canvas semantics](canvas.md).
 
 ## Export creates another filename
 

@@ -9,24 +9,41 @@ import { stringify } from "yaml";
 
 const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
 const sourcePath = path.join(repositoryRoot, "tests/fixtures/oasis/apt1.json");
-const outputRoot = path.join(repositoryRoot, "generated/vault-example/Generated Notes");
+const outputBase = path.join(repositoryRoot, "generated/vault-example");
+const outputRoot = path.join(outputBase, "Generated Notes");
+const canvasFilename = "APT1 Investigation.canvas";
 const contractPath = path.join(repositoryRoot, "standards/vault-example-manifest.json");
 
 function digest(value) {
   return createHash("sha256").update(value).digest("hex");
 }
 
-async function loadPlanner() {
+async function loadGenerators() {
   const result = await build({
     bundle: true,
-    entryPoints: [path.join(repositoryRoot, "src/import/bundle-import.ts")],
+    stdin: {
+      contents: `
+        import { generateCanvasDocument } from ${JSON.stringify(path.join(repositoryRoot, "src/canvas/generator.ts"))};
+        import { planBundleImport } from ${JSON.stringify(path.join(repositoryRoot, "src/import/bundle-import.ts"))};
+        import { buildStixViewerModel } from ${JSON.stringify(path.join(repositoryRoot, "src/viewer/model.ts"))};
+        export function generateVaultExample(bundle) {
+          const plan = planBundleImport(bundle);
+          const prefix = "Examples/OASIS APT1/Generated Notes/";
+          const notePathById = new Map(plan.notes.map((note) => [note.object.id, prefix + note.relativePath]));
+          const canvas = generateCanvasDocument(buildStixViewerModel(bundle, notePathById));
+          return { plan, canvas };
+        }
+      `,
+      resolveDir: repositoryRoot,
+      sourcefile: "vault-example-generator.ts",
+    },
     format: "esm",
     platform: "node",
     target: "node22",
     write: false,
   });
   const output = result.outputFiles?.[0]?.text;
-  assert.ok(output !== undefined, "Could not bundle the Bundle import planner.");
+  assert.ok(output !== undefined, "Could not bundle the vault example generators.");
   return import(
     `data:text/javascript;base64,${Buffer.from(output).toString("base64")}`
   );
@@ -43,8 +60,9 @@ function withFinalNewline(value) {
 async function createArtifacts() {
   const source = await readFile(sourcePath, "utf8");
   const bundle = JSON.parse(source);
-  const { planBundleImport } = await loadPlanner();
-  const plan = planBundleImport(bundle);
+  const { generateVaultExample } = await loadGenerators();
+  const { plan, canvas } = generateVaultExample(bundle);
+  const canvasContent = `${JSON.stringify(canvas, null, 2)}\n`;
   const artifacts = new Map();
   artifacts.set(plan.overviewPath, withFinalNewline(plan.overviewBody));
   for (const note of plan.notes) {
@@ -65,18 +83,24 @@ async function createArtifacts() {
     source_sha256: digest(source),
     object_count: plan.objectCount,
     relationship_count: relationshipCount,
+    canvas: {
+      file: canvasFilename,
+      sha256: digest(canvasContent),
+      node_count: canvas.nodes.length,
+      edge_count: canvas.edges.length,
+    },
     files,
   };
-  return { artifacts, manifest };
+  return { artifacts, canvasContent, manifest };
 }
 
-async function writeArtifacts(artifacts, manifest) {
+async function writeArtifacts(artifacts, canvasContent, manifest) {
   const generatedRoot = path.join(repositoryRoot, "generated");
   assert.ok(
     outputRoot.startsWith(`${generatedRoot}${path.sep}`),
     "Generated example output must stay inside generated/.",
   );
-  await rm(outputRoot, { recursive: true, force: true });
+  await rm(outputBase, { recursive: true, force: true });
   for (const [filename, content] of artifacts) {
     const outputPath = path.join(outputRoot, filename);
     assert.ok(outputPath.startsWith(`${outputRoot}${path.sep}`));
@@ -88,9 +112,10 @@ async function writeArtifacts(artifacts, manifest) {
     `${JSON.stringify(manifest, null, 2)}\n`,
     "utf8",
   );
+  await writeFile(path.join(outputBase, canvasFilename), canvasContent, "utf8");
 }
 
-const { artifacts, manifest } = await createArtifacts();
+const { artifacts, canvasContent, manifest } = await createArtifacts();
 const mode = process.argv[2];
 if (mode === "--check") {
   const expected = JSON.parse(await readFile(contractPath, "utf8"));
@@ -102,9 +127,9 @@ if (mode === "--check") {
   await writeFile(contractPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
   console.log(`Updated ${path.relative(repositoryRoot, contractPath)}.`);
 } else if (mode === undefined) {
-  await writeArtifacts(artifacts, manifest);
+  await writeArtifacts(artifacts, canvasContent, manifest);
   console.log(
-    `Generated ${artifacts.size} files under ${path.relative(repositoryRoot, outputRoot)}.`,
+    `Generated ${artifacts.size} notes and ${canvasFilename} under ${path.relative(repositoryRoot, outputBase)}.`,
   );
 } else {
   throw new TypeError(

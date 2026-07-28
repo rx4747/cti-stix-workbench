@@ -14,6 +14,7 @@ import {
   validateCanvasGraph,
   validateScopedGraph,
 } from "./adapters/obsidian/scoped-export";
+import { generateCanvasDocument, nextAvailableCanvasPath } from "./canvas/generator";
 import { validateBundleSchema } from "./core/bundle-validator";
 import {
   type ExtensionRegistry,
@@ -99,6 +100,26 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
       id: "create-analyst-workflow",
       name: "Create analyst workflow",
       callback: () => openAnalystWorkflowCreator(this.app),
+    });
+    this.addCommand({
+      id: "generate-active-stix-canvas",
+      name: "Generate canvas from active STIX graph",
+      checkCallback: (checking) => {
+        const file = this.activeStixFile();
+        if (file === null) return false;
+        if (!checking) void this.generateActiveGraphCanvas(file);
+        return true;
+      },
+    });
+    this.addCommand({
+      id: "generate-folder-stix-canvas",
+      name: "Generate canvas from current folder",
+      checkCallback: (checking) => {
+        const folder = this.currentFolderPath();
+        if (folder === undefined) return false;
+        if (!checking) void this.generateFolderCanvas(folder);
+        return true;
+      },
     });
     this.addCommand({
       id: "validate-active-stix-canvas",
@@ -514,6 +535,93 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
       );
     } catch (error) {
       new Notice(`STIX import failed: ${this.errorMessage(error)}`, 10_000);
+    }
+  }
+
+  private async writeGeneratedCanvas(
+    title: string,
+    bundle: Parameters<typeof buildStixViewerModel>[0],
+    notePathById: ReadonlyMap<string, string>,
+  ): Promise<void> {
+    const host = this.createActiveGraphHost();
+    const document = generateCanvasDocument(buildStixViewerModel(bundle, notePathById));
+    if (document.nodes.length === 0) {
+      throw new Error("The selected STIX scope has no note-backed objects.");
+    }
+    await host.ensureFolder("Canvases");
+    const outputPath = nextAvailableCanvasPath(title, (path) => host.exists(path));
+    await host.createFile(outputPath, `${JSON.stringify(document, null, 2)}\n`);
+    const created = this.app.vault.getFileByPath(outputPath);
+    if (created !== null) await this.app.workspace.getLeaf(false).openFile(created);
+    new Notice(
+      `Generated ${outputPath} with ${document.nodes.length} object note(s) and ` +
+        `${document.edges.length} relationship edge(s).`,
+    );
+  }
+
+  private async generateActiveGraphCanvas(file: TFile): Promise<void> {
+    try {
+      const registry = await this.loadExtensionRegistry();
+      const result = await validateActiveGraph(
+        this.createActiveGraphHost(),
+        file.path,
+        this.settings,
+        {
+          validateBundle: (bundle, paths, mode) =>
+            validateBundleSchema(bundle, paths, mode, registry),
+        },
+      );
+      if (!result.ok) {
+        openValidationReport(this.app, {
+          scope: file.path,
+          errors: result.errors,
+          warnings: result.warnings,
+        });
+        new Notice(
+          `Canvas generation blocked: ${result.errors.length} error(s).`,
+          10_000,
+        );
+        return;
+      }
+      await this.writeGeneratedCanvas(
+        file.basename,
+        result.bundle,
+        result.notePathById,
+      );
+    } catch (error) {
+      new Notice(`Canvas generation failed: ${this.errorMessage(error)}`, 10_000);
+    }
+  }
+
+  private async generateFolderCanvas(folder: string): Promise<void> {
+    try {
+      const host = this.createActiveGraphHost();
+      const registry = await this.loadExtensionRegistry();
+      const notePaths = host.listMarkdownPaths(folder);
+      const result = await validateScopedGraph(
+        host,
+        notePaths,
+        [],
+        this.settings,
+        this.validationDependencies(registry),
+      );
+      const scope = folder === "" ? "Vault" : folder;
+      if (!result.ok) {
+        openValidationReport(this.app, {
+          scope,
+          errors: result.errors,
+          warnings: result.warnings,
+        });
+        new Notice(
+          `Canvas generation blocked: ${result.errors.length} error(s).`,
+          10_000,
+        );
+        return;
+      }
+      const title = folder === "" ? "Vault" : (folder.split("/").at(-1) ?? "Vault");
+      await this.writeGeneratedCanvas(title, result.bundle, result.notePathById);
+    } catch (error) {
+      new Notice(`Canvas generation failed: ${this.errorMessage(error)}`, 10_000);
     }
   }
 

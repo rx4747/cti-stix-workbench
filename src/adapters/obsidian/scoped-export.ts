@@ -46,6 +46,7 @@ export type ScopedValidationResult =
       readonly skippedCount: number;
       readonly warnings: readonly Diagnostic[];
       readonly identities: readonly GeneratedIdentity[];
+      readonly notePathById: ReadonlyMap<string, string>;
     }
   | {
       readonly ok: false;
@@ -134,12 +135,13 @@ export async function validateScopedGraph(
       skippedCount,
     };
   }
+  const notePathById = stixDraftPathsById(drafts, mapped.identities);
   const validated = splitDiagnostics([
     ...parsed.warnings,
     ...mapped.warnings,
     ...dependencies.validateBundle(
       mapped.bundle,
-      stixDraftPathsById(drafts, mapped.identities),
+      notePathById,
       settings.validationMode,
     ),
   ]);
@@ -154,6 +156,7 @@ export async function validateScopedGraph(
     skippedCount,
     warnings: validated.warnings,
     identities: mapped.identities,
+    notePathById,
   };
 }
 
