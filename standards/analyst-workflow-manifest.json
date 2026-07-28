@@ -1,12 +1,13 @@
 {
   "schemaVersion": 1,
   "libraryVersion": "1.2.0",
-  "workflowCount": 5,
+  "workflowCount": 6,
   "files": {
     "Templates/CTI Workflows/Intake and Triage.md": "40481b15ada6e0973177e1767181a6adaf0fbfd0c40b0bf4c743a264626493d1",
     "Templates/CTI Workflows/IOC and Observable Triage.md": "c4cee4ed4bb8ffc69884c9b2ec42b28d8ab23ca499d4900cac5c1101dbed9121",
     "Templates/CTI Workflows/Pivot and Enrichment Log.md": "2b3ef291f60030c6932fb864bfaa4f50a7aad3454a9f0019c4276cd46d669770",
     "Templates/CTI Workflows/Analytic Timeline.md": "ddc33f1e7155aaae24b69da8aa33b068f5399b120266acaa8124a1e9aeae6c65",
-    "Templates/CTI Workflows/Hypothesis Matrix.md": "9baa6edbcb4bfc57a0661580b5a7439b51155337f51652561880cc071c63024a"
+    "Templates/CTI Workflows/Hypothesis Matrix.md": "9baa6edbcb4bfc57a0661580b5a7439b51155337f51652561880cc071c63024a",
+    "Templates/CTI Workflows/Peer Review.md": "72c5576049ed790b4fd0dee60a502f4b12db394002059fe862c15020b244e46a"
   }
 }
