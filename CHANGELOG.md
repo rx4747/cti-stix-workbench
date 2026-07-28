@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## Released
+
+## 1.5.1 — 2026-07-28
+
 ### Added
 
 - Added commands to generate deterministic Obsidian Canvases from an active
@@ -26,8 +30,6 @@
 
 - Documented that the Obsidian scorecard's three reported network calls are
   local `antlr4ng` token-buffer operations named `fetch`, not HTTP requests.
-
-## Released
 
 ## 1.5.0 — 2026-07-28
 
