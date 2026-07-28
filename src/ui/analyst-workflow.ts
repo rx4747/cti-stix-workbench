@@ -114,7 +114,13 @@ class AnalystWorkflowDetailsModal extends Modal {
       const relatedNote =
         this.relatedFile === null
           ? undefined
-          : { basename: this.relatedFile.basename, path: this.relatedFile.path };
+          : {
+              basename: this.relatedFile.basename,
+              path: this.relatedFile.path,
+              includeInObjectRefs:
+                typeof this.app.metadataCache.getFileCache(this.relatedFile)
+                  ?.frontmatter?.stix_type === "string",
+            };
       const file = await this.app.vault.create(
         path,
         createAnalystWorkflowNote(

@@ -5,17 +5,18 @@ export interface AnalystWorkflowDefinition {
   readonly title: string;
   readonly description: string;
   readonly introducedIn: string;
-  readonly defaultFolder: string;
+  readonly defaultFolder: "02 Investigations" | "04 Reports";
   readonly body: readonly string[];
 }
 
 export const analystWorkflowLibraryVersion = workflowLibrary.libraryVersion;
 export const analystWorkflowDefinitions: readonly AnalystWorkflowDefinition[] =
-  Object.freeze(workflowLibrary.workflows);
+  Object.freeze(workflowLibrary.workflows as readonly AnalystWorkflowDefinition[]);
 
 export interface RelatedWorkflowNote {
   readonly basename: string;
   readonly path: string;
+  readonly includeInObjectRefs: boolean;
 }
 
 function yamlScalar(value: unknown): string {
@@ -56,6 +57,8 @@ export function createAnalystWorkflowNote(
   const timestamp = now.toISOString();
   const reference =
     relatedNote === undefined ? undefined : `[[${wikiTarget(relatedNote)}]]`;
+  const objectReference =
+    relatedNote?.includeInObjectRefs === true ? reference : undefined;
   const frontmatter: Readonly<Record<string, unknown>> = {
     stix_type: "note",
     stix_id: "",
@@ -70,7 +73,7 @@ export function createAnalystWorkflowNote(
     object_marking_refs: [],
     abstract: workflow.description,
     authors: [],
-    object_refs: reference === undefined ? [] : [reference],
+    object_refs: objectReference === undefined ? [] : [objectReference],
     external_references: [],
     granular_markings: [],
     extensions: {},
