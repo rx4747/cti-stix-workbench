@@ -18,13 +18,16 @@ vault.
    documentation range.
 3. Run **Validate active STIX graph** from the Indicator. The report shows the
    object count and any diagnostics without changing notes.
-4. Review the `## Relationships` entries. Only list items such as
+4. Run **Open in STIX viewer** to inspect the same connected objects and their
+   references with the OASIS STIX icon set. Select a node to inspect it and use
+   **Open source note** to return to Markdown.
+5. Review the `## Relationships` entries. Only list items such as
    `stix:indicates [[Frost Lantern]]` produce Relationship Objects.
-5. Run **Export active STIX graph**. Missing IDs are persisted once and the
+6. Run **Export active STIX graph**. Missing IDs are persisted once and the
    validated Bundle is written under `Exports/`.
-6. Run the export again. A collision-safe filename is created and existing IDs
+7. Run the export again. A collision-safe filename is created and existing IDs
    remain stable.
-7. Open `Example Investigation.canvas`, then run **Validate active STIX
+8. Open `Example Investigation.canvas`, then run **Validate active STIX
    canvas**. Directed `stix:` edges have the same meaning as explicit Markdown
    relationships; duplicates are collapsed by their source, type, and target.
 
@@ -46,3 +49,6 @@ saves no changes.
   before identities or a Bundle are written.
 
 Always review the validation report and exported JSON before sharing it.
+
+See the [STIX viewer guide](viewer.md) for JSON inputs, graph controls,
+unresolved-reference behavior, icon coverage, and privacy boundaries.

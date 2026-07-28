@@ -158,6 +158,9 @@ describe("active STIX graph validation and export", () => {
     expect(result.ok).toBe(true);
     if (result.ok) {
       expect(result.objectCount).toBe(3);
+      expect([...result.notePathById.values()]).toEqual(
+        expect.arrayContaining(["Objects/Indicator.md", "Objects/Reserved address.md"]),
+      );
     }
     expect(host.persistedIds).toEqual([]);
     expect(host.relationshipSaveCount).toBe(0);

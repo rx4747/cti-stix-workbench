@@ -1,4 +1,4 @@
-import { Notice, normalizePath, Plugin, type TFile } from "obsidian";
+import { Notice, normalizePath, Plugin, TFile } from "obsidian";
 
 import {
   exportActiveGraph,
@@ -27,7 +27,15 @@ import { openStixObjectCreator } from "./ui/object-creator";
 import { openStixPropertyEditor } from "./ui/property-editor";
 import { editableStixDefinition } from "./ui/property-editor-state";
 import { withScopeProgress } from "./ui/scope-progress";
+import {
+  type LoadedStixViewerSource,
+  STIX_VIEWER_VIEW_TYPE,
+  type StixViewerDependencies,
+  type StixViewerSource,
+  StixViewerView,
+} from "./ui/stix-viewer";
 import { openValidationReport } from "./ui/validation-report";
+import { buildStixViewerModel, parseStixViewerJson } from "./viewer/model";
 
 export default class CtiStixWorkbenchPlugin extends Plugin {
   override settings: WorkbenchSettings = parseWorkbenchSettings(undefined);
@@ -38,6 +46,31 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
     this.settings = this.normalizePaths(data.settings);
     this.relationshipIdentities = { ...data.relationshipIdentities };
     this.addSettingTab(new WorkbenchSettingTab(this));
+    const viewerDependencies = this.viewerDependencies();
+    this.registerView(
+      STIX_VIEWER_VIEW_TYPE,
+      (leaf) => new StixViewerView(leaf, viewerDependencies),
+    );
+    this.addRibbonIcon("waypoints", "Open in STIX viewer", () => {
+      const source = this.activeViewerSource();
+      if (source === undefined) {
+        new Notice(
+          "Open a typed STIX note, or right-click a STIX JSON file in the file explorer.",
+        );
+        return;
+      }
+      void this.openViewer(source);
+    });
+    this.addCommand({
+      id: "open-stix-viewer",
+      name: "Open in STIX viewer",
+      checkCallback: (checking) => {
+        const source = this.activeViewerSource();
+        if (source === undefined) return false;
+        if (!checking) void this.openViewer(source);
+        return true;
+      },
+    });
     this.addCommand({
       id: "create-stix-object",
       name: "Create STIX object",
@@ -143,6 +176,7 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
         return true;
       },
     });
+    this.app.workspace.onLayoutReady(() => this.registerViewerEvents());
   }
 
   async updateSettings(patch: Record<string, unknown>): Promise<void> {
@@ -173,6 +207,134 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
     return editableStixDefinition(frontmatter) === undefined && !customType
       ? null
       : file;
+  }
+
+  private viewerSourceForFile(file: TFile): StixViewerSource | undefined {
+    const extension = file.extension.toLowerCase();
+    if (extension === "json") return { kind: "json", path: file.path };
+    if (extension !== "md") return undefined;
+    const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
+    if (frontmatter === undefined || typeof frontmatter !== "object") {
+      return undefined;
+    }
+    const type =
+      typeof frontmatter.stix_type === "string"
+        ? frontmatter.stix_type
+        : typeof frontmatter.type === "string"
+          ? frontmatter.type
+          : undefined;
+    return type !== undefined &&
+      (editableStixDefinition(frontmatter) !== undefined || type.startsWith("x-"))
+      ? { kind: "note", path: file.path }
+      : undefined;
+  }
+
+  private activeViewerSource(): StixViewerSource | undefined {
+    const file = this.app.workspace.getActiveFile();
+    return file === null ? undefined : this.viewerSourceForFile(file);
+  }
+
+  private viewerDependencies(): StixViewerDependencies {
+    return {
+      load: (source) => this.loadViewerSource(source),
+      openNote: async (path) => {
+        const file = this.app.vault.getFileByPath(path);
+        if (file === null) throw new Error(`Source note no longer exists: ${path}`);
+        await this.app.workspace.getLeaf(false).openFile(file);
+      },
+    };
+  }
+
+  private async loadViewerSource(
+    source: StixViewerSource,
+  ): Promise<LoadedStixViewerSource> {
+    const file = this.app.vault.getFileByPath(source.path);
+    if (file === null) throw new Error(`Source file no longer exists: ${source.path}`);
+    if (source.kind === "json") {
+      if (file.extension.toLowerCase() !== "json") {
+        throw new Error(`${source.path} is no longer a JSON file.`);
+      }
+      return {
+        model: parseStixViewerJson(await this.app.vault.cachedRead(file)),
+        title: file.basename,
+        description: `STIX JSON · ${file.path}`,
+        watchedPaths: new Set([file.path]),
+      };
+    }
+
+    if (file.extension.toLowerCase() !== "md") {
+      throw new Error(`${source.path} is no longer a Markdown note.`);
+    }
+    const result = await validateActiveGraph(
+      this.createActiveGraphHost(),
+      file.path,
+      this.settings,
+      { validateBundle: () => [] },
+    );
+    if (!result.ok) {
+      throw new Error(
+        `The note graph could not be mapped: ${result.errors[0]?.message ?? "invalid STIX input"}`,
+      );
+    }
+    const watchedPaths = new Set([file.path, ...result.notePathById.values()]);
+    return {
+      model: buildStixViewerModel(result.bundle, result.notePathById),
+      title: file.basename,
+      description: `STIX note graph · ${file.path}`,
+      watchedPaths,
+    };
+  }
+
+  private async openViewer(source: StixViewerSource): Promise<void> {
+    const existing = this.app.workspace.getLeavesOfType(STIX_VIEWER_VIEW_TYPE)[0];
+    const leaf = existing ?? this.app.workspace.getLeaf("tab");
+    await leaf.setViewState({
+      type: STIX_VIEWER_VIEW_TYPE,
+      active: true,
+      state: { source },
+    });
+    await this.app.workspace.revealLeaf(leaf);
+  }
+
+  private registerViewerEvents(): void {
+    this.registerEvent(
+      this.app.workspace.on("file-menu", (menu, file) => {
+        if (!(file instanceof TFile)) return;
+        const source = this.viewerSourceForFile(file);
+        if (source === undefined) return;
+        menu.addItem((item) =>
+          item
+            .setTitle("Open in STIX viewer")
+            .setIcon("waypoints")
+            .onClick(() => {
+              void this.openViewer(source);
+            }),
+        );
+      }),
+    );
+    this.registerEvent(
+      this.app.vault.on("modify", (file) => {
+        if (file instanceof TFile) void this.refreshViewerLeaves(file.path);
+      }),
+    );
+    this.registerEvent(
+      this.app.vault.on("rename", (file, oldPath) => {
+        if (file instanceof TFile) void this.refreshViewerLeaves(file.path, oldPath);
+      }),
+    );
+    this.registerEvent(
+      this.app.vault.on("delete", (file) => {
+        if (file instanceof TFile) void this.refreshViewerLeaves(file.path);
+      }),
+    );
+  }
+
+  private refreshViewerLeaves(path: string, oldPath?: string): void {
+    for (const leaf of this.app.workspace.getLeavesOfType(STIX_VIEWER_VIEW_TYPE)) {
+      if (leaf.view instanceof StixViewerView) {
+        leaf.view.refreshIfRelevant(path, oldPath);
+      }
+    }
   }
 
   private activeCanvasFile(): TFile | null {

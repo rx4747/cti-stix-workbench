@@ -22,6 +22,7 @@ your vault to a hosted service.
 
 - Provides catalog-driven property editing for standard STIX 2.1 objects.
 - Validates an active note and its connected graph against pinned local schemas.
+- Visualizes STIX JSON or connected notes as an interactive, icon-based graph.
 - Gives explicit, readable diagnostics instead of silently changing bad data.
 - Persists missing STIX identifiers safely and keeps them stable across exports.
 - Exports collision-safe JSON Bundles to a vault-relative folder.
@@ -64,7 +65,8 @@ Restart Obsidian, open **Settings → Community plugins**, and enable
    ```
 
 5. Run **Validate active STIX graph** and review any diagnostics.
-6. Run **Export active STIX graph** to write a STIX Bundle to `Exports/`.
+6. Run **Open in STIX viewer** to inspect and arrange the local graph.
+7. Run **Export active STIX graph** to write a STIX Bundle to `Exports/`.
 
 Ordinary links remain useful context and appear in Graph view. They become STIX
 Relationships only when you use the explicit `stix:<relationship-type>` form.
@@ -79,6 +81,7 @@ Bundle is written.
 - [User guide and fictional tutorial](docs/user-guide.md)
 - [Mapping rules](docs/mapping.md)
 - [Canvas semantics](docs/canvas.md)
+- [STIX viewer](docs/viewer.md)
 - [Patterns](docs/patterns.md)
 - [Markings](docs/markings.md)
 - [Custom content](docs/extensions.md)
@@ -95,9 +98,8 @@ Keep operational vaults private. Do not commit credentials, customer data,
 restricted intelligence, malware samples, exploit payloads, or personal data to
 a public repository.
 
-Version 1.0 targets Obsidian desktop. Mobile is not declared supported because
-the complete large-scope, modal, and release-install workflow has not passed a
-mobile acceptance gate.
+CTI STIX Workbench is a desktop-only Obsidian plugin. Mobile installations are
+not supported.
 
 ## Development
 

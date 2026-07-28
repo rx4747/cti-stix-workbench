@@ -6,7 +6,10 @@ class PluginStub {
   constructor(app = {}) {
     this.app = app;
     this.commands = [];
+    this.events = [];
+    this.ribbonIcons = [];
     this.settingsTabs = [];
+    this.views = new Map();
   }
 
   addCommand(command) {
@@ -15,6 +18,19 @@ class PluginStub {
 
   addSettingTab(tab) {
     this.settingsTabs.push(tab);
+  }
+
+  addRibbonIcon(icon, title, callback) {
+    this.ribbonIcons.push({ callback, icon, title });
+    return {};
+  }
+
+  registerEvent(event) {
+    this.events.push(event);
+  }
+
+  registerView(type, creator) {
+    this.views.set(type, creator);
   }
 
   async loadData() {
@@ -33,6 +49,7 @@ class PluginSettingTabStub {
 
 class ModalStub {}
 class FuzzySuggestModalStub extends ModalStub {}
+class ItemViewStub {}
 class TFileStub {}
 class TFolderStub {}
 
@@ -44,12 +61,14 @@ assert.ok(
 const module = { exports: {} };
 const obsidian = {
   FuzzySuggestModal: FuzzySuggestModalStub,
+  ItemView: ItemViewStub,
   Modal: ModalStub,
   Notice: class {},
   normalizePath: (value) => value.replaceAll("\\", "/"),
   Plugin: PluginStub,
   PluginSettingTab: PluginSettingTabStub,
   Setting: class {},
+  setIcon: () => {},
   TFile: TFileStub,
   TFolder: TFolderStub,
 };
@@ -72,7 +91,17 @@ vm.runInNewContext(
 
 const PluginClass = module.exports.default;
 assert.equal(typeof PluginClass, "function");
-const plugin = new PluginClass({});
+const fakeEvent = {};
+const app = {
+  vault: {
+    on: () => fakeEvent,
+  },
+  workspace: {
+    on: () => fakeEvent,
+    onLayoutReady: (callback) => callback(),
+  },
+};
+const plugin = new PluginClass(app);
 await plugin.onload();
 assert.equal(plugin.settingsTabs.length, 1);
 assert.equal(
@@ -83,6 +112,7 @@ assert.equal(
 assert.deepEqual(
   plugin.commands.map((command) => command.id),
   [
+    "open-stix-viewer",
     "create-stix-object",
     "validate-active-stix-canvas",
     "export-active-stix-canvas",
@@ -95,6 +125,12 @@ assert.deepEqual(
     "export-active-stix-graph",
   ],
 );
+assert.equal(plugin.views.has("cti-stix-viewer"), true);
+assert.deepEqual(
+  plugin.ribbonIcons.map(({ icon, title }) => ({ icon, title })),
+  [{ icon: "waypoints", title: "Open in STIX viewer" }],
+);
+assert.equal(plugin.events.length, 4);
 assert.equal(
   plugin.commands.some((command) => Object.hasOwn(command, "hotkeys")),
   false,
