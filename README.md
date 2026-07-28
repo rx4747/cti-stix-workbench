@@ -136,6 +136,7 @@ Bundle is written.
 - [Markings](docs/markings.md)
 - [Custom content](docs/extensions.md)
 - [Compatibility and limitations](docs/compatibility.md)
+- [Roadmap](ROADMAP.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [Architecture](docs/architecture.md)
 
