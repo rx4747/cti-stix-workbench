@@ -59,6 +59,9 @@ with dense metadata references hidden until requested:
 | [**CTI Investigation Vault**](https://github.com/rx4747/cti-investigation-vault) | A clean starting structure with all STIX templates, the official OASIS APT1 Bundle, and 76 browseable generated notes. |
 
 They are independent. The plugin never creates, replaces, or uploads your vault.
+This repository contains plugin source and test fixtures, not a distributable
+vault. The separate vault repository owns its README, attribution, and analyst
+workspace; automation proposes only generated templates and example data.
 
 ## Install
 
@@ -105,7 +108,11 @@ Bundle is written.
 
 ## Documentation
 
-- [User guide and official OASIS APT1 example](docs/user-guide.md)
+- [User guide and complete workflow](docs/user-guide.md)
+- [Property editor](docs/property-editor.md)
+- [Command reference](docs/commands.md)
+- [Settings reference](docs/settings.md)
+- [Official OASIS APT1 example](docs/user-guide.md#import-the-official-oasis-stix-21-apt1-example)
 - [Mapping rules](docs/mapping.md)
 - [Canvas semantics](docs/canvas.md)
 - [STIX viewer](docs/viewer.md)
