@@ -63,7 +63,6 @@ export function createAnalystWorkflowNote(
     stix_type: "note",
     stix_id: "",
     spec_version: "2.1",
-    created_by_ref: "",
     labels: [workflow.id],
     created: timestamp,
     modified: timestamp,
