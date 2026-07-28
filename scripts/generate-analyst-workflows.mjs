@@ -105,10 +105,12 @@ for (const workflow of library.workflows) {
   const relativePath = `Templates/CTI Workflows/${workflow.title}.md`;
   const content = renderVaultTemplate(workflow);
   files[relativePath] = sha256(content);
-  await writeOrCheck(
-    path.join(repositoryRoot, "generated/analyst-workflows", relativePath),
-    content,
-  );
+  if (!check) {
+    await writeOrCheck(
+      path.join(repositoryRoot, "generated/analyst-workflows", relativePath),
+      content,
+    );
+  }
 }
 await writeOrCheck(
   manifestPath,
