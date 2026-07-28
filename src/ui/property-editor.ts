@@ -20,6 +20,7 @@ import {
   createEditorValues,
   createExtensionValue,
   editableStixDefinition,
+  isValidRawStixReference,
   rawStixReferenceLabel,
   referenceTypeAllowed,
   removeOptionalEditorField,
@@ -158,6 +159,10 @@ class RawStixReferenceModal extends Modal {
           .onClick(() => {
             if (this.reference === "") {
               new Notice("Enter a STIX identifier.");
+              return;
+            }
+            if (!isValidRawStixReference(this.reference)) {
+              new Notice("Enter a valid type--UUID STIX identifier.");
               return;
             }
             this.choose(this.reference);

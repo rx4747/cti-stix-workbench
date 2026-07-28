@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   friendlyStixReference,
+  isValidRawStixReference,
   rawStixReferenceLabel,
   referenceTypeAllowed,
   stixReferenceLink,
@@ -50,9 +51,18 @@ describe("property editor STIX references", () => {
     expect(wikiLinkTarget("[[APT1|Display name]]")).toBe("APT1");
     expect(wikiLinkLabel("[[APT1|Display name]]")).toBe("Display name");
     expect(wikiLinkLabel("[[APT1]]")).toBeUndefined();
+    expect(wikiLinkLabel("[[APT1|   ]]")).toBeUndefined();
     expect(wikiLinkTarget("indicator--not-a-link")).toBeUndefined();
     expect(
       rawStixReferenceLabel("indicator--031778a4-057f-48e6-9db9-c8d72b81ccd5"),
     ).toBe("indicator · 031778a4…ccd5");
+  });
+
+  it("accepts only structurally valid raw STIX identifiers", () => {
+    expect(
+      isValidRawStixReference("indicator--031778a4-057f-48e6-9db9-c8d72b81ccd5"),
+    ).toBe(true);
+    expect(isValidRawStixReference("indicator--not-a-uuid")).toBe(false);
+    expect(isValidRawStixReference("not-an-id")).toBe(false);
   });
 });
