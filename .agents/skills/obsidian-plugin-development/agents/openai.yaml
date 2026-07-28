@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Plugin Development"
+  short_description: "Build and review safe Obsidian plugin changes"
+  default_prompt: "Use $obsidian-plugin-development to implement this Workbench change against official Obsidian guidance."
