@@ -30,7 +30,9 @@ them unchanged.
 | String, timestamp, integer, or number | Single-line input | Enter the scalar value. Numeric values are converted when valid; validation reports malformed values. |
 | Closed STIX vocabulary | Dropdown | Choose a permitted value. An existing invalid value remains visible and marked invalid so it is not silently replaced. |
 | Boolean | Three-state dropdown | Choose **True**, **False**, or **Not set**. |
-| Primitive or reference list | Multiline input | Enter one value per line. A reference may be a `[[typed note]]` link or a raw STIX ID. |
+| Primitive list | Multiline input | Enter one value per line. |
+| STIX reference | Compact pill and typed-note picker | Choose a compatible typed note by name. The pill shows its title and STIX type; raw IDs can be added for external objects. |
+| STIX reference list | Removable pills and typed-note picker | Add compatible typed notes without copying IDs or reading full vault paths. |
 | Nested object list | Repeatable cards | Choose **Add item**, complete its child fields, and add or remove cards as needed. |
 | Structured object | Nested field group | Complete the child controls. Empty optional children are removed on save. |
 | Dictionary without catalog children | JSON text area | Enter one JSON object. Invalid JSON blocks saving and remains local to the modal. |
@@ -39,6 +41,11 @@ them unchanged.
 Empty optional strings, lists, objects, and nested values are cleaned before
 writing. Required fields remain present even when incomplete so the note stays
 an honest draft and validation can explain what is missing.
+
+Conditional requirements remain conditional in the editor. For example, a
+granular marking requires `selectors` plus exactly one of `lang` or
+`marking_ref`; a Marking Definition requires the deprecated `definition_type`
+and `definition` pair only when it does not use the extension mechanism.
 
 ## References and nested values
 
@@ -49,6 +56,14 @@ created_by_ref: "[[Analyst Team]]"
 object_marking_refs:
   - "[[TLP Green]]"
 ```
+
+Use **Choose STIX note** or **Add STIX note** to search typed notes by title,
+STIX type, or path. Where the specification limits a reference target, the
+picker applies the catalog restriction—for example, `created_by_ref` offers
+Identity notes and `object_marking_refs` offers Marking Definitions.
+Selected references appear as compact title-and-type pills. The full
+vault-relative link remains in frontmatter for unambiguous resolution but is
+available only as the pill tooltip, not as editor clutter.
 
 During mapping, links resolve to the referenced typed note's STIX ID. A link
 must resolve inside the selected export scope. A valid raw ID may point outside
@@ -79,6 +94,9 @@ validation mode, custom content must be declared in the local
 - `stix_type`, `stix_id`, `created`, and `modified` are read-only in the modal.
 - A new note may have an empty `stix_id`; the first successful export assigns
   and persists the correct identifier.
+- Authored SDOs, SROs, and SMOs receive UUIDv4 identifiers. SCOs use the STIX
+  deterministic UUIDv5 algorithm when their ID-contributing properties can be
+  resolved; generated Relationship identities are also stable across exports.
 - Once an object has a stable ID, `created_by_ref` is immutable in the modal.
 - Saving a real change to a versioned object advances `modified`
   monotonically. Saving without a change does not alter it.
@@ -120,4 +138,3 @@ markings, Indicator patterns, extensions, and cross-object semantics.
    **Validate active STIX graph**.
 9. Review the graph with **Open in STIX viewer** and export only after the
    validation report is acceptable.
-

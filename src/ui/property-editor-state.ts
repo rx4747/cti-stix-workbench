@@ -4,6 +4,44 @@ import { advanceStixTimestamp } from "../core/versioning";
 
 const bodyMappedFields = new Set(["content", "description", "explanation"]);
 
+export function stixReferenceLink(path: string): string {
+  const notePath = path.endsWith(".md") ? path.slice(0, -3) : path;
+  return friendlyStixReference(`[[${notePath}]]`);
+}
+
+export function friendlyStixReference(reference: string): string {
+  const trimmed = reference.trim();
+  const wikiMatch = /^\[\[([^\]]+)\]\]$/u.exec(trimmed);
+  const inner = wikiMatch?.[1] ?? trimmed;
+  if (inner.includes("|") || !inner.includes("/")) {
+    return trimmed;
+  }
+  const target = inner.split("#", 1)[0]?.trim() ?? inner;
+  const label = target.slice(target.lastIndexOf("/") + 1).trim();
+  return label === "" ? trimmed : `[[${inner}|${label}]]`;
+}
+
+export function referenceTypeAllowed(
+  stixType: string,
+  targetTypes: readonly string[],
+): boolean {
+  return targetTypes.includes("*") || targetTypes.includes(stixType);
+}
+
+export function wikiLinkTarget(reference: string): string | undefined {
+  const match = /^\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]$/u.exec(reference.trim());
+  return match?.[1]?.trim();
+}
+
+export function rawStixReferenceLabel(reference: string): string {
+  const match = /^([a-z][a-z0-9-]*)--([0-9a-f-]+)$/iu.exec(reference.trim());
+  if (match?.[1] === undefined || match[2] === undefined) {
+    return reference;
+  }
+  const identifier = match[2];
+  return `${match[1]} · ${identifier.slice(0, 8)}…${identifier.slice(-4)}`;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
@@ -221,6 +259,16 @@ function cleanNestedEditorValue(
 }
 
 function cleanFieldEditorValue(field: CatalogField, value: unknown): unknown {
+  if (field.reference !== undefined) {
+    const cleaned = cleanUnknownEditorValue(value);
+    if (Array.isArray(cleaned)) {
+      const items: readonly unknown[] = cleaned;
+      return items.map((item) =>
+        typeof item === "string" ? friendlyStixReference(item) : item,
+      );
+    }
+    return typeof cleaned === "string" ? friendlyStixReference(cleaned) : cleaned;
+  }
   if (field.children === undefined) {
     return cleanUnknownEditorValue(value);
   }
@@ -269,7 +317,8 @@ export function advanceModifiedForEdit(
     typeof type === "string" ? stixCatalog.getObjectType(type) : undefined;
   if (
     definition?.fields.some((field) => field.name === "modified") !== true ||
-    JSON.stringify(before) === JSON.stringify(after)
+    JSON.stringify(canonicalReferenceAliases(before)) ===
+      JSON.stringify(canonicalReferenceAliases(after))
   ) {
     return next;
   }
@@ -278,4 +327,23 @@ export function advanceModifiedForEdit(
     now,
   );
   return next;
+}
+
+function canonicalReferenceAliases(value: unknown): unknown {
+  if (typeof value === "string") {
+    const match = /^\[\[([^\]|]+)(?:\|[^\]]*)?\]\]$/u.exec(value.trim());
+    return match?.[1] === undefined ? value : `[[${match[1]}]]`;
+  }
+  if (Array.isArray(value)) {
+    return value.map((item) => canonicalReferenceAliases(item));
+  }
+  if (isRecord(value)) {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, nested]) => [
+        key,
+        canonicalReferenceAliases(nested),
+      ]),
+    );
+  }
+  return value;
 }

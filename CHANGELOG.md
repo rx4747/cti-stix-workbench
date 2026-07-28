@@ -10,6 +10,14 @@
 
 - Added Intelligence Gap Tracker, Dissemination Review, Consumer Feedback, and
   Investigation Retrospective workflows, completing the 15-workflow library.
+- Added searchable typed-note pickers for scalar and list STIX references so
+  analysts do not need to copy note paths or object identifiers.
+
+### Fixed
+
+- Aligned meta-object applicability, Extension Definition creator requirements,
+  conditional Marking Definition fields, external-reference source names, and
+  common embedded-reference targets with the normative STIX 2.1 specification.
 
 ## 1.4.0 — 2026-07-28
 
