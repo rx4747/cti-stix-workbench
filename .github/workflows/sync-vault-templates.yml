@@ -7,7 +7,10 @@ on:
     paths:
       - standards/catalog/stix-2.1.json
       - standards/vault-template-manifest.json
+      - standards/analyst-workflows.json
+      - standards/analyst-workflow-manifest.json
       - scripts/generate-catalog.mjs
+      - scripts/generate-analyst-workflows.mjs
       - scripts/generate-vault-example.mjs
       - tests/fixtures/oasis/apt1.json
 
@@ -62,6 +65,11 @@ jobs:
             "generated/vault-template/Templates/STIX 2.1/" \
             "vault/Templates/STIX 2.1/"
           cp standards/vault-template-manifest.json vault/.cti-template-manifest.json
+          mkdir -p "vault/Templates/CTI Workflows"
+          rsync --archive \
+            "generated/analyst-workflows/Templates/CTI Workflows/" \
+            "vault/Templates/CTI Workflows/"
+          cp standards/analyst-workflow-manifest.json vault/.cti-workflow-manifest.json
           mkdir -p "vault/Examples/OASIS APT1"
           cp tests/fixtures/oasis/apt1.json "vault/Examples/OASIS APT1/apt1.json"
           mkdir -p "vault/Examples/OASIS APT1/Generated Notes"
@@ -82,7 +90,7 @@ jobs:
           git config user.name "cti-vault-sync[bot]"
           git config user.email "cti-vault-sync[bot]@users.noreply.github.com"
           git switch --create "${branch}"
-          git add "Templates/STIX 2.1" "Examples/OASIS APT1" .cti-template-manifest.json
+          git add "Templates/STIX 2.1" "Templates/CTI Workflows" "Examples/OASIS APT1" .cti-template-manifest.json .cti-workflow-manifest.json
           git commit --message "chore: sync STIX templates and APT1 example"
           git push origin "HEAD:refs/heads/${branch}"
           gh pr create \

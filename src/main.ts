@@ -25,6 +25,7 @@ import { parseStixBundleJson, planBundleImport } from "./import/bundle-import";
 import { parsePluginData, serializePluginData } from "./plugin-data";
 import { parseWorkbenchSettings, type WorkbenchSettings } from "./settings";
 import { WorkbenchSettingTab } from "./settings-tab";
+import { openAnalystWorkflowCreator } from "./ui/analyst-workflow";
 import { confirmBundleImport } from "./ui/bundle-import";
 import { confirmWholeVaultExport } from "./ui/confirmation";
 import { openStixObjectCreator } from "./ui/object-creator";
@@ -93,6 +94,11 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
       id: "create-stix-object",
       name: "Create STIX object",
       callback: () => openStixObjectCreator(this.app),
+    });
+    this.addCommand({
+      id: "create-analyst-workflow",
+      name: "Create analyst workflow",
+      callback: () => openAnalystWorkflowCreator(this.app),
     });
     this.addCommand({
       id: "validate-active-stix-canvas",
