@@ -4,6 +4,13 @@
 
 ## Released
 
+## 1.4.0 — 2026-07-28
+
+### Added
+
+- Added Indicator Lifecycle Review, Sighting Assessment, ATT&CK Mapping Review,
+  Malware Triage, and Actor and Campaign Assessment workflows.
+
 ## 1.3.0 — 2026-07-28
 
 ### Added
