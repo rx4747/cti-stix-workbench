@@ -84,7 +84,8 @@ Restart Obsidian, open **Settings → Community plugins**, and enable
 1. Open the vault's `Examples/OASIS APT1/apt1.json` and run **Import STIX
    Bundle as notes**, or create an object manually.
 2. Run **Edit STIX properties** to fill in catalog-defined fields.
-3. Link related STIX notes with ordinary `[[wiki links]]`.
+3. Run **Create analyst workflow** for a guided triage, assessment, review, or
+   feedback note, or link related STIX notes with ordinary `[[wiki links]]`.
 4. Add an exportable relationship as a list item, for example:
 
    ```markdown
@@ -109,6 +110,7 @@ Bundle is written.
 ## Documentation
 
 - [User guide and complete workflow](docs/user-guide.md)
+- [Analyst workflow library](docs/analyst-workflows.md)
 - [Property editor](docs/property-editor.md)
 - [Command reference](docs/commands.md)
 - [Settings reference](docs/settings.md)

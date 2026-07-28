@@ -10,6 +10,7 @@ from the file menu for supported files.
 | Command | Available when | What it does |
 | --- | --- | --- |
 | **Create STIX object** | Always | Searches all authorable STIX 2.1 SDO, SRO, SCO, and Meta Object types, then creates a typed Markdown note at a vault-relative path. Required properties are added as draft values. |
+| **Create analyst workflow** | Always | Searches the 15 versioned analyst workflows, creates a STIX Note draft in its suggested investigation or report folder, and links the active Markdown note when one is open. Only an active typed STIX note enters `object_refs`; an ordinary note remains a contextual link. |
 | **Edit STIX properties** | A supported typed Markdown note is active | Opens the catalog-driven property editor for the note. It does not edit Bundles or standalone predefined-extension templates. |
 | **Import STIX bundle as notes** | A local `.json` file is active | Parses and validates a STIX 2.1 Bundle, previews its type counts and destination, then atomically creates linked notes and an import overview. |
 | **Create new STIX object version** | An eligible, non-revoked versioned object with an ID and `modified` value is active | Copies the note, retains `id`, `created`, and `created_by_ref`, advances `modified`, and opens the new timestamped note. The original version remains. |
@@ -18,6 +19,9 @@ from the file menu for supported files.
 SCOs are not versioned in STIX 2.1. Marking Definitions also do not use the
 normal version lifecycle. The version commands therefore do not appear for
 those objects or for an already revoked version.
+
+See the [analyst workflow guide](analyst-workflows.md) for every included
+workflow, version batch, placement default, and creation behavior.
 
 ## View
 
@@ -61,4 +65,3 @@ existing file; timestamp collisions receive a numeric suffix.
 
 See [Canvas semantics](canvas.md) and [mapping rules](mapping.md) for the exact
 conversion contract.
-
