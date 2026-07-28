@@ -31,10 +31,21 @@ Every generated workflow is a STIX 2.1 Note draft. It maps the Markdown under
 frontmatter, use `object_refs` for typed STIX objects discussed by the
 workflow, and validate before export.
 
+Workflow templates structure the analyst process and its prose. They do not
+create the Indicators, Malware, Threat Actors, Sightings, or other objects
+being discussed; import Bundles; perform enrichment; or generate a Canvas.
+Create or import those objects separately, then link them through the Note's
+`object_refs`. The plugin assigns the workflow Note's STIX identifier on its
+first successful export, just like any other newly authored object.
+
 An active typed STIX note is added to `object_refs` and **Related notes**.
 An active ordinary Markdown note is added only to **Related notes** because it
 cannot be a valid STIX object reference. The command never edits the source
 note and never creates implied Relationships.
+
+After completion, a workflow Note participates in active-graph, Canvas,
+folder, and whole-vault validation and export like any other typed note. Add it
+to a Canvas as a file node when you want it inside that explicit visual scope.
 
 The catalog and generated template manifest are versioned with the plugin.
 Each manifest records the SHA-256 digest of all 15 corresponding vault
