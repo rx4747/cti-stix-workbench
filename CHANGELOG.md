@@ -215,9 +215,8 @@
   standalone standard object types, nested references, and typed relationships.
 - Active-note graph validation and export commands with offline Bundle schema
   validation, atomic ID persistence, and collision-safe Vault writes.
-- A fully fictional Frost Lantern investigation with linked Grouping, Identity,
-  Threat Actor, Indicator, reserved domain/address notes, starter Canvas, and a
-  schema-valid golden Bundle.
+- A deterministic reserved-data investigation fixture with linked STIX objects,
+  a starter Canvas, and a schema-valid golden Bundle for regression testing.
 - Reproducible, allowlisted plugin and vault-template release packaging.
 - Public setup, repository-split, contribution, security, and path-specific
   licensing documentation.
