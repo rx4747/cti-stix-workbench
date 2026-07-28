@@ -66,7 +66,7 @@ jobs:
             "vault/Templates/STIX 2.1/"
           cp standards/vault-template-manifest.json vault/.cti-template-manifest.json
           mkdir -p "vault/Templates/CTI Workflows"
-          rsync --archive \
+          rsync --archive --delete \
             "generated/analyst-workflows/Templates/CTI Workflows/" \
             "vault/Templates/CTI Workflows/"
           cp standards/analyst-workflow-manifest.json vault/.cti-workflow-manifest.json

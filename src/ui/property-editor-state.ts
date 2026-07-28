@@ -1,5 +1,6 @@
 import { stixCatalog } from "../catalog/stix-2.1";
 import type { CatalogField, ObjectTypeDefinition } from "../catalog/types";
+import { validateStixIdentifier } from "../core/identifiers";
 import { advanceStixTimestamp } from "../core/versioning";
 
 const bodyMappedFields = new Set(["content", "description", "explanation"]);
@@ -44,7 +45,16 @@ export function wikiLinkTarget(reference: string): string | undefined {
 
 export function wikiLinkLabel(reference: string): string | undefined {
   const match = /^\[\[[^\]]+\|([^\]]+)\]\]$/u.exec(reference.trim());
-  return match?.[1]?.trim();
+  const label = match?.[1]?.trim();
+  return label === "" ? undefined : label;
+}
+
+export function isValidRawStixReference(reference: string): boolean {
+  const separatorIndex = reference.indexOf("--");
+  if (separatorIndex <= 0) {
+    return false;
+  }
+  return validateStixIdentifier(reference.slice(0, separatorIndex), reference).ok;
 }
 
 export function rawStixReferenceLabel(reference: string): string {
