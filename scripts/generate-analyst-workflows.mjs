@@ -102,10 +102,14 @@ for (const workflow of library.workflows) {
   const relativePath = `Templates/CTI Workflows/${workflow.title}.md`;
   const content = renderVaultTemplate(workflow);
   files[relativePath] = sha256(content);
-  await writeOrCheck(
-    path.join(repositoryRoot, "generated/analyst-workflows", relativePath),
-    content,
-  );
+  // Generated vault output is intentionally ignored. In check mode, the
+  // rendered hashes below are compared with the committed manifest instead.
+  if (!check) {
+    await writeOrCheck(
+      path.join(repositoryRoot, "generated/analyst-workflows", relativePath),
+      content,
+    );
+  }
 }
 await writeOrCheck(
   manifestPath,
