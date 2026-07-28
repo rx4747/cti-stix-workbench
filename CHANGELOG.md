@@ -4,6 +4,22 @@
 
 ## Released
 
+## 1.1.0 — 2026-07-28
+
+### Added
+
+- Added a read-only interactive STIX viewer for local Bundle JSON, individual
+  objects, object arrays, and connected Markdown note graphs, with pan, zoom,
+  node arrangement, filtering, property inspection, and note navigation.
+- Added locally bundled OASIS STIX visualization icons with explicit coverage
+  fallbacks and the complete BSD 3-Clause attribution in source and release
+  output.
+
+### Changed
+
+- Kept the viewer and plugin explicitly desktop-only while supporting narrow
+  desktop split panes and popout windows.
+
 ## 1.0.1 — 2026-07-27
 
 ### Fixed
@@ -96,8 +112,7 @@
 
 - Validated untrusted Obsidian frontmatter before reading or writing STIX IDs
   and property-editor values.
-- Preserved popout-window and mobile compatibility by using realm-local Web
-  Crypto globals.
+- Preserved popout-window compatibility by using realm-local Web Crypto globals.
 - Prevented nested values from appearing as meaningless `[object Object]`
   scalar text.
 - Replaced deprecated and version-incompatible property-editor UI APIs while

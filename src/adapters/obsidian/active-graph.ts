@@ -34,6 +34,7 @@ export type ActiveGraphValidationResult =
       readonly objectCount: number;
       readonly warnings: readonly Diagnostic[];
       readonly identities: readonly GeneratedIdentity[];
+      readonly notePathById: ReadonlyMap<string, string>;
     }
   | {
       readonly ok: false;
@@ -208,9 +209,10 @@ export async function validateActiveGraph(
     };
   }
 
+  const notePathById = notePathsById(collected.drafts, mapped.identities);
   const schemaDiagnostics = dependencies.validateBundle(
     mapped.bundle,
-    notePathsById(collected.drafts, mapped.identities),
+    notePathById,
     settings.validationMode,
   );
   const combined = splitDiagnostics([
@@ -232,6 +234,7 @@ export async function validateActiveGraph(
     objectCount: mapped.bundle.objects.length,
     warnings: combined.warnings,
     identities: mapped.identities,
+    notePathById,
   };
 }
 
