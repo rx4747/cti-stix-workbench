@@ -314,17 +314,17 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
     );
     this.registerEvent(
       this.app.vault.on("modify", (file) => {
-        if (file instanceof TFile) void this.refreshViewerLeaves(file.path);
+        if (file instanceof TFile) this.refreshViewerLeaves(file.path);
       }),
     );
     this.registerEvent(
       this.app.vault.on("rename", (file, oldPath) => {
-        if (file instanceof TFile) void this.refreshViewerLeaves(file.path, oldPath);
+        if (file instanceof TFile) this.refreshViewerLeaves(file.path, oldPath);
       }),
     );
     this.registerEvent(
       this.app.vault.on("delete", (file) => {
-        if (file instanceof TFile) void this.refreshViewerLeaves(file.path);
+        if (file instanceof TFile) this.refreshViewerLeaves(file.path);
       }),
     );
   }

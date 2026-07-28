@@ -7,8 +7,8 @@
 - Supported scopes: active graph, active Canvas, recursive folder, whole vault.
 - Viewer inputs: local STIX Bundle JSON, individual objects, object arrays, and
   active typed Markdown graphs.
-- Supported standard surface: 19 SDOs, 2 SROs, 18 SCOs, 3 Meta Objects, and 12
-  predefined SCO extensions.
+- Supported standard surface: 1 Bundle, 19 SDOs, 2 SROs, 18 SCOs, 3 Meta
+  Objects, and 12 predefined SCO extensions.
 
 The following are intentionally deferred until after v1.0: STIX/TAXII import,
 MISP or OpenCTI synchronization, remote extension-schema fetching,

@@ -124,7 +124,7 @@ function isReferenceField(field: string, value: unknown): boolean {
 
 function edgeKey(edge: StixViewerEdge): string {
   if (edge.kind === "relationship") return `${edge.kind}\u0000${edge.id}`;
-  return `${edge.sourceId}\u0000${edge.targetId}\u0000${edge.label}`;
+  return `${edge.sourceId}\u0000${edge.targetId}\u0000${edge.field ?? edge.label}`;
 }
 
 function relationshipEdge(

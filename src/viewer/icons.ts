@@ -89,5 +89,7 @@ const iconByType: Readonly<Record<string, string>> = Object.freeze({
 });
 
 export function stixIconDataUrl(type: string): string {
-  return iconByType[type] ?? customObject;
+  return Object.hasOwn(iconByType, type)
+    ? (iconByType[type] ?? customObject)
+    : customObject;
 }

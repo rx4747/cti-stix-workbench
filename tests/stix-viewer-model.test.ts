@@ -78,15 +78,22 @@ describe("STIX viewer model", () => {
       {
         type: "grouping",
         id: "grouping--66666666-6666-4666-8666-666666666666",
-        object_refs: [indicator.id, indicator.id],
+        object_refs: [indicator.id, indicator.id, "not-a-stix-id"],
       },
     ]);
 
-    expect(model.placeholderCount).toBe(2);
+    expect(model.placeholderCount).toBe(3);
     expect(model.nodes).toContainEqual(
       expect.objectContaining({
         id: "identity--22222222-2222-4222-8222-222222222222",
         type: "identity",
+        placeholder: true,
+      }),
+    );
+    expect(model.nodes).toContainEqual(
+      expect.objectContaining({
+        id: "not-a-stix-id",
+        type: "unresolved-reference",
         placeholder: true,
       }),
     );
@@ -96,6 +103,25 @@ describe("STIX viewer model", () => {
           edge.sourceId.startsWith("grouping--") && edge.targetId === indicator.id,
       ),
     ).toHaveLength(1);
+  });
+
+  it("preserves distinct reference fields with the same endpoints", () => {
+    const sourceId = "x-reference-test--77777777-7777-4777-8777-777777777777";
+    const model = buildStixViewerModel([
+      indicator,
+      {
+        type: "x-reference-test",
+        id: sourceId,
+        object_ref: indicator.id,
+        object_refs: [indicator.id],
+      },
+    ]);
+
+    expect(
+      model.edges.filter(
+        (edge) => edge.sourceId === sourceId && edge.targetId === indicator.id,
+      ),
+    ).toHaveLength(2);
   });
 
   it("accepts a single object and rejects invalid JSON and duplicate IDs", () => {
