@@ -4,6 +4,13 @@
 
 ## Released
 
+## 1.5.0 — 2026-07-28
+
+### Added
+
+- Added Intelligence Gap Tracker, Dissemination Review, Consumer Feedback, and
+  Investigation Retrospective workflows, completing the 15-workflow library.
+
 ## 1.4.0 — 2026-07-28
 
 ### Added
