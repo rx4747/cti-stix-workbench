@@ -81,20 +81,24 @@ Restart Obsidian, open **Settings → Community plugins**, and enable
 
 ## A five-minute first run
 
-1. Open the vault's `Examples/OASIS APT1/apt1.json` and run **Import STIX
-   Bundle as notes**, or create an object manually.
-2. Run **Edit STIX properties** to fill in catalog-defined fields.
-3. Run **Create analyst workflow** for a guided triage, assessment, review, or
-   feedback note, or link related STIX notes with ordinary `[[wiki links]]`.
-4. Add an exportable relationship as a list item, for example:
+1. Choose a starting point:
+   - Run **Create STIX object** for a new manually authored object, then use
+     **Edit STIX properties** to complete its catalog-defined fields.
+   - Run **Create analyst workflow** for a guided triage, assessment, review,
+     or feedback Note linked to the active investigation.
+   - Open a local STIX Bundle such as `Examples/OASIS APT1/apt1.json` and run
+     **Import STIX Bundle as notes**. Imported notes are already populated from
+     the source objects and remain editable.
+2. Connect related notes with ordinary `[[wiki links]]` for analyst context.
+3. Add an exportable relationship as a list item, for example:
 
    ```markdown
    - stix:uses [[Target note]]
    ```
 
-5. Run **Validate active STIX graph** and review any diagnostics.
-6. Run **Open in STIX viewer** to inspect and arrange the local graph.
-7. Run **Export active STIX graph** to write a STIX Bundle to `Exports/`.
+4. Run **Validate active STIX graph** and review any diagnostics.
+5. Run **Open in STIX viewer** to inspect and temporarily arrange the graph.
+6. Run **Export active STIX graph** to write a STIX Bundle to `Exports/`.
 
 The APT1 example imports 76 objects, including 30 typed Relationships. It is
 the official OASIS example and demonstrates that `created_by_ref` is optional.
@@ -104,6 +108,8 @@ Relationships only when you use the explicit `stix:<relationship-type>` form.
 
 Canvas, folder, and whole-vault commands are also available. Canvas semantics
 come only from directed file-node edges labeled `stix:<relationship-type>`.
+Import creates Markdown notes and an import overview, not a Canvas. Create a
+Canvas in Obsidian and add those notes when you want a visual, explicit scope.
 Whole-vault export always requires confirmation and can be cancelled before any
 Bundle is written.
 

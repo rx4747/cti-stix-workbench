@@ -3,7 +3,8 @@
 The STIX viewer turns a local Bundle, individual STIX object, object array, or
 connected set of typed Markdown notes into an interactive graph. It is a
 read-only view: opening, filtering, arranging, and inspecting the graph never
-persists IDs or changes source files.
+persists IDs or changes source files. Its layout is temporary viewer state; it
+does not generate or update an Obsidian Canvas.
 
 The viewer is supported on Obsidian desktop only. Its responsive layout is for
 desktop split panes and popout windows, not mobile clients.
