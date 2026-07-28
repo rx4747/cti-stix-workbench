@@ -8,8 +8,9 @@
 6. Confirm the draft has release notes and exactly `main.js`, `manifest.json`,
    and `styles.css`.
 7. Download the assets and verify every GitHub attestation.
-8. Install those three assets in a clean desktop vault and run the fictional
-   graph and Canvas exports.
+8. Install those three assets in a clean desktop vault and run the official
+   OASIS APT1 import, viewer, validation, and export workflows plus a Canvas
+   export.
 9. Publish the reviewed draft manually, then refresh the Obsidian submission.
 
 Do not publish when generated coverage is stale, a capability is not verified,

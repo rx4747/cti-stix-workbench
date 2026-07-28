@@ -1,5 +1,20 @@
 # Troubleshooting
 
+## A command does not appear
+
+Commands are context-sensitive. Open the required file first: a typed Markdown
+note for property, active-graph, and version commands; a `.canvas` file for
+Canvas commands; or a `.json` file for Bundle import. Version commands also
+require a supported non-revoked object with an ID and `modified` timestamp.
+See the [command reference](commands.md).
+
+## A property is missing from the editor
+
+Only required and already-present properties are shown initially. Use **Add
+property** for an absent optional field. `description`, Note `content`, and
+Opinion `explanation` are edited in their mapped Markdown sections. See the
+[property-editor guide](property-editor.md).
+
 ## A reference is unresolved
 
 Ensure the target is a typed Markdown note inside the selected scope. Folder

@@ -36,3 +36,13 @@ staging folder, and renames that folder into place only after every file is
 complete. Object versions use `(id, modified)` identity; references select the
 latest available version while historical versions remain in the Bundle and
 viewer model.
+
+## Repository boundary
+
+This repository contains the plugin, its build inputs, and test fixtures. The
+official APT1 JSON under `tests/fixtures/oasis/` is canonical conformance input,
+not a bundled Obsidian vault. The downloadable analyst workspace lives in the
+separate CTI Investigation Vault repository, which owns its own documentation,
+attribution, and vault structure. Automation may propose generated templates,
+the canonical JSON fixture, and its reproducible note snapshot to that
+repository; it never synchronizes `.obsidian` state.

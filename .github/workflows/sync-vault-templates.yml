@@ -10,7 +10,6 @@ on:
       - scripts/generate-catalog.mjs
       - scripts/generate-vault-example.mjs
       - tests/fixtures/oasis/apt1.json
-      - vault-examples/OASIS APT1/**
 
 permissions:
   contents: read
@@ -65,9 +64,6 @@ jobs:
           cp standards/vault-template-manifest.json vault/.cti-template-manifest.json
           mkdir -p "vault/Examples/OASIS APT1"
           cp tests/fixtures/oasis/apt1.json "vault/Examples/OASIS APT1/apt1.json"
-          cp "vault-examples/OASIS APT1/README.md" "vault/Examples/OASIS APT1/README.md"
-          cp "vault-examples/OASIS APT1/LICENSE-OASIS-STIX.txt" \
-            "vault/Examples/OASIS APT1/LICENSE-OASIS-STIX.txt"
           mkdir -p "vault/Examples/OASIS APT1/Generated Notes"
           rsync --archive --delete \
             "generated/vault-example/Generated Notes/" \
@@ -94,4 +90,4 @@ jobs:
             --base main \
             --head "${branch}" \
             --title "chore: sync STIX templates and APT1 example" \
-            --body "Generated from rx4747/cti-stix-workbench@${GITHUB_SHA}. This updates the public template tree, attributed OASIS APT1 example, and manifest; local .obsidian state is not included."
+            --body "Generated from rx4747/cti-stix-workbench@${GITHUB_SHA}. This updates generated STIX templates, the canonical OASIS APT1 JSON and note snapshot, and the checksum manifest. The vault repository continues to own its documentation and attribution files; local .obsidian state is not included."

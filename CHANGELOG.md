@@ -2,12 +2,6 @@
 
 ## Unreleased
 
-### Changed
-
-- Simplified the STIX viewer to icon-led nodes in a Maltego-style component
-  layout with object names and types, semantic connection labels, on-demand
-  metadata references, and complete data shown on selection in the side panel.
-
 ## Released
 
 ## 1.2.0 — 2026-07-28
@@ -26,9 +20,14 @@
 
 ### Changed
 
+- Simplified the STIX viewer to icon-led nodes in a Maltego-style component
+  layout with object names and types, semantic connection labels, on-demand
+  metadata references, and complete data shown on selection in the side panel.
 - Changed generated templates and the property editor to expose required and
   present properties by default, with an explicit add-property workflow for
   optional and nested fields.
+- Added complete command, settings, property-editor, nested-field, versioning,
+  and end-to-end workflow documentation.
 - Preserved valid external STIX references with warnings instead of rejecting
   them solely because their targets are outside the exported Bundle.
 - Updated vault synchronization to propose the attributed OASIS APT1 Bundle,
@@ -36,6 +35,9 @@
   checksum manifest, while continuing to exclude `.obsidian` state.
 - Added opt-in Platinum, Gold, and Silver sponsor recognition to the project
   README without exposing private sponsors.
+- Kept vault-owned documentation and attribution exclusively in the separate
+  vault repository while synchronizing only generated templates and canonical
+  example data from the plugin repository.
 
 ### Fixed
 
