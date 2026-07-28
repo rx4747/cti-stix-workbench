@@ -17,8 +17,17 @@ export function friendlyStixReference(reference: string): string {
     return trimmed;
   }
   const target = inner.split("#", 1)[0]?.trim() ?? inner;
-  const label = target.slice(target.lastIndexOf("/") + 1).trim();
+  const label = friendlyReferenceLabel(target);
   return label === "" ? trimmed : `[[${inner}|${label}]]`;
+}
+
+function friendlyReferenceLabel(target: string): string {
+  const basename = target.slice(target.lastIndexOf("/") + 1).trim();
+  const withoutGeneratedId = basename.replace(/ - [0-9a-f]{12}$/iu, "");
+  if (withoutGeneratedId.length <= 64) {
+    return withoutGeneratedId;
+  }
+  return `${withoutGeneratedId.slice(0, 60).trimEnd()}…`;
 }
 
 export function referenceTypeAllowed(
@@ -30,6 +39,11 @@ export function referenceTypeAllowed(
 
 export function wikiLinkTarget(reference: string): string | undefined {
   const match = /^\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]$/u.exec(reference.trim());
+  return match?.[1]?.trim();
+}
+
+export function wikiLinkLabel(reference: string): string | undefined {
+  const match = /^\[\[[^\]]+\|([^\]]+)\]\]$/u.exec(reference.trim());
   return match?.[1]?.trim();
 }
 
