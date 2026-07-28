@@ -47,6 +47,10 @@ describe("analyst workflow library", () => {
     );
     expect(note).toContain('object_refs: ["[[03 STIX Objects/SDOs/APT1]]"]');
     expect(note).not.toContain("created_by_ref");
+    expect(note).not.toContain("object_marking_refs");
+    expect(note).not.toContain("external_references");
+    expect(note).not.toContain("granular_markings");
+    expect(note).not.toContain("extensions");
     expect(note).toContain("# APT1 test review");
     expect(note).toContain("- [[03 STIX Objects/SDOs/APT1]]");
     expect(defaultWorkflowPath(workflow, "APT1 / review")).toBe(

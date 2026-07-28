@@ -51,13 +51,10 @@ function frontmatter(workflow) {
     "revoked:",
     "confidence: 50",
     "lang: en",
-    "object_marking_refs: []",
     `abstract: ${JSON.stringify(workflow.description)}`,
-    "authors: []",
-    "object_refs: []",
-    "external_references: []",
-    "granular_markings: []",
-    "extensions: {}",
+    "# Required Note property: uncomment and add at least one typed STIX note.",
+    "# object_refs:",
+    '#   - "[[Typed STIX object]]"',
     "---",
   ];
 }

@@ -69,13 +69,8 @@ export function createAnalystWorkflowNote(
     revoked: false,
     confidence: 50,
     lang: "en",
-    object_marking_refs: [],
     abstract: workflow.description,
-    authors: [],
     object_refs: objectReference === undefined ? [] : [objectReference],
-    external_references: [],
-    granular_markings: [],
-    extensions: {},
   };
   const frontmatterLines = Object.entries(frontmatter).map(
     ([key, value]) => `${key}: ${yamlScalar(value)}`,
