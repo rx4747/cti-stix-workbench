@@ -8,6 +8,7 @@ on:
       - standards/catalog/stix-2.1.json
       - standards/vault-template-manifest.json
       - scripts/generate-catalog.mjs
+      - scripts/generate-vault-example.mjs
       - tests/fixtures/oasis/apt1.json
       - vault-examples/OASIS APT1/**
 
@@ -45,6 +46,7 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm generate
+          pnpm generate:vault-example
 
       - name: Check out the vault repository
         uses: actions/checkout@v7
@@ -66,6 +68,10 @@ jobs:
           cp "vault-examples/OASIS APT1/README.md" "vault/Examples/OASIS APT1/README.md"
           cp "vault-examples/OASIS APT1/LICENSE-OASIS-STIX.txt" \
             "vault/Examples/OASIS APT1/LICENSE-OASIS-STIX.txt"
+          mkdir -p "vault/Examples/OASIS APT1/Generated Notes"
+          rsync --archive --delete \
+            "generated/vault-example/Generated Notes/" \
+            "vault/Examples/OASIS APT1/Generated Notes/"
 
       - name: Open a reviewable vault pull request
         working-directory: vault

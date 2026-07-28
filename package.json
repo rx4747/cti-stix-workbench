@@ -9,7 +9,7 @@
     "check": "pnpm verify:sources && pnpm check:generated && pnpm check:docs && pnpm check:security && pnpm test && pnpm lint && pnpm typecheck && pnpm format:check",
     "check:docs": "node scripts/check-docs.mjs",
     "check:coverage": "node scripts/check-coverage.mjs",
-    "check:generated": "node scripts/generate-catalog.mjs --check && pnpm check:coverage",
+    "check:generated": "node scripts/generate-catalog.mjs --check && node scripts/generate-vault-example.mjs --check && pnpm check:coverage",
     "check:security": "node scripts/security-audit.mjs",
     "commitlint": "commitlint --last --verbose",
     "dev": "node esbuild.config.mjs",
@@ -17,6 +17,7 @@
     "format": "biome check --write .",
     "format:check": "biome ci .",
     "generate": "node scripts/generate-catalog.mjs",
+    "generate:vault-example": "node scripts/generate-vault-example.mjs",
     "lint": "pnpm lint:marketplace",
     "lint:marketplace": "eslint --max-warnings 0 src package.json",
     "package:plugin": "pnpm build && node scripts/package-release.mjs plugin",
@@ -53,7 +54,8 @@
     "obsidian": "1.13.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.65.0",
-    "vitest": "4.1.10"
+    "vitest": "4.1.10",
+    "yaml": "2.9.0"
   },
   "packageManager": "pnpm@11.17.0",
   "nano-staged": {
