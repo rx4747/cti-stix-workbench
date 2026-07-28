@@ -161,15 +161,15 @@
     },
     {
       "path": "Templates/STIX 2.1/Meta Objects/Language Content.md",
-      "sha256": "fecc0836201cd319b03a78b15cbefd6e874bc3b9a5acd4ae889397319653007b"
+      "sha256": "0b770c3dfa9d1aa85f195866f7461804993a338600f76c96d98e1f9e08fe56ea"
     },
     {
       "path": "Templates/STIX 2.1/Meta Objects/Marking Definition.md",
-      "sha256": "4ad441fd3e07ca69ae9a2aa625f11992baf238b9fc247e1abd5e5296223208ae"
+      "sha256": "8176d98a90e7a8606c22b0bfc745995e442d3b4e83512c58b6452b6bda129667"
     },
     {
       "path": "Templates/STIX 2.1/Meta Objects/Extension Definition.md",
-      "sha256": "71538d6f9b002657d6483f208804bb5e503acc6e80b15034904bd9032ac73f47"
+      "sha256": "0ca05cfdab010b80755a06d025d39df5fbc5acf1f564d0ff4bcfe1e5af6576b5"
     },
     {
       "path": "Templates/STIX 2.1/SCO Extensions/File - Archive File Extension.md",
