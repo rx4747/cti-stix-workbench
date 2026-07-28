@@ -1,6 +1,6 @@
 <div align="center">
 
-# CTI STIX Workbench
+<img src="assets/readme/cti-stix-workbench-header.svg" alt="CTI STIX Workbench — author, validate, investigate, and export local STIX 2.1 intelligence" width="100%" />
 
 **A local-first Obsidian plugin for turning connected investigation notes into valid STIX 2.1 Bundles.**
 
@@ -43,6 +43,13 @@ around relationship hubs and shows authored Relationships by default, with
 dense metadata references available on demand. Hover or focus a connection for
 its semantic label, then select an icon or connection to inspect its complete
 data in the side panel.
+
+## Screenshots
+
+The official OASIS APT1 example rendered as relationship-connected components,
+with dense metadata references hidden until requested:
+
+![APT1 STIX graph overview in CTI STIX Workbench](assets/readme/stix-viewer.png)
 
 ## Plugin or vault template?
 
@@ -177,8 +184,7 @@ equally valuable ways to support the project.
 ## Contributors
 
 Thank you to everyone who improves the Workbench. This wall is refreshed by a
-reviewable monthly pull request; bots and the repository's explicit OPSEC
-denylist are never rendered.
+reviewable monthly pull request; automated bot accounts are not rendered.
 
 <!-- contributors:start -->
 <table>

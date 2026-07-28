@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="480" viewBox="0 0 1600 480" role="img" aria-labelledby="title description">
+  <title id="title">CTI STIX Workbench</title>
+  <desc id="description">Obsidian plugin for local STIX 2.1 intelligence analysis</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f0b1e" />
+      <stop offset="0.52" stop-color="#21143e" />
+      <stop offset="1" stop-color="#101b33" />
+    </linearGradient>
+    <linearGradient id="crystal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c4a7ff" />
+      <stop offset="0.5" stop-color="#8b5cf6" />
+      <stop offset="1" stop-color="#4f46e5" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a78bfa" />
+      <stop offset="1" stop-color="#38bdf8" />
+    </linearGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0V36" fill="none" stroke="#ffffff" stroke-opacity="0.035" />
+    </pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="22" />
+    </filter>
+  </defs>
+
+  <rect width="1600" height="480" rx="34" fill="url(#background)" />
+  <rect width="1600" height="480" rx="34" fill="url(#grid)" />
+  <circle cx="230" cy="240" r="152" fill="#8b5cf6" opacity="0.16" filter="url(#glow)" />
+  <circle cx="1390" cy="90" r="180" fill="#38bdf8" opacity="0.08" filter="url(#glow)" />
+
+  <g stroke-linecap="round">
+    <path d="M1230 116L1386 202L1272 338" fill="none" stroke="#a78bfa" stroke-opacity="0.22" stroke-width="3" />
+    <path d="M1386 202L1490 118M1386 202L1496 318" fill="none" stroke="#38bdf8" stroke-opacity="0.2" stroke-width="3" />
+    <circle cx="1230" cy="116" r="10" fill="#a78bfa" />
+    <circle cx="1386" cy="202" r="13" fill="#38bdf8" />
+    <circle cx="1272" cy="338" r="10" fill="#8b5cf6" />
+    <circle cx="1490" cy="118" r="9" fill="#a78bfa" />
+    <circle cx="1496" cy="318" r="9" fill="#38bdf8" />
+  </g>
+
+  <g transform="translate(108 94) scale(12)" fill="url(#crystal)">
+    <path d="M19.355 18.538a68.967 68.959 0 0 0 1.858-2.954.81.81 0 0 0-.062-.9c-.516-.685-1.504-2.075-2.042-3.362-.553-1.321-.636-3.375-.64-4.377a1.707 1.707 0 0 0-.358-1.05l-3.198-4.064a3.744 3.744 0 0 1-.076.543c-.106.503-.307 1.004-.536 1.5-.134.29-.29.6-.446.914l-.31.626c-.516 1.068-.997 2.227-1.132 3.59-.124 1.26.046 2.73.815 4.481.128.011.257.025.386.044a6.363 6.363 0 0 1 3.326 1.505c.916.79 1.744 1.922 2.415 3.5zM8.199 22.569c.073.012.146.02.22.02.78.024 2.095.092 3.16.29.87.16 2.593.64 4.01 1.055 1.083.316 2.198-.548 2.355-1.664.114-.814.33-1.735.725-2.58l-.01.005c-.67-1.87-1.522-3.078-2.416-3.849a5.295 5.295 0 0 0-2.778-1.257c-1.54-.216-2.952.19-3.84.45.532 2.218.368 4.829-1.425 7.531zM5.533 9.938c-.023.1-.056.197-.098.29L2.82 16.059a1.602 1.602 0 0 0 .313 1.772l4.116 4.24c2.103-3.101 1.796-6.02.836-8.3-.728-1.73-1.832-3.081-2.55-3.831zM9.32 14.01c.615-.183 1.606-.465 2.745-.534-.683-1.725-.848-3.233-.716-4.577.154-1.552.7-2.847 1.235-3.95.113-.235.223-.454.328-.664.149-.297.288-.577.419-.86.217-.47.379-.885.46-1.27.08-.38.08-.72-.014-1.043-.095-.325-.297-.675-.68-1.06a1.6 1.6 0 0 0-1.475.36l-4.95 4.452a1.602 1.602 0 0 0-.513.952l-.427 2.83c.672.59 2.328 2.316 3.335 4.711.09.21.175.43.253.653z" />
+  </g>
+
+  <g font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="455" y="188" fill="#f8fafc" font-size="70" font-weight="760" letter-spacing="-2">CTI STIX Workbench</text>
+    <rect x="455" y="218" width="670" height="5" rx="2.5" fill="url(#accent)" />
+    <text x="455" y="278" fill="#cbd5e1" font-size="27" font-weight="450">Author, validate, investigate, and export local STIX 2.1 intelligence.</text>
+    <g transform="translate(455 326)" font-size="18" font-weight="650" letter-spacing="1.5">
+      <rect width="130" height="44" rx="22" fill="#8b5cf6" fill-opacity="0.16" stroke="#a78bfa" stroke-opacity="0.55" />
+      <text x="65" y="28" text-anchor="middle" fill="#ddd6fe">STIX 2.1</text>
+      <rect x="148" width="165" height="44" rx="22" fill="#38bdf8" fill-opacity="0.11" stroke="#38bdf8" stroke-opacity="0.45" />
+      <text x="230" y="28" text-anchor="middle" fill="#bae6fd">LOCAL-FIRST</text>
+      <rect x="331" width="146" height="44" rx="22" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.2" />
+      <text x="404" y="28" text-anchor="middle" fill="#e2e8f0">DESKTOP</text>
+    </g>
+  </g>
+</svg>
