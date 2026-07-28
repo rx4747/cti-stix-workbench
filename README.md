@@ -28,6 +28,18 @@ your vault to a hosted service.
 - Exports collision-safe JSON Bundles to a vault-relative folder.
 - Runs offline on Obsidian desktop without runtime network calls or telemetry.
 
+## Visualize before you export
+
+Open a local STIX Bundle, object, object array, or connected typed note graph in
+the **STIX viewer**. It renders official OASIS icons, authored Relationships,
+top-level references, and unresolved targets in one read-only workspace. Pan,
+zoom, rearrange, filter, and inspect the real STIX properties without modifying
+the source or sending investigation data off-device.
+
+The viewer follows Obsidian desktop themes and adapts to desktop split panes and
+popout windows. Long object names are measured and safely truncated in nodes;
+the complete title remains available on hover and in the property panel.
+
 ## Plugin or vault template?
 
 | Project | Use it for |

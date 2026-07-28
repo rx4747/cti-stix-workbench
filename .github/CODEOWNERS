@@ -1,0 +1,14 @@
+# Security-sensitive repository and release configuration
+/.github/ @rx4747
+/manifest.json @rx4747
+/package.json @rx4747
+/pnpm-lock.yaml @rx4747
+/scripts/ @rx4747
+/src/ @rx4747
+/standards/ @rx4747
+
+# Documentation, licensing, and release notes
+/CHANGELOG.md @rx4747
+/LICENSES/ @rx4747
+/README.md @rx4747
+/docs/ @rx4747

@@ -19,6 +19,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment: release
 
     steps:
       - name: Check out release source

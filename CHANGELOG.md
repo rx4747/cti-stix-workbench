@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## Released
+
+## 1.1.0 — 2026-07-28
+
 ### Added
 
 - Added a read-only interactive STIX viewer for local Bundle JSON, individual
@@ -15,8 +19,6 @@
 
 - Kept the viewer and plugin explicitly desktop-only while supporting narrow
   desktop split panes and popout windows.
-
-## Released
 
 ## 1.0.1 — 2026-07-27
 
