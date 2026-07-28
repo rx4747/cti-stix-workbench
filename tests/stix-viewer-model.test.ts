@@ -70,6 +70,12 @@ describe("STIX viewer model", () => {
         notePath: "Relationships/Indicator indicates actor.md",
       }),
     );
+    expect(model.edges).toContainEqual(
+      expect.objectContaining({ field: "created_by_ref", label: "created by" }),
+    );
+    expect(model.edges).toContainEqual(
+      expect.objectContaining({ field: "object_marking_refs", label: "marked by" }),
+    );
   });
 
   it("creates placeholders for missing references and deduplicates equivalent edges", () => {
@@ -103,6 +109,9 @@ describe("STIX viewer model", () => {
           edge.sourceId.startsWith("grouping--") && edge.targetId === indicator.id,
       ),
     ).toHaveLength(1);
+    expect(model.edges).toContainEqual(
+      expect.objectContaining({ field: "object_refs", label: "contains" }),
+    );
   });
 
   it("preserves distinct reference fields with the same endpoints", () => {
@@ -124,11 +133,11 @@ describe("STIX viewer model", () => {
     ).toHaveLength(2);
   });
 
-  it("accepts a single object and rejects invalid JSON and duplicate IDs", () => {
+  it("accepts a single object and rejects invalid JSON and duplicate versions", () => {
     expect(parseStixViewerJson(JSON.stringify(indicator)).nodes).toHaveLength(3);
     expect(() => parseStixViewerJson("{")).toThrow(StixViewerModelError);
     expect(() => buildStixViewerModel([indicator, indicator])).toThrow(
-      `STIX object ID ${indicator.id} is duplicated.`,
+      `STIX object version ${indicator.id} is duplicated.`,
     );
     expect(() => buildStixViewerModel({ type: "bundle", id: "bundle--x" })).toThrow(
       "A STIX Bundle requires an objects array.",
@@ -147,6 +156,30 @@ describe("STIX viewer model", () => {
         target_ref: actor.id,
       }),
     ).toThrow("requires string source_ref and target_ref values");
+  });
+
+  it("retains multiple versions and resolves references to the latest version", () => {
+    const oldVersion = {
+      ...indicator,
+      created: "2026-07-01T10:00:00.000Z",
+      modified: "2026-07-01T10:00:00.000Z",
+      name: "Old indicator",
+    };
+    const newVersion = {
+      ...oldVersion,
+      modified: "2026-07-02T10:00:00.000Z",
+      name: "Current indicator",
+    };
+    const model = buildStixViewerModel([
+      oldVersion,
+      newVersion,
+      { ...actor, object_ref: indicator.id },
+    ]);
+
+    expect(model.nodes.filter((node) => node.id === indicator.id)).toHaveLength(2);
+    expect(model.edges.find((edge) => edge.sourceId === actor.id)?.targetKey).toContain(
+      "@2026-07-02T10:00:00.000Z",
+    );
   });
 
   it("retains distinct authored Relationship objects with the same triple", () => {

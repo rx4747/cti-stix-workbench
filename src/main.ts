@@ -4,6 +4,7 @@ import {
   exportActiveGraph,
   validateActiveGraph,
 } from "./adapters/obsidian/active-graph";
+import { executeBundleImport } from "./adapters/obsidian/bundle-import";
 import { ObsidianActiveGraphHost } from "./adapters/obsidian/host";
 import {
   exportCanvasGraph,
@@ -19,9 +20,12 @@ import {
   parseExtensionRegistry,
 } from "./core/extension-registry";
 import type { PersistedRelationshipIdentity } from "./core/types";
+import { advanceStixTimestamp } from "./core/versioning";
+import { parseStixBundleJson, planBundleImport } from "./import/bundle-import";
 import { parsePluginData, serializePluginData } from "./plugin-data";
 import { parseWorkbenchSettings, type WorkbenchSettings } from "./settings";
 import { WorkbenchSettingTab } from "./settings-tab";
+import { confirmBundleImport } from "./ui/bundle-import";
 import { confirmWholeVaultExport } from "./ui/confirmation";
 import { openStixObjectCreator } from "./ui/object-creator";
 import { openStixPropertyEditor } from "./ui/property-editor";
@@ -36,6 +40,10 @@ import {
 } from "./ui/stix-viewer";
 import { openValidationReport } from "./ui/validation-report";
 import { buildStixViewerModel, parseStixViewerJson } from "./viewer/model";
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
 
 export default class CtiStixWorkbenchPlugin extends Plugin {
   override settings: WorkbenchSettings = parseWorkbenchSettings(undefined);
@@ -68,6 +76,16 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
         const source = this.activeViewerSource();
         if (source === undefined) return false;
         if (!checking) void this.openViewer(source);
+        return true;
+      },
+    });
+    this.addCommand({
+      id: "import-stix-bundle",
+      name: "Import STIX bundle as notes",
+      checkCallback: (checking) => {
+        const file = this.app.workspace.getActiveFile();
+        if (file === null || file.extension.toLowerCase() !== "json") return false;
+        if (!checking) void this.runBundleImport(file);
         return true;
       },
     });
@@ -149,6 +167,26 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
       },
     });
     this.addCommand({
+      id: "create-new-stix-version",
+      name: "Create new STIX object version",
+      checkCallback: (checking) => {
+        const file = this.versionableActiveFile();
+        if (file === null) return false;
+        if (!checking) void this.createObjectVersion(file, false);
+        return true;
+      },
+    });
+    this.addCommand({
+      id: "revoke-stix-object",
+      name: "Revoke STIX object in a new version",
+      checkCallback: (checking) => {
+        const file = this.versionableActiveFile();
+        if (file === null) return false;
+        if (!checking) void this.createObjectVersion(file, true);
+        return true;
+      },
+    });
+    this.addCommand({
       id: "validate-active-stix-graph",
       name: "Validate active STIX graph",
       checkCallback: (checking) => {
@@ -190,6 +228,7 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
     return {
       ...settings,
       exportFolder: normalizePath(settings.exportFolder),
+      importFolder: normalizePath(settings.importFolder),
       extensionRegistryPath: normalizePath(settings.extensionRegistryPath),
     };
   }
@@ -207,6 +246,66 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
     return editableStixDefinition(frontmatter) === undefined && !customType
       ? null
       : file;
+  }
+
+  private versionableActiveFile(): TFile | null {
+    const file = this.app.workspace.getActiveFile();
+    if (file === null || file.extension.toLowerCase() !== "md") return null;
+    const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
+    const definition = editableStixDefinition(frontmatter);
+    if (
+      definition === undefined ||
+      definition.family === "sco" ||
+      frontmatter === undefined ||
+      definition.type === "marking-definition" ||
+      typeof frontmatter.stix_id !== "string" ||
+      typeof frontmatter.modified !== "string" ||
+      frontmatter.revoked === true
+    ) {
+      return null;
+    }
+    return file;
+  }
+
+  private async createObjectVersion(file: TFile, revoke: boolean): Promise<void> {
+    try {
+      const source = await this.app.vault.cachedRead(file);
+      const frontmatter: unknown =
+        this.app.metadataCache.getFileCache(file)?.frontmatter;
+      const current = isRecord(frontmatter) ? frontmatter.modified : undefined;
+      const modified = advanceStixTimestamp(
+        typeof current === "string" ? current : undefined,
+        new Date(),
+      );
+      const suffix = modified.replaceAll(/[^0-9]/gu, "").slice(0, 14);
+      const parent = file.parent?.path === "/" ? "" : (file.parent?.path ?? "");
+      const baseName = file.basename.replace(/ - \d{14}$/u, "");
+      const path = normalizePath(`${parent}/${baseName} - ${suffix}.md`);
+      if (this.app.vault.getAbstractFileByPath(path) !== null) {
+        throw new Error(`A version note already exists at ${path}.`);
+      }
+      const created = await this.app.vault.create(path, source);
+      await this.app.fileManager.processFrontMatter(created, (frontmatter: unknown) => {
+        if (
+          frontmatter === null ||
+          typeof frontmatter !== "object" ||
+          Array.isArray(frontmatter)
+        ) {
+          throw new TypeError("STIX note frontmatter is not a dictionary.");
+        }
+        const record = frontmatter as Record<string, unknown>;
+        record.modified = modified;
+        if (revoke) record.revoked = true;
+      });
+      await this.app.workspace.getLeaf(false).openFile(created);
+      new Notice(
+        revoke
+          ? "Created a revoked STIX object version."
+          : "Created a new STIX object version.",
+      );
+    } catch (error) {
+      new Notice(`Could not create STIX version: ${this.errorMessage(error)}`, 10_000);
+    }
   }
 
   private viewerSourceForFile(file: TFile): StixViewerSource | undefined {
@@ -310,6 +409,16 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
               void this.openViewer(source);
             }),
         );
+        if (file.extension.toLowerCase() === "json") {
+          menu.addItem((item) =>
+            item
+              .setTitle("Import STIX bundle as notes")
+              .setIcon("package-open")
+              .onClick(() => {
+                void this.runBundleImport(file);
+              }),
+          );
+        }
       }),
     );
     this.registerEvent(
@@ -355,6 +464,51 @@ export default class CtiStixWorkbenchPlugin extends Plugin {
         await this.savePluginData();
       },
     });
+  }
+
+  private async runBundleImport(file: TFile): Promise<void> {
+    try {
+      const bundle = parseStixBundleJson(await this.app.vault.cachedRead(file));
+      const registry = await this.loadExtensionRegistry();
+      const diagnostics = validateBundleSchema(
+        bundle,
+        new Map(),
+        this.settings.validationMode,
+        registry,
+      );
+      const errors = diagnostics.filter((item) => item.severity === "error");
+      if (errors.length > 0) {
+        openValidationReport(this.app, {
+          scope: file.path,
+          errors,
+          warnings: diagnostics.filter((item) => item.severity === "warning"),
+        });
+        new Notice(
+          `STIX import blocked: ${errors[0]?.message ?? "invalid Bundle"}`,
+          10_000,
+        );
+        return;
+      }
+      const plan = planBundleImport(bundle);
+      const destination = `${this.settings.importFolder}/${file.basename}`;
+      if (!(await confirmBundleImport(this.app, plan, destination))) return;
+      const output = await executeBundleImport(
+        this.app,
+        plan,
+        this.settings.importFolder,
+        file.basename,
+      );
+      const warnings = diagnostics.filter((item) => item.severity === "warning");
+      if (warnings.length > 0) {
+        openValidationReport(this.app, { scope: file.path, errors: [], warnings });
+      }
+      new Notice(
+        `Imported ${plan.objectCount} STIX objects into ${output}. ` +
+          `${warnings.length} warning(s).`,
+      );
+    } catch (error) {
+      new Notice(`STIX import failed: ${this.errorMessage(error)}`, 10_000);
+    }
   }
 
   private async runValidation(file: TFile): Promise<void> {

@@ -1,6 +1,6 @@
 <div align="center">
 
-# CTI STIX Workbench
+<img src="assets/readme/cti-stix-workbench-header.svg" alt="CTI STIX Workbench — author, validate, investigate, and export local STIX 2.1 intelligence" width="100%" />
 
 **A local-first Obsidian plugin for turning connected investigation notes into valid STIX 2.1 Bundles.**
 
@@ -21,6 +21,7 @@ your vault to a hosted service.
 ## What it does
 
 - Provides catalog-driven property editing for standard STIX 2.1 objects.
+- Imports validated STIX 2.1 Bundles into typed, linked Markdown notes.
 - Validates an active note and its connected graph against pinned local schemas.
 - Visualizes STIX JSON or connected notes as an interactive, icon-based graph.
 - Gives explicit, readable diagnostics instead of silently changing bad data.
@@ -37,15 +38,25 @@ zoom, rearrange, filter, and inspect the real STIX properties without modifying
 the source or sending investigation data off-device.
 
 The viewer follows Obsidian desktop themes and adapts to desktop split panes and
-popout windows. Long object names are measured and safely truncated in nodes;
-the complete title remains available on hover and in the property panel.
+popout windows. Its Maltego-style component graph groups connected intelligence
+around relationship hubs and shows authored Relationships by default, with
+dense metadata references available on demand. Hover or focus a connection for
+its semantic label, then select an icon or connection to inspect its complete
+data in the side panel.
+
+## Screenshots
+
+The official OASIS APT1 example rendered as relationship-connected components,
+with dense metadata references hidden until requested:
+
+![APT1 STIX graph overview in CTI STIX Workbench](assets/readme/stix-viewer.png)
 
 ## Plugin or vault template?
 
 | Project | Use it for |
 | --- | --- |
 | **CTI STIX Workbench** (this repository) | Editing, validation, graph traversal, and Bundle export. |
-| [**CTI Investigation Vault**](https://github.com/rx4747/cti-investigation-vault) | A clean starting structure with analyst workflows, all STIX templates, and fictional examples. |
+| [**CTI Investigation Vault**](https://github.com/rx4747/cti-investigation-vault) | A clean starting structure with all STIX templates, the official OASIS APT1 Bundle, and 76 browseable generated notes. |
 
 They are independent. The plugin never creates, replaces, or uploads your vault.
 
@@ -67,7 +78,8 @@ Restart Obsidian, open **Settings → Community plugins**, and enable
 
 ## A five-minute first run
 
-1. Run **Create STIX object** and search for one of the 42 standalone types.
+1. Open the vault's `Examples/OASIS APT1/apt1.json` and run **Import STIX
+   Bundle as notes**, or create an object manually.
 2. Run **Edit STIX properties** to fill in catalog-defined fields.
 3. Link related STIX notes with ordinary `[[wiki links]]`.
 4. Add an exportable relationship as a list item, for example:
@@ -80,6 +92,9 @@ Restart Obsidian, open **Settings → Community plugins**, and enable
 6. Run **Open in STIX viewer** to inspect and arrange the local graph.
 7. Run **Export active STIX graph** to write a STIX Bundle to `Exports/`.
 
+The APT1 example imports 76 objects, including 30 typed Relationships. It is
+the official OASIS example and demonstrates that `created_by_ref` is optional.
+
 Ordinary links remain useful context and appear in Graph view. They become STIX
 Relationships only when you use the explicit `stix:<relationship-type>` form.
 
@@ -90,7 +105,7 @@ Bundle is written.
 
 ## Documentation
 
-- [User guide and fictional tutorial](docs/user-guide.md)
+- [User guide and official OASIS APT1 example](docs/user-guide.md)
 - [Mapping rules](docs/mapping.md)
 - [Canvas semantics](docs/canvas.md)
 - [STIX viewer](docs/viewer.md)
@@ -151,8 +166,41 @@ review.
 ## Support the project
 
 If this saves you time, you can support ongoing maintenance through
-[GitHub Sponsors](https://github.com/sponsors/rx4747). Bug reports, careful
-testing, and focused pull requests are equally welcome.
+[GitHub Sponsors](https://github.com/sponsors/rx4747).
+
+Financial recognition is opt-in: only sponsors who explicitly want public
+credit are listed. [Sponsor the project](https://github.com/sponsors/rx4747)
+or get in touch after sponsoring to add a name or logo.
+
+| Tier | Recognition |
+| --- | --- |
+| 💎 **Platinum** | Prominent name or logo and project link. [Become the first Platinum sponsor](https://github.com/sponsors/rx4747). |
+| 🥇 **Gold** | Name and project link. [Become the first Gold sponsor](https://github.com/sponsors/rx4747). |
+| 🥈 **Silver** | Name in the supporter roll. [Become the first Silver sponsor](https://github.com/sponsors/rx4747). |
+
+Bug reports, careful testing, documentation, and focused pull requests are
+equally valuable ways to support the project.
+
+## Contributors
+
+Thank you to everyone who improves the Workbench. This wall is refreshed by a
+reviewable monthly pull request; automated bot accounts are not rendered.
+
+<!-- contributors:start -->
+<table>
+<tbody>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/rx4747">
+        <img src="https://avatars.githubusercontent.com/u/300010528?v=4" width="72" alt="rx4747" />
+        <br />
+        <sub><b>@rx4747</b></sub>
+      </a>
+    </td>
+  </tr>
+</tbody>
+</table>
+<!-- contributors:end -->
 
 ## License
 

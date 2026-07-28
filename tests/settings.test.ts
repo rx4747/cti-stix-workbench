@@ -16,6 +16,7 @@ describe("parseWorkbenchSettings", () => {
     expect(
       parseWorkbenchSettings({
         exportFolder: "../outside",
+        importFolder: "Imported Bundles",
         linkTraversalDepth: 3,
         includeContextualLinks: false,
         readTypedCanvasEdges: false,
@@ -27,6 +28,7 @@ describe("parseWorkbenchSettings", () => {
     ).toEqual({
       ...DEFAULT_SETTINGS,
       exportFolder: DEFAULT_SETTINGS.exportFolder,
+      importFolder: "Imported Bundles",
       linkTraversalDepth: 3,
       includeContextualLinks: false,
       readTypedCanvasEdges: false,
@@ -47,6 +49,15 @@ describe("parseWorkbenchSettings", () => {
       DEFAULT_SETTINGS.linkTraversalDepth,
     );
   });
+
+  it("rejects unsafe import folders", () => {
+    expect(parseWorkbenchSettings({ importFolder: "../outside" }).importFolder).toBe(
+      DEFAULT_SETTINGS.importFolder,
+    );
+    expect(parseWorkbenchSettings({ importFolder: "/absolute" }).importFolder).toBe(
+      DEFAULT_SETTINGS.importFolder,
+    );
+  });
 });
 
 describe("workbench setting definitions", () => {
@@ -60,6 +71,7 @@ describe("workbench setting definitions", () => {
 
     expect(keys).toEqual([
       "exportFolder",
+      "importFolder",
       "linkTraversalDepth",
       "includeContextualLinks",
       "readTypedCanvasEdges",

@@ -26,6 +26,10 @@ const schemaMapDeclarationOutput = path.join(
 const antlrOutput = path.join(generatedRoot, "antlr");
 const antlrLexerDeclarationOutput = path.join(antlrOutput, "STIXPatternLexer.d.ts");
 const antlrParserDeclarationOutput = path.join(antlrOutput, "STIXPatternParser.d.ts");
+const antlrListenerDeclarationOutput = path.join(
+  antlrOutput,
+  "STIXPatternListener.d.ts",
+);
 const runtimeOutputRoot = path.join(repositoryRoot, "generated");
 const runtimeOutput = path.join(runtimeOutputRoot, "validation-runtime.mjs");
 
@@ -210,6 +214,28 @@ await writeFile(
 export declare class STIXPatternParser extends Parser {
   constructor(input: TokenStream);
   pattern(): ParserRuleContext;
+}
+`,
+  "utf8",
+);
+await writeFile(
+  antlrListenerDeclarationOutput,
+  `import { type ParserRuleContext, type ParseTreeListener } from "antlr4ng";
+
+export declare class STIXPatternListener implements ParseTreeListener {
+  exitObservationExpressionSimple?: (ctx: ParserRuleContext) => void;
+  exitObservationExpressionCompound?: (ctx: ParserRuleContext) => void;
+  exitObservationExpressionStartStop?: (ctx: ParserRuleContext) => void;
+  exitObservationExpressionWithin?: (ctx: ParserRuleContext) => void;
+  exitObservationExpressionRepeated?: (ctx: ParserRuleContext) => void;
+  exitPropTestEqual?: (ctx: ParserRuleContext) => void;
+  exitPropTestSet?: (ctx: ParserRuleContext) => void;
+  exitPropTestLike?: (ctx: ParserRuleContext) => void;
+  exitPropTestRegex?: (ctx: ParserRuleContext) => void;
+  visitTerminal: ParseTreeListener["visitTerminal"];
+  visitErrorNode: ParseTreeListener["visitErrorNode"];
+  enterEveryRule: ParseTreeListener["enterEveryRule"];
+  exitEveryRule: ParseTreeListener["exitEveryRule"];
 }
 `,
   "utf8",

@@ -23,16 +23,28 @@ file event listeners are registered only after Obsidian finishes loading.
 
 ## Read and arrange the graph
 
-STIX Relationship Objects render as labeled solid arrows. Other top-level
-`*_ref` and `*_refs` properties render as dashed reference arrows. A referenced
-object missing from the selected input appears as a dashed unresolved node, so
-the viewer does not hide incomplete context.
+STIX Relationship Objects render as solid arrows. Other top-level `*_ref` and
+`*_refs` properties are available as dashed reference arrows. Each icon keeps
+its object name and type underneath it. Normal names wrap in full; only extreme
+appendix, certificate, and similar labels are abbreviated in the graph while
+the complete value remains in the side panel. The default
+Maltego-style component view groups connected intelligence around relationship
+hubs while keeping dense metadata references hidden; use **Show reference
+connections** when you need them. Nodes remain icon-led so large investigations
+stay readable; select an icon or arrow to show its name, type, identifier, and
+complete properties in the side panel. A referenced object missing from the
+selected input appears with a dashed halo, so the viewer does not hide
+incomplete context.
 
 - Drag a node to rearrange it.
 - Drag the background to pan and use the mouse wheel or toolbar buttons to zoom.
 - Use **Fit graph to view** to restore an overview.
 - Filter by object name, type, or ID.
-- Select a node or edge to inspect its properties.
+- Authored Relationship arrows show their meaning; hover or focus a dashed
+  reference arrow to reveal its semantic label.
+- Toggle **Show reference connections** to include or hide metadata links such
+  as `object_refs`, `created_by_ref`, and markings.
+- Select an icon or arrow to inspect its properties in the side panel.
 - For note-backed nodes, choose **Open source note** or double-click the node.
 
 Nodes use the OASIS STIX visualization icons. That upstream icon family began

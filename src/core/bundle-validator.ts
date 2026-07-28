@@ -7,6 +7,7 @@ import {
   validateBundleSemantics,
 } from "./semantic-validator";
 import type { StixBundle } from "./types";
+import { stixObjectVersionKey } from "./versioning";
 
 function fieldFromError(
   instancePath: string,
@@ -31,7 +32,9 @@ function notePathForError(
     return undefined;
   }
   const object = bundle.objects[Number.parseInt(objectIndex, 10)];
-  return object === undefined ? undefined : notePathById.get(object.id);
+  return object === undefined
+    ? undefined
+    : (notePathById.get(stixObjectVersionKey(object)) ?? notePathById.get(object.id));
 }
 
 export function validateBundleSchema(

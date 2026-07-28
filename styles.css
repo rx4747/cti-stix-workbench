@@ -205,6 +205,11 @@
   height: 17px;
 }
 
+.cti-stix-viewer-controls button.is-active {
+  color: var(--text-on-accent);
+  background: var(--interactive-accent);
+}
+
 .cti-stix-viewer-body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
@@ -248,46 +253,55 @@
   cursor: grabbing;
 }
 
-.cti-stix-viewer-node rect {
-  fill: var(--background-primary);
-  stroke: var(--background-modifier-border-hover);
-  stroke-width: 1.5px;
-  filter: drop-shadow(0 5px 12px rgb(0 0 0 / 10%));
+.cti-stix-viewer-node-halo {
+  fill: color-mix(in srgb, var(--background-primary) 84%, transparent);
+  stroke: transparent;
+  stroke-width: 2px;
   transition:
     stroke 120ms ease,
     stroke-width 120ms ease,
-    fill 120ms ease;
+    fill 120ms ease,
+    filter 120ms ease;
 }
 
-.cti-stix-viewer-node:hover rect,
-.cti-stix-viewer-node:focus rect,
-.cti-stix-viewer-node.is-selected rect {
+.cti-stix-viewer-node:hover .cti-stix-viewer-node-halo,
+.cti-stix-viewer-node:focus .cti-stix-viewer-node-halo,
+.cti-stix-viewer-node.is-selected .cti-stix-viewer-node-halo {
   stroke: var(--interactive-accent);
-  stroke-width: 2.5px;
-  fill: var(--background-primary-alt);
+  stroke-width: 3px;
+  fill: color-mix(in srgb, var(--interactive-accent) 12%, var(--background-primary));
+  filter: drop-shadow(0 5px 10px rgb(0 0 0 / 18%));
 }
 
-.cti-stix-viewer-node.is-placeholder rect {
+.cti-stix-viewer-node.is-placeholder .cti-stix-viewer-node-halo {
+  stroke: var(--text-faint);
   stroke-dasharray: 6 4;
-  fill: var(--background-secondary-alt);
+  fill: color-mix(in srgb, var(--background-secondary-alt) 78%, transparent);
 }
 
 .cti-stix-viewer-node image,
-.cti-stix-viewer-node text,
-.cti-stix-viewer-edge-label {
+.cti-stix-viewer-node text {
   pointer-events: none;
 }
 
-.cti-stix-node-label {
+.cti-stix-viewer-node-name,
+.cti-stix-viewer-node-type {
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--background-secondary);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.cti-stix-viewer-node-name {
   fill: var(--text-normal);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: var(--font-semibold);
 }
 
-.cti-stix-node-type {
+.cti-stix-viewer-node-type {
   fill: var(--text-muted);
-  font-size: 11px;
-  letter-spacing: 0.02em;
+  font-size: 10px;
 }
 
 .cti-stix-viewer-edge {
@@ -318,14 +332,32 @@
 }
 
 .cti-stix-viewer-edge-label {
-  fill: var(--text-muted);
-  font-size: 10.5px;
-  font-weight: var(--font-medium);
+  pointer-events: none;
+  opacity: 0;
+  fill: var(--text-normal);
+  font-size: 12px;
+  font-weight: var(--font-semibold);
   text-anchor: middle;
   paint-order: stroke;
   stroke: var(--background-secondary);
-  stroke-width: 5px;
+  stroke-width: 6px;
   stroke-linejoin: round;
+  transition: opacity 120ms ease;
+}
+
+.cti-stix-viewer-edge:hover + .cti-stix-viewer-edge-label,
+.cti-stix-viewer-edge:focus + .cti-stix-viewer-edge-label,
+.cti-stix-viewer-edge.is-selected + .cti-stix-viewer-edge-label {
+  opacity: 1;
+}
+
+.cti-stix-viewer-edge-relationship + .cti-stix-viewer-edge-label {
+  opacity: 0.82;
+}
+
+.cti-stix-viewer-edge.is-reference-hidden,
+.cti-stix-viewer-edge-label.is-reference-hidden {
+  display: none;
 }
 
 .cti-stix-viewer-node.is-filtered,

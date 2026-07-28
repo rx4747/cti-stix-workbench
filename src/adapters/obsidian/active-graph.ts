@@ -10,6 +10,7 @@ import type {
   StixBundle,
   UntrustedNoteInput,
 } from "../../core/types";
+import { stixDraftPathsById } from "../../core/versioning";
 import type { WorkbenchSettings } from "../../settings";
 import { parseMarkdownNote } from "../markdown/parser";
 
@@ -156,27 +157,6 @@ function splitDiagnostics(diagnostics: readonly Diagnostic[]): {
   };
 }
 
-function notePathsById(
-  drafts: readonly NormalizedStixDraft[],
-  identities: readonly GeneratedIdentity[],
-): ReadonlyMap<string, string> {
-  const paths = new Map<string, string>();
-  for (const draft of drafts) {
-    const id =
-      draft.stixId ??
-      (typeof draft.properties.id === "string" ? draft.properties.id : undefined);
-    if (id !== undefined) {
-      paths.set(id, draft.path);
-    }
-  }
-  for (const identity of identities) {
-    if (identity.kind === "note") {
-      paths.set(identity.id, identity.notePath);
-    }
-  }
-  return paths;
-}
-
 export async function validateActiveGraph(
   host: ActiveGraphHost,
   rootPath: string,
@@ -209,7 +189,7 @@ export async function validateActiveGraph(
     };
   }
 
-  const notePathById = notePathsById(collected.drafts, mapped.identities);
+  const notePathById = stixDraftPathsById(collected.drafts, mapped.identities);
   const schemaDiagnostics = dependencies.validateBundle(
     mapped.bundle,
     notePathById,

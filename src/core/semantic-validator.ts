@@ -10,6 +10,7 @@ import {
   isExtensionDefinitionId,
 } from "./extension-registry";
 import type { JsonValue, StixBundle, StixObject } from "./types";
+import { stixObjectVersionKey } from "./versioning";
 
 export type SemanticValidationMode = "strict" | "lenient";
 
@@ -30,6 +31,44 @@ const TEMPORAL_FIELDS = [
   ["start", "end"],
 ] as const;
 
+const STANDARD_TLP_MARKINGS: ReadonlyMap<
+  string,
+  Readonly<{ id: string; name: string; created: string }>
+> = new Map([
+  [
+    "white",
+    {
+      id: "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+      name: "TLP:WHITE",
+      created: "2017-01-20T00:00:00.000Z",
+    },
+  ],
+  [
+    "green",
+    {
+      id: "marking-definition--34098fce-860f-48ae-8e50-ebd3cc5e41da",
+      name: "TLP:GREEN",
+      created: "2017-01-20T00:00:00.000Z",
+    },
+  ],
+  [
+    "amber",
+    {
+      id: "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+      name: "TLP:AMBER",
+      created: "2017-01-20T00:00:00.000Z",
+    },
+  ],
+  [
+    "red",
+    {
+      id: "marking-definition--5e57c739-391a-4eb3-b6be-7d15ca92d5ed",
+      name: "TLP:RED",
+      created: "2017-01-20T00:00:00.000Z",
+    },
+  ],
+] as const);
+
 function isRecord(
   value: JsonValue | undefined,
 ): value is Readonly<Record<string, JsonValue>> {
@@ -49,7 +88,8 @@ function diagnostic(
   severity: Diagnostic["severity"] = "error",
   authority: Diagnostic["authority"] = "stix-normative",
 ): Diagnostic {
-  const notePath = notePathById.get(object.id);
+  const notePath =
+    notePathById.get(stixObjectVersionKey(object)) ?? notePathById.get(object.id);
   return createDiagnostic({
     authority,
     code,
@@ -170,6 +210,19 @@ function validateGranularMarkings(
   const diagnostics: Diagnostic[] = [];
   for (const [index, value] of object.granular_markings.entries()) {
     if (!isRecord(value) || !isJsonArray(value.selectors)) continue;
+    const hasLanguage = typeof value.lang === "string";
+    const hasMarkingReference = typeof value.marking_ref === "string";
+    if (hasLanguage === hasMarkingReference) {
+      diagnostics.push(
+        diagnostic(
+          object,
+          notePathById,
+          DIAGNOSTIC_CODES.fieldTypeInvalid,
+          "A granular marking must contain exactly one of lang or marking_ref.",
+          `granular_markings[${index}]`,
+        ),
+      );
+    }
     const selectors = value.selectors.filter(
       (selector): selector is string => typeof selector === "string",
     );
@@ -197,6 +250,65 @@ function validateGranularMarkings(
         ),
       );
     }
+  }
+  return diagnostics;
+}
+
+function validateMarkingDefinition(
+  object: StixObject,
+  notePathById: ReadonlyMap<string, string>,
+): Diagnostic[] {
+  if (object.type !== "marking-definition") return [];
+  const diagnostics: Diagnostic[] = [];
+  if (
+    isJsonArray(object.object_marking_refs) &&
+    object.object_marking_refs.includes(object.id)
+  ) {
+    diagnostics.push(
+      diagnostic(
+        object,
+        notePathById,
+        DIAGNOSTIC_CODES.referenceUnresolved,
+        "A Marking Definition cannot mark itself through object_marking_refs.",
+        "object_marking_refs",
+      ),
+    );
+  }
+  if (isJsonArray(object.granular_markings)) {
+    for (const [index, marking] of object.granular_markings.entries()) {
+      if (isRecord(marking) && marking.marking_ref === object.id) {
+        diagnostics.push(
+          diagnostic(
+            object,
+            notePathById,
+            DIAGNOSTIC_CODES.referenceUnresolved,
+            "A Marking Definition cannot mark itself through granular_markings.",
+            `granular_markings[${index}].marking_ref`,
+          ),
+        );
+      }
+    }
+  }
+  if (object.definition_type !== "tlp" || !isRecord(object.definition)) {
+    return diagnostics;
+  }
+  const tlp = object.definition.tlp;
+  const expected = typeof tlp === "string" ? STANDARD_TLP_MARKINGS.get(tlp) : undefined;
+  if (
+    expected === undefined ||
+    object.id !== expected.id ||
+    object.name !== expected.name ||
+    object.created !== expected.created
+  ) {
+    diagnostics.push(
+      diagnostic(
+        object,
+        notePathById,
+        DIAGNOSTIC_CODES.fieldTypeInvalid,
+        "TLP markings must use one of the four fixed STIX 2.1 marking definitions without altered identity metadata.",
+        "definition",
+      ),
+    );
   }
   return diagnostics;
 }
@@ -233,93 +345,105 @@ function validateCrossObjectReferences(
 ): Diagnostic[] {
   const byId = new Map(bundle.objects.map((object) => [object.id, object]));
   const diagnostics: Diagnostic[] = [];
+  const referenceTarget = (
+    object: StixObject,
+    reference: string,
+    field: string,
+    expected?: string,
+    valid?: (target: StixObject) => boolean,
+  ): void => {
+    const target = byId.get(reference);
+    if (target === undefined) {
+      diagnostics.push(
+        diagnostic(
+          object,
+          notePathById,
+          DIAGNOSTIC_CODES.referenceUnresolved,
+          expected === undefined
+            ? `${field} references external STIX ID "${reference}"; the target is not included in this Bundle.`
+            : `${field} references external STIX ID "${reference}"; the Bundle does not include it, so it cannot be confirmed to be ${expected}.`,
+          field,
+          "warning",
+          "mapping",
+        ),
+      );
+    } else if (valid !== undefined && !valid(target)) {
+      diagnostics.push(
+        diagnostic(
+          object,
+          notePathById,
+          DIAGNOSTIC_CODES.referenceUnresolved,
+          `${field} must reference ${expected}; included target ${reference} has type ${target.type}.`,
+          field,
+        ),
+      );
+    }
+  };
   for (const object of bundle.objects) {
+    if (typeof object.created_by_ref === "string") {
+      referenceTarget(
+        object,
+        object.created_by_ref,
+        "created_by_ref",
+        "an Identity object",
+        (target) => target.type === "identity",
+      );
+    }
     if (Array.isArray(object.object_marking_refs)) {
       for (const reference of object.object_marking_refs) {
-        if (
-          typeof reference === "string" &&
-          byId.get(reference)?.type !== "marking-definition"
-        ) {
-          diagnostics.push(
-            diagnostic(
-              object,
-              notePathById,
-              DIAGNOSTIC_CODES.referenceUnresolved,
-              "object_marking_refs must reference included Marking Definition objects.",
-              "object_marking_refs",
-            ),
+        if (typeof reference === "string")
+          referenceTarget(
+            object,
+            reference,
+            "object_marking_refs",
+            "a Marking Definition object",
+            (target) => target.type === "marking-definition",
           );
-        }
       }
     }
     if (isJsonArray(object.granular_markings)) {
       for (const [index, marking] of object.granular_markings.entries()) {
-        if (
-          isRecord(marking) &&
-          typeof marking.marking_ref === "string" &&
-          byId.get(marking.marking_ref)?.type !== "marking-definition"
-        ) {
-          diagnostics.push(
-            diagnostic(
-              object,
-              notePathById,
-              DIAGNOSTIC_CODES.referenceUnresolved,
-              "granular_markings marking_ref must reference an included Marking Definition object.",
-              `granular_markings[${index}].marking_ref`,
-            ),
+        if (isRecord(marking) && typeof marking.marking_ref === "string")
+          referenceTarget(
+            object,
+            marking.marking_ref,
+            `granular_markings[${index}].marking_ref`,
+            "a Marking Definition object",
+            (target) => target.type === "marking-definition",
           );
-        }
       }
     }
     if (object.type === "sighting") {
-      const sighted =
-        typeof object.sighting_of_ref === "string"
-          ? byId.get(object.sighting_of_ref)
-          : undefined;
-      if (sighted === undefined || !["sdo", "custom"].includes(family(sighted))) {
-        diagnostics.push(
-          diagnostic(
-            object,
-            notePathById,
-            DIAGNOSTIC_CODES.referenceUnresolved,
-            "sighting_of_ref must reference an included Domain Object.",
-            "sighting_of_ref",
-          ),
+      if (typeof object.sighting_of_ref === "string")
+        referenceTarget(
+          object,
+          object.sighting_of_ref,
+          "sighting_of_ref",
+          "a Domain Object",
+          (target) => ["sdo", "custom"].includes(family(target)),
         );
-      }
       if (Array.isArray(object.observed_data_refs)) {
         for (const reference of object.observed_data_refs) {
-          if (
-            typeof reference === "string" &&
-            byId.get(reference)?.type !== "observed-data"
-          ) {
-            diagnostics.push(
-              diagnostic(
-                object,
-                notePathById,
-                DIAGNOSTIC_CODES.referenceUnresolved,
-                "observed_data_refs must reference included Observed Data objects.",
-                "observed_data_refs",
-              ),
+          if (typeof reference === "string")
+            referenceTarget(
+              object,
+              reference,
+              "observed_data_refs",
+              "an Observed Data object",
+              (target) => target.type === "observed-data",
             );
-          }
         }
       }
       if (Array.isArray(object.where_sighted_refs)) {
         for (const reference of object.where_sighted_refs) {
-          const target =
-            typeof reference === "string" ? byId.get(reference) : undefined;
-          if (target === undefined || !["identity", "location"].includes(target.type)) {
-            diagnostics.push(
-              diagnostic(
-                object,
-                notePathById,
-                DIAGNOSTIC_CODES.referenceUnresolved,
-                "where_sighted_refs must reference included Identity or Location objects.",
-                "where_sighted_refs",
-              ),
+          if (typeof reference === "string")
+            referenceTarget(
+              object,
+              reference,
+              "where_sighted_refs",
+              "an Identity or Location object",
+              (target) => ["identity", "location"].includes(target.type),
             );
-          }
         }
       }
     }
@@ -332,15 +456,10 @@ function validateCrossObjectReferences(
       const source = byId.get(object.source_ref);
       const target = byId.get(object.target_ref);
       if (source === undefined || target === undefined) {
-        diagnostics.push(
-          diagnostic(
-            object,
-            notePathById,
-            DIAGNOSTIC_CODES.referenceUnresolved,
-            "Relationship source_ref and target_ref must reference included objects.",
-            source === undefined ? "source_ref" : "target_ref",
-          ),
-        );
+        if (source === undefined)
+          referenceTarget(object, object.source_ref, "source_ref");
+        if (target === undefined)
+          referenceTarget(object, object.target_ref, "target_ref");
         continue;
       }
       if (
@@ -361,18 +480,13 @@ function validateCrossObjectReferences(
       }
     }
     if (object.type === "language-content" && typeof object.object_ref === "string") {
-      const target = byId.get(object.object_ref);
-      if (target === undefined || target.type === "language-content") {
-        diagnostics.push(
-          diagnostic(
-            object,
-            notePathById,
-            DIAGNOSTIC_CODES.referenceUnresolved,
-            "object_ref must reference an included non-Language-Content STIX object.",
-            "object_ref",
-          ),
-        );
-      }
+      referenceTarget(
+        object,
+        object.object_ref,
+        "object_ref",
+        "a non-Language-Content STIX object",
+        (candidate) => candidate.type !== "language-content",
+      );
     }
   }
   return diagnostics;
@@ -474,6 +588,101 @@ function validateCustomContent(
   return diagnostics;
 }
 
+function validateObjectVersions(
+  bundle: StixBundle,
+  notePathById: ReadonlyMap<string, string>,
+): Diagnostic[] {
+  const byId = new Map<string, StixObject[]>();
+  for (const object of bundle.objects) {
+    const versions = byId.get(object.id) ?? [];
+    versions.push(object);
+    byId.set(object.id, versions);
+  }
+  const diagnostics: Diagnostic[] = [];
+  for (const versions of byId.values()) {
+    if (versions.length < 2) continue;
+    const first = versions[0];
+    if (first === undefined) continue;
+    if (family(first) === "sco") {
+      diagnostics.push(
+        diagnostic(
+          first,
+          notePathById,
+          DIAGNOSTIC_CODES.fieldDuplicate,
+          `SCO ID ${first.id} occurs more than once; SCOs do not use STIX object versioning.`,
+          "id",
+        ),
+      );
+      continue;
+    }
+    const modifiedValues = new Set<string>();
+    const baselineCreated = first.created;
+    const baselineCreator = first.created_by_ref;
+    let revokedAt = Number.POSITIVE_INFINITY;
+    for (const object of versions) {
+      if (object.created !== baselineCreated) {
+        diagnostics.push(
+          diagnostic(
+            object,
+            notePathById,
+            DIAGNOSTIC_CODES.fieldTypeInvalid,
+            "All versions of a STIX object must retain the same created timestamp.",
+            "created",
+          ),
+        );
+      }
+      if (object.created_by_ref !== baselineCreator) {
+        diagnostics.push(
+          diagnostic(
+            object,
+            notePathById,
+            DIAGNOSTIC_CODES.fieldTypeInvalid,
+            "All versions of a STIX object must retain the same created_by_ref value.",
+            "created_by_ref",
+          ),
+        );
+      }
+      if (typeof object.modified !== "string") continue;
+      if (modifiedValues.has(object.modified)) {
+        diagnostics.push(
+          diagnostic(
+            object,
+            notePathById,
+            DIAGNOSTIC_CODES.fieldDuplicate,
+            `Object version ${object.id}@${object.modified} occurs more than once.`,
+            "modified",
+          ),
+        );
+      }
+      modifiedValues.add(object.modified);
+      const timestamp = Date.parse(object.modified);
+      if (object.revoked === true && Number.isFinite(timestamp)) {
+        revokedAt = Math.min(revokedAt, timestamp);
+      }
+    }
+    if (Number.isFinite(revokedAt)) {
+      for (const object of versions) {
+        const modified =
+          typeof object.modified === "string"
+            ? Date.parse(object.modified)
+            : Number.NEGATIVE_INFINITY;
+        if (modified > revokedAt) {
+          diagnostics.push(
+            diagnostic(
+              object,
+              notePathById,
+              DIAGNOSTIC_CODES.fieldTypeInvalid,
+              "A revoked STIX object cannot have a later version.",
+              "modified",
+            ),
+          );
+        }
+      }
+    }
+  }
+  return diagnostics;
+}
+
 export function validateBundleSemantics(
   bundle: StixBundle,
   notePathById: ReadonlyMap<string, string> = new Map(),
@@ -485,9 +694,11 @@ export function validateBundleSemantics(
     ...validatePattern(object, notePathById),
     ...validateRelationship(object, notePathById),
     ...validateGranularMarkings(object, notePathById),
+    ...validateMarkingDefinition(object, notePathById),
     ...validateExtensionDefinition(object, notePathById),
   ]);
   diagnostics.push(...validateCrossObjectReferences(bundle, notePathById, _mode));
+  diagnostics.push(...validateObjectVersions(bundle, notePathById));
   diagnostics.push(...validateCustomContent(bundle, notePathById, _mode, registry));
   return Object.freeze(diagnostics);
 }

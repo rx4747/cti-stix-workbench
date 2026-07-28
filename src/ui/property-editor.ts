@@ -4,11 +4,15 @@ import { stixCatalog } from "../catalog/stix-2.1";
 import type { CatalogField, ObjectTypeDefinition } from "../catalog/types";
 import {
   addObjectListItem,
+  addOptionalEditorField,
+  advanceModifiedForEdit,
   applyEditorValues,
+  availableOptionalFields,
   cloneEditorValue,
   createEditorValues,
   createExtensionValue,
   editableStixDefinition,
+  removeOptionalEditorField,
   scalarEditorText,
   updateObjectListItemField,
 } from "./property-editor-state";
@@ -78,7 +82,8 @@ interface PropertyEditorOptions {
 export class StixPropertyEditorModal extends Modal {
   private readonly file: TFile;
   private readonly definition: ObjectTypeDefinition;
-  private readonly values: Record<string, unknown>;
+  private readonly hasStableIdentity: boolean;
+  private values: Record<string, unknown>;
   private readonly invalidJsonPaths = new Set<string>();
   private saving = false;
 
@@ -86,6 +91,9 @@ export class StixPropertyEditorModal extends Modal {
     super(options.app);
     this.file = options.file;
     this.definition = options.definition;
+    this.hasStableIdentity =
+      typeof options.frontmatter.stix_id === "string" &&
+      options.frontmatter.stix_id.trim() !== "";
     this.values = createEditorValues(options.definition, options.frontmatter);
   }
 
@@ -107,6 +115,15 @@ export class StixPropertyEditorModal extends Modal {
       cls: "cti-stix-property-editor-intro",
       text: "All values are saved to this note's STIX frontmatter. Nested fields are created only when you add them.",
     });
+    if (
+      this.hasStableIdentity &&
+      this.definition.fields.some((field) => field.name === "modified")
+    ) {
+      this.contentEl.createEl("p", {
+        cls: "cti-stix-property-editor-note",
+        text: "Saving a changed object creates a new STIX version: id, created, and created_by_ref stay fixed while modified advances automatically.",
+      });
+    }
 
     const mappedHeadings = this.definition.fields
       .map((field) => bodyMappedFields.get(field.name))
@@ -123,8 +140,24 @@ export class StixPropertyEditorModal extends Modal {
         continue;
       }
       const key = frontmatterKey(field.name);
+      if (!Object.hasOwn(this.values, key)) continue;
+      const fieldContainer = this.contentEl.createDiv({
+        cls: "cti-stix-property-field",
+      });
+      if (!field.required) {
+        new Setting(fieldContainer)
+          .setName(displayName(field.name))
+          .setDesc("Optional property")
+          .addButton((button) => {
+            button.buttonEl.addClass("cti-stix-destructive-button");
+            button.setButtonText("Remove property").onClick(() => {
+              this.values = removeOptionalEditorField(this.values, field);
+              this.render();
+            });
+          });
+      }
       this.renderField(
-        this.contentEl,
+        fieldContainer,
         field,
         this.values[key],
         (value) => {
@@ -132,6 +165,30 @@ export class StixPropertyEditorModal extends Modal {
         },
         key,
       );
+    }
+
+    const optional = availableOptionalFields(this.definition, this.values);
+    if (optional.length > 0) {
+      let selected = optional[0]?.name;
+      new Setting(this.contentEl)
+        .setName("Add property")
+        .setDesc("Add an optional STIX 2.1 property only when it has a value.")
+        .addDropdown((dropdown) => {
+          for (const field of optional) {
+            dropdown.addOption(field.name, displayName(field.name));
+          }
+          dropdown.onChange((next) => {
+            selected = next;
+          });
+        })
+        .addButton((button) => {
+          button.setButtonText("Add property").onClick(() => {
+            const field = optional.find((candidate) => candidate.name === selected);
+            if (field === undefined) return;
+            this.values = addOptionalEditorField(this.values, field);
+            this.render();
+          });
+        });
     }
 
     const actions = this.contentEl.createDiv({
@@ -221,7 +278,13 @@ export class StixPropertyEditorModal extends Modal {
       input.setValue(scalarEditorText(value)).onChange((next) => {
         onChange(parseScalar(next, field.dataType));
       });
-      if (field.name === "type" || field.name === "id") {
+      if (
+        field.name === "type" ||
+        field.name === "id" ||
+        field.name === "created" ||
+        field.name === "modified" ||
+        (this.hasStableIdentity && field.name === "created_by_ref")
+      ) {
         input.setDisabled(true);
       }
     });
@@ -531,13 +594,21 @@ export class StixPropertyEditorModal extends Modal {
           if (!isRecord(frontmatter)) {
             throw new TypeError("Note frontmatter is not a dictionary.");
           }
-          const next = applyEditorValues(frontmatter, this.definition, this.values);
+          const next = advanceModifiedForEdit(
+            frontmatter,
+            applyEditorValues(frontmatter, this.definition, this.values),
+            new Date(),
+          );
           for (const field of this.definition.fields) {
             if (bodyMappedFields.has(field.name)) {
               continue;
             }
             const key = frontmatterKey(field.name);
-            frontmatter[key] = next[key];
+            if (Object.hasOwn(next, key)) {
+              frontmatter[key] = next[key];
+            } else {
+              delete frontmatter[key];
+            }
           }
         },
       );

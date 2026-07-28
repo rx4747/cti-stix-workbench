@@ -34,4 +34,38 @@ describe("STIX pattern conformance", () => {
     log.mockRestore();
     error.mockRestore();
   });
+
+  it("matches the OASIS validator checks for known hashes and duplicate qualifiers", () => {
+    expect(parseStixPattern("[file:hashes.'SHA-256' = 'abcd']")).toEqual([
+      expect.objectContaining({ message: expect.stringContaining("SHA-256 hash") }),
+    ]);
+    expect(
+      parseStixPattern("[file:size = 1] WITHIN 5 SECONDS WITHIN 10 SECONDS"),
+    ).toEqual([
+      expect.objectContaining({
+        message: expect.stringContaining("Duplicate qualifier"),
+      }),
+    ]);
+    expect(
+      parseStixPattern("[file:hashes.'SHA-256' IN ('abcd', 'ef01')]").map(
+        (item) => item.message,
+      ),
+    ).toEqual([
+      expect.stringContaining("SHA-256 hash"),
+      expect.stringContaining("SHA-256 hash"),
+    ]);
+    expect(parseStixPattern("[file:hashes.MD5 LIKE 'xyz%']")).toEqual([
+      expect.objectContaining({ message: expect.stringContaining("MD5 hash") }),
+    ]);
+    expect(parseStixPattern("[file:hashes.MD5 MATCHES 'not-a-hash']")).toEqual([
+      expect.objectContaining({ message: expect.stringContaining("MD5 hash") }),
+    ]);
+    expect(
+      parseStixPattern("[file:size = 1]\nWITHIN 5 SECONDS WITHIN 10 SECONDS"),
+    ).toEqual([expect.objectContaining({ line: 2, column: expect.any(Number) })]);
+    const locatedDuplicate = parseStixPattern(
+      "[file:size = 1] WITHIN 5 SECONDS WITHIN 10 SECONDS",
+    )[0];
+    expect(locatedDuplicate?.column).toBeGreaterThan(0);
+  });
 });

@@ -4,6 +4,9 @@
   [Apache License 2.0](../LICENSE).
 - Vendored OASIS STIX schemas and grammar: their upstream notices under
   [`standards/vendor/stix-2.1`](../standards/vendor/stix-2.1/).
+- Official OASIS APT1 example fixture and vault copy: BSD 3-Clause attribution
+  in [`tests/fixtures/oasis/README.md`](../tests/fixtures/oasis/README.md) and
+  the complete upstream notice shipped beside the vault example.
 - Bundled OASIS STIX visualization icons: the BSD 3-Clause notice in
   [`STIX-VISUALIZATION.md`](STIX-VISUALIZATION.md). The complete notice is also
   embedded in the generated `main.js` release asset.

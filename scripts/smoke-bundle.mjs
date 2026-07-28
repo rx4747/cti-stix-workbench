@@ -113,6 +113,7 @@ assert.deepEqual(
   plugin.commands.map((command) => command.id),
   [
     "open-stix-viewer",
+    "import-stix-bundle",
     "create-stix-object",
     "validate-active-stix-canvas",
     "export-active-stix-canvas",
@@ -121,6 +122,8 @@ assert.deepEqual(
     "validate-stix-vault",
     "export-stix-vault",
     "edit-stix-properties",
+    "create-new-stix-version",
+    "revoke-stix-object",
     "validate-active-stix-graph",
     "export-active-stix-graph",
   ],

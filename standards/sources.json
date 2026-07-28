@@ -31,6 +31,20 @@
       }
     },
     {
+      "id": "oasis-stix-apt1-example",
+      "role": "validation-aid",
+      "version": "c4f8d589acf2bdb3783655c89e0ffb6e150006ae",
+      "url": "https://raw.githubusercontent.com/oasis-open/cti-stix2-json-schemas/c4f8d589acf2bdb3783655c89e0ffb6e150006ae/examples/threat-reports/apt1.json",
+      "license": {
+        "name": "BSD 3-Clause License",
+        "url": "https://github.com/oasis-open/cti-stix2-json-schemas/blob/c4f8d589acf2bdb3783655c89e0ffb6e150006ae/LICENSE"
+      },
+      "pin": {
+        "kind": "sha256",
+        "value": "2f22536e419a06c44198b5b4854e33124e76b604929a3da8bd013e0ab8676c30"
+      }
+    },
+    {
       "id": "oasis-stix-pattern-validator",
       "role": "validation-aid",
       "version": "2.1.2 (e1d38d6895339976888fe243782e8da5b574657e)",
