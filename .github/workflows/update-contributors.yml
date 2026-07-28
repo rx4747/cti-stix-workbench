@@ -27,7 +27,6 @@ jobs:
 
       - name: Refresh the contributor wall
         env:
-          CONTRIBUTOR_EXCLUDED_LOGINS: ${{ secrets.CONTRIBUTOR_EXCLUDED_LOGINS }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/update-contributors.mjs
 
@@ -42,4 +41,4 @@ jobs:
           body: |
             Refreshes the public contributor wall from the GitHub Contributors API.
 
-            Bots and the repository's explicit OPSEC denylist remain excluded.
+            Automated bot accounts remain excluded.

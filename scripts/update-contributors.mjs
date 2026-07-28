@@ -1,36 +1,10 @@
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 export const CONTRIBUTORS_START = "<!-- contributors:start -->";
 export const CONTRIBUTORS_END = "<!-- contributors:end -->";
-
-export function loginDigest(login) {
-  return createHash("sha256").update(login.toLowerCase()).digest("hex");
-}
-
-export function parseExcludedLoginHashes(value) {
-  assert.equal(typeof value, "string", "CONTRIBUTOR_EXCLUDED_LOGINS is required.");
-  const logins = [
-    ...new Set(
-      value
-        .split(/[\n,]/u)
-        .map((login) => login.trim().toLowerCase())
-        .filter((login) => login !== ""),
-    ),
-  ];
-  assert.ok(logins.length > 0, "CONTRIBUTOR_EXCLUDED_LOGINS cannot be empty.");
-  for (const login of logins) {
-    assert.match(
-      login,
-      /^(?!-)[a-z0-9-]{1,39}(?<!-)$/u,
-      `Invalid GitHub login: ${login}`,
-    );
-  }
-  return new Set(logins.map(loginDigest));
-}
 
 function escapeHtml(value) {
   return value
@@ -41,19 +15,19 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-export function visibleContributors(contributors, excludedLoginHashes) {
+export function visibleContributors(contributors) {
   return contributors.filter((contributor) => {
     const login = contributor.login.toLowerCase();
-    return (
-      contributor.type !== "Bot" &&
-      !login.endsWith("[bot]") &&
-      !excludedLoginHashes.has(loginDigest(login))
-    );
+    return contributor.type !== "Bot" && !login.endsWith("[bot]");
   });
 }
 
-export function renderContributorTable(contributors, columns = 7, excludedLoginHashes) {
-  const visible = visibleContributors(contributors, excludedLoginHashes);
+export function renderContributorTable(contributors, columns = 7) {
+  assert.ok(
+    Number.isInteger(columns) && columns > 0,
+    "columns must be a positive integer.",
+  );
+  const visible = visibleContributors(contributors);
   if (visible.length === 0) {
     return "_The contributor wall will appear after the first accepted contribution._";
   }
@@ -78,13 +52,13 @@ export function renderContributorTable(contributors, columns = 7, excludedLoginH
   return ["<table>", "<tbody>", ...rows, "</tbody>", "</table>"].join("\n");
 }
 
-export function replaceContributorSection(readme, contributors, excludedLoginHashes) {
+export function replaceContributorSection(readme, contributors) {
   const start = readme.indexOf(CONTRIBUTORS_START);
   const end = readme.indexOf(CONTRIBUTORS_END);
   assert.ok(start >= 0, `README is missing ${CONTRIBUTORS_START}.`);
   assert.ok(end > start, `README is missing ${CONTRIBUTORS_END}.`);
   const contentStart = start + CONTRIBUTORS_START.length;
-  return `${readme.slice(0, contentStart)}\n${renderContributorTable(contributors, 7, excludedLoginHashes)}\n${readme.slice(end)}`;
+  return `${readme.slice(0, contentStart)}\n${renderContributorTable(contributors)}\n${readme.slice(end)}`;
 }
 
 async function fetchContributors(repository, token, fetchImplementation = fetch) {
@@ -130,21 +104,18 @@ async function main() {
   assert.match(repository, /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/u);
   const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
   const readmePath = path.join(repositoryRoot, "README.md");
-  const excludedLoginHashes = parseExcludedLoginHashes(
-    process.env.CONTRIBUTOR_EXCLUDED_LOGINS,
-  );
   const [readme, contributors] = await Promise.all([
     readFile(readmePath, "utf8"),
     fetchContributors(repository, process.env.GITHUB_TOKEN),
   ]);
-  const updated = replaceContributorSection(readme, contributors, excludedLoginHashes);
+  const updated = replaceContributorSection(readme, contributors);
   if (updated === readme) {
     console.log("Contributor wall is already current.");
     return;
   }
   await writeFile(readmePath, updated, "utf8");
   console.log(
-    `Updated contributor wall with ${visibleContributors(contributors, excludedLoginHashes).length} profile(s).`,
+    `Updated contributor wall with ${visibleContributors(contributors).length} profile(s).`,
   );
 }
 

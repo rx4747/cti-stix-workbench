@@ -93,6 +93,7 @@ export class StixViewerView extends ItemView {
   private svg?: SVGSVGElement;
   private details?: HTMLElement;
   private refreshTimer?: number;
+  private showReferences = false;
   private readonly markerId = nextMarkerId();
 
   constructor(
@@ -272,32 +273,36 @@ export class StixViewerView extends ItemView {
       placeholder: "Filter objects",
       attr: { "aria-label": "Filter STIX objects" },
     });
-    let showReferences = false;
     const referenceToggle = this.iconButton(
       "git-branch",
-      "Show reference connections",
+      this.showReferences ? "Hide reference connections" : "Show reference connections",
       () => {
-        showReferences = !showReferences;
-        referenceToggle.setAttribute("aria-pressed", String(showReferences));
+        this.showReferences = !this.showReferences;
+        referenceToggle.setAttribute("aria-pressed", String(this.showReferences));
         referenceToggle.setAttribute(
           "title",
-          showReferences ? "Hide reference connections" : "Show reference connections",
+          this.showReferences
+            ? "Hide reference connections"
+            : "Show reference connections",
         );
         referenceToggle.setAttribute(
           "aria-label",
-          showReferences ? "Hide reference connections" : "Show reference connections",
+          this.showReferences
+            ? "Hide reference connections"
+            : "Show reference connections",
         );
-        referenceToggle.toggleClass("is-active", showReferences);
+        referenceToggle.toggleClass("is-active", this.showReferences);
         this.world
           ?.querySelectorAll(
             ".cti-stix-viewer-edge-reference, .cti-stix-viewer-edge-label-reference",
           )
           .forEach((element) => {
-            element.toggleClass("is-reference-hidden", !showReferences);
+            element.toggleClass("is-reference-hidden", !this.showReferences);
           });
       },
     );
-    referenceToggle.setAttribute("aria-pressed", "false");
+    referenceToggle.setAttribute("aria-pressed", String(this.showReferences));
+    referenceToggle.toggleClass("is-active", this.showReferences);
     const zoomControls = controls.createDiv({ cls: "cti-stix-viewer-button-group" });
     zoomControls.append(
       this.iconButton("minus", "Zoom out", () => this.zoomBy(0.8)),
@@ -352,7 +357,9 @@ export class StixViewerView extends ItemView {
       if (sourcePoint === undefined || targetPoint === undefined) continue;
       const path = svgElement("path", {
         class: `cti-stix-viewer-edge cti-stix-viewer-edge-${edge.kind}${
-          edge.kind === "reference" ? " is-reference-hidden" : ""
+          edge.kind === "reference" && !this.showReferences
+            ? " is-reference-hidden"
+            : ""
         }`,
         d: stixViewerEdgePath(sourcePoint, targetPoint),
         "marker-end": `url(#${this.markerId})`,
@@ -378,7 +385,9 @@ export class StixViewerView extends ItemView {
       edgeElements.set(edge.key, path);
       const label = svgElement("text", {
         class: `cti-stix-viewer-edge-label cti-stix-viewer-edge-label-${edge.kind}${
-          edge.kind === "reference" ? " is-reference-hidden" : ""
+          edge.kind === "reference" && !this.showReferences
+            ? " is-reference-hidden"
+            : ""
         }`,
         x: String((sourcePoint.x + targetPoint.x) / 2 + STIX_VIEWER_NODE_RADIUS),
         y: String((sourcePoint.y + targetPoint.y) / 2 + STIX_VIEWER_NODE_RADIUS - 7),

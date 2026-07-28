@@ -3,8 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   CONTRIBUTORS_END,
   CONTRIBUTORS_START,
-  loginDigest,
-  parseExcludedLoginHashes,
+  renderContributorTable,
   replaceContributorSection,
   visibleContributors,
 } from "../scripts/update-contributors.mjs";
@@ -31,29 +30,24 @@ const contributors = [
 ];
 
 describe("README contributor automation", () => {
-  it("keeps the explicit OPSEC denylist and bots out of the public wall", () => {
-    const excluded = new Set([loginDigest("private-legacy-profile")]);
-    expect(
-      visibleContributors(contributors, excluded).map((item) => item.login),
-    ).toEqual(["rx4747"]);
+  it("shows every real contributor and filters automated bots", () => {
+    expect(visibleContributors(contributors).map((item) => item.login)).toEqual([
+      "rx4747",
+      "private-legacy-profile",
+    ]);
   });
 
-  it("fails closed when the private denylist is missing or malformed", () => {
-    expect(() => parseExcludedLoginHashes(undefined)).toThrow("required");
-    expect(() => parseExcludedLoginHashes("  ")).toThrow("cannot be empty");
-    expect(() => parseExcludedLoginHashes("not valid!")).toThrow("Invalid");
-    expect(parseExcludedLoginHashes("private-legacy-profile")).toEqual(
-      new Set([loginDigest("private-legacy-profile")]),
-    );
+  it("rejects rendering column counts that cannot advance", () => {
+    expect(() => renderContributorTable(contributors, 0)).toThrow("positive integer");
+    expect(() => renderContributorTable(contributors, -1)).toThrow("positive integer");
   });
 
   it("updates only the bounded contributor section", () => {
     const readme = `before\n${CONTRIBUTORS_START}\nold\n${CONTRIBUTORS_END}\nafter\n`;
-    const excluded = new Set([loginDigest("private-legacy-profile")]);
-    const updated = replaceContributorSection(readme, contributors, excluded);
+    const updated = replaceContributorSection(readme, contributors);
 
     expect(updated).toContain("https://github.com/rx4747");
-    expect(updated).not.toContain("private-legacy-profile");
+    expect(updated).toContain("private-legacy-profile");
     expect(updated).not.toContain("github-actions");
     expect(updated).toMatch(/^before/u);
     expect(updated).toMatch(/after\n$/u);

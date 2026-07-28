@@ -10,7 +10,7 @@ the plugin, then optionally download the separate
 The plugin does not require the template vault. It never uploads or replaces a
 vault.
 
-## Import the official OASIS APT1 example
+## Import the official OASIS STIX 2.1 APT1 example
 
 1. Open `Examples/OASIS APT1/apt1.json` from the vault template.
 2. Run **Import STIX Bundle as notes** and review the 76-object type summary.

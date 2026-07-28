@@ -41,6 +41,7 @@ function contextLocation(
 ): Pick<PatternSyntaxError, "line" | "column"> {
   return {
     line: context.start?.line ?? 1,
+    // antlr4ng 3.x exposes the in-line token offset as `column`.
     column: context.start?.column ?? 0,
   };
 }

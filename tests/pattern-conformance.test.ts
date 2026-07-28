@@ -63,5 +63,9 @@ describe("STIX pattern conformance", () => {
     expect(
       parseStixPattern("[file:size = 1]\nWITHIN 5 SECONDS WITHIN 10 SECONDS"),
     ).toEqual([expect.objectContaining({ line: 2, column: expect.any(Number) })]);
+    const locatedDuplicate = parseStixPattern(
+      "[file:size = 1] WITHIN 5 SECONDS WITHIN 10 SECONDS",
+    )[0];
+    expect(locatedDuplicate?.column).toBeGreaterThan(0);
   });
 });
