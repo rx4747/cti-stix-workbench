@@ -33,7 +33,11 @@ async function loadPlanner() {
 }
 
 function noteContent(frontmatter, body) {
-  return `---\n${stringify(frontmatter, { lineWidth: 0 })}---\n\n${body}`;
+  return `---\n${stringify(frontmatter, { lineWidth: 0 })}---\n\n${withFinalNewline(body)}`;
+}
+
+function withFinalNewline(value) {
+  return `${value.replace(/\n+$/u, "")}\n`;
 }
 
 async function createArtifacts() {
@@ -42,12 +46,9 @@ async function createArtifacts() {
   const { planBundleImport } = await loadPlanner();
   const plan = planBundleImport(bundle);
   const artifacts = new Map();
-  artifacts.set(plan.overviewPath, `${plan.overviewBody}\n`);
+  artifacts.set(plan.overviewPath, withFinalNewline(plan.overviewBody));
   for (const note of plan.notes) {
-    artifacts.set(
-      note.relativePath,
-      noteContent(note.frontmatter, `${note.markdownBody}\n`),
-    );
+    artifacts.set(note.relativePath, noteContent(note.frontmatter, note.markdownBody));
   }
   const files = Object.fromEntries(
     [...artifacts]
