@@ -51,6 +51,69 @@
   color: var(--text-faint);
 }
 
+.cti-stix-reference-controls {
+  display: flex;
+  min-width: min(520px, 55vw);
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--size-2-2);
+}
+
+.cti-stix-reference-pills,
+.cti-stix-reference-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--size-2-2);
+}
+
+.cti-stix-reference-pill {
+  display: inline-flex;
+  max-width: min(320px, 42vw);
+  align-items: center;
+  gap: var(--size-2-1);
+  padding: var(--size-2-1) var(--size-4-2);
+  color: var(--text-normal);
+  background: var(--background-modifier-hover);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-l);
+}
+
+.cti-stix-reference-pill > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cti-stix-reference-pill > button {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.cti-stix-reference-pill > button:hover {
+  color: var(--text-error);
+  background: var(--background-modifier-hover);
+}
+
+.cti-stix-reference-pill svg {
+  width: 13px;
+  height: 13px;
+}
+
+.cti-stix-reference-empty {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
 .cti-stix-json-input {
   min-width: min(420px, 50vw);
   font-family: var(--font-monospace);
@@ -506,6 +569,16 @@
 
   .cti-stix-json-input {
     min-width: 100%;
+  }
+
+  .cti-stix-reference-controls {
+    min-width: 100%;
+    align-items: stretch;
+  }
+
+  .cti-stix-reference-pills,
+  .cti-stix-reference-actions {
+    justify-content: flex-start;
   }
 }
 

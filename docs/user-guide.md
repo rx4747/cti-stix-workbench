@@ -36,7 +36,9 @@ Before authoring, review the plugin settings:
 3. Choose the note title and a vault-relative Markdown path.
 4. Open **Edit STIX properties** and complete the required fields.
 5. Use **Add property** only for optional properties you intend to populate.
-6. Edit `## Summary`, `## Content`, or `## Explanation` in normal Markdown
+6. For reference fields, choose a typed STIX note by name; the plugin writes
+   the wiki link and resolves its STIX ID during validation and export.
+7. Edit `## Summary`, `## Content`, or `## Explanation` in normal Markdown
    when the selected object type maps prose to one of those sections.
 
 New notes begin as honest drafts. An empty `stix_id` is normal: the first
@@ -70,9 +72,10 @@ add a list item to the source note using an explicit relationship type:
 ```
 
 The source note becomes `source_ref`, the linked target becomes `target_ref`,
-and `uses` becomes `relationship_type`. A directed Canvas edge works the same
-way when its label is `stix:uses`. Untyped links and unlabeled Canvas edges do
-not create hidden STIX semantics.
+and `uses` becomes `relationship_type`. The plugin generates and persists the
+Relationship UUID automatically. A directed Canvas edge works the same way
+when its label is `stix:uses`. Untyped links and unlabeled Canvas edges do not
+create hidden STIX semantics.
 
 ## Validate, inspect, and export
 
@@ -99,7 +102,8 @@ It never overwrites an existing export.
 4. Open the generated `Import Overview.md` and then **Open in STIX viewer**.
 5. Inspect an Indicator's nested kill-chain phase and external references with
    **Edit STIX properties**. Add absent optional properties through **Add
-   property**; `created_by_ref` is not required.
+   property**; `created_by_ref` is optional for ordinary SDOs such as these
+   imported objects.
 6. Validate and export the imported folder. The Bundle ID and JSON formatting
    may change, while object IDs, properties, nested values, and Relationships
    remain semantically equivalent.

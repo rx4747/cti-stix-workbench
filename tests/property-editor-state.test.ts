@@ -183,6 +183,21 @@ describe("STIX property editor state", () => {
     ).not.toHaveProperty("modified");
   });
 
+  it("does not advance modified when only a wiki-link display alias changes", () => {
+    const before = {
+      stix_type: "report",
+      modified: "2026-07-28T10:00:00.000Z",
+      object_refs: ["[[SDOs/APT1]]"],
+    };
+    expect(
+      advanceModifiedForEdit(
+        before,
+        { ...before, object_refs: ["[[SDOs/APT1|APT1]]"] },
+        new Date("2026-07-28T11:00:00.000Z"),
+      ),
+    ).toEqual({ ...before, object_refs: ["[[SDOs/APT1|APT1]]"] });
+  });
+
   it("omits untouched optional fields and empty optional nested children", () => {
     const definition = requireValue(
       stixCatalog.getObjectType("indicator"),

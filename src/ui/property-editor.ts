@@ -1,4 +1,12 @@
-import { type App, Modal, Notice, Setting, type TFile } from "obsidian";
+import {
+  type App,
+  FuzzySuggestModal,
+  Modal,
+  Notice,
+  Setting,
+  setIcon,
+  type TFile,
+} from "obsidian";
 
 import { stixCatalog } from "../catalog/stix-2.1";
 import type { CatalogField, ObjectTypeDefinition } from "../catalog/types";
@@ -12,9 +20,13 @@ import {
   createEditorValues,
   createExtensionValue,
   editableStixDefinition,
+  rawStixReferenceLabel,
+  referenceTypeAllowed,
   removeOptionalEditorField,
   scalarEditorText,
+  stixReferenceLink,
   updateObjectListItemField,
+  wikiLinkTarget,
 } from "./property-editor-state";
 
 const bodyMappedFields = new Map([
@@ -70,6 +82,92 @@ function frontmatterKey(fieldName: string): string {
     return "stix_id";
   }
   return fieldName;
+}
+
+interface StixReferenceCandidate {
+  readonly file: TFile;
+  readonly stixType: string;
+}
+
+class StixReferenceSuggestModal extends FuzzySuggestModal<StixReferenceCandidate> {
+  private readonly candidates: StixReferenceCandidate[];
+  private readonly choose: (link: string) => void;
+
+  constructor(
+    app: App,
+    targetTypes: readonly string[],
+    choose: (link: string) => void,
+  ) {
+    super(app);
+    this.choose = choose;
+    this.setPlaceholder("Choose a typed STIX note");
+    this.candidates = app.vault
+      .getMarkdownFiles()
+      .flatMap((file) => {
+        const frontmatter: unknown = app.metadataCache.getFileCache(file)?.frontmatter;
+        const stixType = isRecord(frontmatter) ? frontmatter.stix_type : undefined;
+        return typeof stixType === "string" &&
+          referenceTypeAllowed(stixType, targetTypes)
+          ? [{ file, stixType }]
+          : [];
+      })
+      .sort((left, right) => left.file.path.localeCompare(right.file.path));
+  }
+
+  getItems(): StixReferenceCandidate[] {
+    return this.candidates;
+  }
+
+  getItemText(candidate: StixReferenceCandidate): string {
+    return `${candidate.file.basename} — ${candidate.stixType} — ${candidate.file.path}`;
+  }
+
+  onChooseItem(candidate: StixReferenceCandidate): void {
+    this.choose(stixReferenceLink(candidate.file.path));
+  }
+}
+
+class RawStixReferenceModal extends Modal {
+  private reference = "";
+  private readonly choose: (reference: string) => void;
+
+  constructor(app: App, choose: (reference: string) => void) {
+    super(app);
+    this.choose = choose;
+  }
+
+  override onOpen(): void {
+    this.setTitle("Add raw STIX reference");
+    this.contentEl.createEl("p", {
+      text: "Use this only when the referenced object is not available as a typed note in this vault.",
+    });
+    new Setting(this.contentEl).setName("STIX id").addText((input) => {
+      input.setPlaceholder("indicator--UUID").onChange((value) => {
+        this.reference = value.trim();
+      });
+    });
+    new Setting(this.contentEl)
+      .addButton((button) => {
+        button.setButtonText("Cancel").onClick(() => this.close());
+      })
+      .addButton((button) => {
+        button
+          .setCta()
+          .setButtonText("Add reference")
+          .onClick(() => {
+            if (this.reference === "") {
+              new Notice("Enter a STIX identifier.");
+              return;
+            }
+            this.choose(this.reference);
+            this.close();
+          });
+      });
+  }
+
+  override onClose(): void {
+    this.contentEl.empty();
+  }
 }
 
 interface PropertyEditorOptions {
@@ -219,6 +317,10 @@ export class StixPropertyEditorModal extends Modal {
       this.renderExtensions(container, value, onChange, path);
       return;
     }
+    if (field.reference !== undefined) {
+      this.renderReferenceField(container, field, value, onChange);
+      return;
+    }
     if (field.dataType.includes("array<object>")) {
       this.renderObjectList(container, field, value, onChange, path);
       return;
@@ -288,6 +390,124 @@ export class StixPropertyEditorModal extends Modal {
         input.setDisabled(true);
       }
     });
+  }
+
+  private renderReferenceField(
+    container: HTMLElement,
+    field: CatalogField,
+    value: unknown,
+    onChange: (value: unknown) => void,
+  ): void {
+    const setting = this.createFieldSetting(container, field);
+    const targetTypes = field.reference?.targetTypes ?? ["*"];
+    const controls = setting.controlEl.createDiv({
+      cls: "cti-stix-reference-controls",
+    });
+    if (field.dataType.startsWith("array<")) {
+      const current = Array.isArray(value)
+        ? value.map((item) => scalarEditorText(item)).filter((item) => item !== "")
+        : [];
+      this.renderReferencePills(controls, current, (reference) => {
+        onChange(current.filter((item) => item !== reference));
+        this.render();
+      });
+      this.renderReferenceActions(controls, targetTypes, {
+        choose: (reference) => {
+          onChange(current.includes(reference) ? current : [...current, reference]);
+          this.render();
+        },
+        chooseLabel: "Add STIX note",
+      });
+      return;
+    }
+
+    const lockedCreator = this.hasStableIdentity && field.name === "created_by_ref";
+    const current = scalarEditorText(value);
+    if (current !== "") {
+      this.renderReferencePills(
+        controls,
+        [current],
+        lockedCreator
+          ? undefined
+          : () => {
+              onChange("");
+              this.render();
+            },
+      );
+    } else {
+      controls.createSpan({
+        cls: "cti-stix-reference-empty",
+        text: "No reference selected",
+      });
+    }
+    if (!lockedCreator) {
+      this.renderReferenceActions(controls, targetTypes, {
+        choose: (reference) => {
+          onChange(reference);
+          this.render();
+        },
+        chooseLabel: current === "" ? "Choose STIX note" : "Replace STIX note",
+      });
+    }
+  }
+
+  private renderReferencePills(
+    container: HTMLElement,
+    references: readonly string[],
+    remove?: (reference: string) => void,
+  ): void {
+    const pills = container.createDiv({ cls: "cti-stix-reference-pills" });
+    for (const reference of references) {
+      const pill = pills.createDiv({ cls: "cti-stix-reference-pill" });
+      pill.setAttribute("title", reference);
+      pill.createSpan({ text: this.referenceDisplayLabel(reference) });
+      if (remove !== undefined) {
+        const removeButton = pill.createEl("button", {
+          attr: { "aria-label": `Remove ${this.referenceDisplayLabel(reference)}` },
+        });
+        setIcon(removeButton, "x");
+        removeButton.addEventListener("click", () => remove(reference));
+      }
+    }
+  }
+
+  private renderReferenceActions(
+    container: HTMLElement,
+    targetTypes: readonly string[],
+    options: Readonly<{
+      choose: (reference: string) => void;
+      chooseLabel: string;
+    }>,
+  ): void {
+    const actions = container.createDiv({ cls: "cti-stix-reference-actions" });
+    const choose = actions.createEl("button", { text: options.chooseLabel });
+    choose.addEventListener("click", () => {
+      new StixReferenceSuggestModal(this.app, targetTypes, options.choose).open();
+    });
+    const raw = actions.createEl("button", { text: "Add raw id" });
+    raw.addEventListener("click", () => {
+      new RawStixReferenceModal(this.app, options.choose).open();
+    });
+  }
+
+  private referenceDisplayLabel(reference: string): string {
+    const linkTarget = wikiLinkTarget(reference);
+    if (linkTarget === undefined) {
+      return rawStixReferenceLabel(reference);
+    }
+    const target = this.app.metadataCache.getFirstLinkpathDest(
+      linkTarget,
+      this.file.path,
+    );
+    if (target === null) {
+      return linkTarget.split("/").at(-1) ?? linkTarget;
+    }
+    const frontmatter: unknown =
+      this.app.metadataCache.getFileCache(target)?.frontmatter;
+    const stixType = isRecord(frontmatter) ? frontmatter.stix_type : undefined;
+    return typeof stixType === "string"
+      ? `${target.basename} · ${stixType}`
+      : target.basename;
   }
 
   private renderObjectList(
