@@ -8,6 +8,19 @@
   STIX graph or recursively from the current folder.
 - Added a generated APT1 example Canvas with 46 object-note nodes and 30
   Relationship-note-backed edges.
+- Opened `.json` files in the local STIX viewer and kept Bundle import available
+  while that viewer is active.
+
+### Fixed
+
+- Kept imported note paths unique when object IDs share the same shortened UUID
+  prefix.
+- Excluded `Templates` from broad folder and whole-vault scopes by default so
+  intentionally incomplete templates do not produce false validation failures.
+- Required a persisted type-matching STIX ID before version or revocation
+  commands become available.
+- Reworked validation reports to lead with plain-language messages and repair
+  guidance while keeping internal diagnostic codes under technical details.
 
 ### Security
 

@@ -32,7 +32,9 @@ export async function executeBundleImport(
     throw new Error(`Import destination already exists: ${destination}`);
   }
   await ensureFolder(app, root);
-  const staging = normalizePath(`${root}/.cti-import-${crypto.randomUUID()}`);
+  // Obsidian excludes dot-prefixed folders from its vault index. Keep staging
+  // visible to the API until its final atomic rename.
+  const staging = normalizePath(`${root}/CTI Import staging ${crypto.randomUUID()}`);
   await app.vault.createFolder(staging);
   try {
     for (const note of plan.notes) {

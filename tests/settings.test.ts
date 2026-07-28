@@ -23,6 +23,7 @@ describe("parseWorkbenchSettings", () => {
         validationMode: "lenient",
         prettyPrint: false,
         extensionRegistryPath: "STIX Extensions/local.json",
+        scopeExcludedFolders: "Templates, Drafts",
         ignored: "value",
       }),
     ).toEqual({
@@ -35,6 +36,7 @@ describe("parseWorkbenchSettings", () => {
       validationMode: "lenient",
       prettyPrint: false,
       extensionRegistryPath: "STIX Extensions/local.json",
+      scopeExcludedFolders: "Templates, Drafts",
     });
   });
 
@@ -78,6 +80,7 @@ describe("workbench setting definitions", () => {
       "validationMode",
       "prettyPrint",
       "extensionRegistryPath",
+      "scopeExcludedFolders",
     ]);
   });
 

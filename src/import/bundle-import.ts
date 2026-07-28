@@ -66,8 +66,26 @@ function labelFor(object: StixObject): string {
   return object.type.replaceAll("-", " ");
 }
 
-function idSuffix(id: string): string {
-  return id.split("--", 2)[1]?.replaceAll("-", "").slice(0, 12) ?? "object";
+function idSuffix(id: string, full = false): string {
+  const token = id.split("--", 2)[1]?.replaceAll("-", "") ?? "object";
+  return full ? token : token.slice(0, 12);
+}
+
+function versionSuffix(object: StixObject, versionCount: number): string {
+  return versionCount > 1 && typeof object.modified === "string"
+    ? ` - ${object.modified.replaceAll(/[^0-9]/gu, "")}`
+    : "";
+}
+
+function notePath(object: StixObject, versionCount: number, fullId: boolean): string {
+  const suffix = ` - ${idSuffix(object.id, fullId)}${versionSuffix(
+    object,
+    versionCount,
+  )}`;
+  const label = safeNoteTitle(labelFor(object));
+  const availableLabelLength = Math.max(1, 120 - suffix.length);
+  const title = safeNoteTitle(`${label.slice(0, availableLabelLength)}${suffix}`);
+  return `${folderFor(object)}/${title}.md`;
 }
 
 function folderFor(object: StixObject): string {
@@ -130,16 +148,20 @@ export function planBundleImport(bundle: StixBundle): BundleImportPlan {
     versionsById.set(object.id, versions);
   }
   const pathsByVersion = new Map<string, string>();
-  for (const object of bundle.objects) {
-    const versionSuffix =
-      (versionsById.get(object.id)?.length ?? 0) > 1 &&
-      typeof object.modified === "string"
-        ? ` - ${object.modified.replaceAll(/[^0-9]/gu, "")}`
-        : "";
-    const title = safeNoteTitle(
-      `${labelFor(object)} - ${idSuffix(object.id)}${versionSuffix}`,
-    );
-    const path = `${folderFor(object)}/${title}.md`;
+  const shortPaths = bundle.objects.map((object) =>
+    notePath(object, versionsById.get(object.id)?.length ?? 0, false),
+  );
+  const shortPathCounts = new Map<string, number>();
+  for (const path of shortPaths) {
+    shortPathCounts.set(path, (shortPathCounts.get(path) ?? 0) + 1);
+  }
+  for (const [index, object] of bundle.objects.entries()) {
+    const shortPath = shortPaths[index];
+    if (shortPath === undefined) throw new TypeError(`Missing path for ${object.id}.`);
+    const path =
+      (shortPathCounts.get(shortPath) ?? 0) > 1
+        ? notePath(object, versionsById.get(object.id)?.length ?? 0, true)
+        : shortPath;
     if ([...pathsByVersion.values()].includes(path)) {
       throw new TypeError(`The Bundle produces a duplicate note path: ${path}`);
     }

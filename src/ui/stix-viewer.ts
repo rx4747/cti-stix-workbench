@@ -62,9 +62,13 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 function parseSource(value: unknown): StixViewerSource | undefined {
-  if (!isRecord(value) || (value.kind !== "json" && value.kind !== "note")) {
+  if (!isRecord(value)) {
     return undefined;
   }
+  if (typeof value.file === "string" && value.file.trim() !== "") {
+    return { kind: "json", path: value.file };
+  }
+  if (value.kind !== "json" && value.kind !== "note") return undefined;
   return typeof value.path === "string" && value.path.trim() !== ""
     ? { kind: value.kind, path: value.path }
     : undefined;
@@ -117,12 +121,18 @@ export class StixViewerView extends ItemView {
   }
 
   override getState(): Record<string, unknown> {
-    return this.source === undefined ? {} : { source: this.source };
+    if (this.source === undefined) return {};
+    return {
+      source: this.source,
+      ...(this.source.kind === "json" ? { file: this.source.path } : {}),
+    };
   }
 
   override async setState(state: unknown, result: ViewStateResult): Promise<void> {
     await super.setState(state, result);
-    const source = isRecord(state) ? parseSource(state.source) : undefined;
+    const source = isRecord(state)
+      ? (parseSource(state.source) ?? parseSource(state))
+      : undefined;
     if (source === undefined) {
       this.source = undefined;
       this.renderEmpty();
@@ -130,6 +140,10 @@ export class StixViewerView extends ItemView {
     }
     this.source = source;
     await this.reload();
+  }
+
+  getSource(): StixViewerSource | undefined {
+    return this.source;
   }
 
   protected override async onOpen(): Promise<void> {

@@ -13,6 +13,7 @@ const settingKeys = new Set<WorkbenchSettingKey>([
   "validationMode",
   "prettyPrint",
   "extensionRegistryPath",
+  "scopeExcludedFolders",
 ]);
 
 function normalizedVaultPath(value: string): string {
@@ -108,6 +109,15 @@ export function createWorkbenchSettingDefinitions(): SettingDefinitionItem<Workb
         key: "extensionRegistryPath",
         placeholder: "STIX Extensions/registry.json",
         validate: validateVaultPath,
+      },
+    },
+    {
+      name: "Folders excluded from broad scopes",
+      desc: "Comma-separated vault folders skipped by folder and whole-vault validation, export, and canvas generation.",
+      control: {
+        type: "text",
+        key: "scopeExcludedFolders",
+        placeholder: "Templates",
       },
     },
   ];

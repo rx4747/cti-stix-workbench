@@ -129,4 +129,25 @@ describe("STIX Bundle import", () => {
       ]),
     );
   });
+
+  it("keeps paths unique when IDs share the same short prefix", () => {
+    const objects = [1, 2, 3].map((suffix) => ({
+      type: "relationship",
+      id: `relationship--60000000-0000-4000-8000-00000000000${suffix}`,
+      modified: "2026-07-28T15:00:00.000Z",
+    }));
+
+    const plan = planBundleImport({
+      type: "bundle",
+      id: "bundle--70000000-0000-4000-8000-000000000001",
+      objects,
+    });
+
+    expect(new Set(plan.notes.map((note) => note.relativePath)).size).toBe(3);
+    expect(plan.notes.map((note) => note.relativePath)).toEqual(
+      objects.map((object) =>
+        expect.stringContaining(object.id.split("--")[1]?.replaceAll("-", "") ?? ""),
+      ),
+    );
+  });
 });

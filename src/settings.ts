@@ -9,6 +9,7 @@ export interface WorkbenchSettings {
   validationMode: ValidationMode;
   prettyPrint: boolean;
   extensionRegistryPath: string;
+  scopeExcludedFolders: string;
 }
 
 export const DEFAULT_SETTINGS: Readonly<WorkbenchSettings> = Object.freeze({
@@ -20,6 +21,7 @@ export const DEFAULT_SETTINGS: Readonly<WorkbenchSettings> = Object.freeze({
   validationMode: "strict",
   prettyPrint: true,
   extensionRegistryPath: "STIX Extensions/registry.json",
+  scopeExcludedFolders: "Templates",
 });
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -47,6 +49,17 @@ function parseVaultRelativePath(value: unknown, fallback: string): string {
   }
 
   return normalized;
+}
+
+function parseExcludedFolders(value: unknown): string {
+  if (typeof value !== "string") return DEFAULT_SETTINGS.scopeExcludedFolders;
+  const folders = value
+    .split(",")
+    .map((folder) => parseVaultRelativePath(folder, ""))
+    .filter((folder) => folder !== "");
+  return folders.length === value.split(",").length
+    ? [...new Set(folders)].join(", ")
+    : DEFAULT_SETTINGS.scopeExcludedFolders;
 }
 
 function parseDepth(value: unknown): number {
@@ -86,5 +99,6 @@ export function parseWorkbenchSettings(value: unknown): WorkbenchSettings {
       value.extensionRegistryPath,
       DEFAULT_SETTINGS.extensionRegistryPath,
     ),
+    scopeExcludedFolders: parseExcludedFolders(value.scopeExcludedFolders),
   };
 }

@@ -160,6 +160,49 @@ describe("Canvas, folder, and vault scopes", () => {
     expect(result.skippedCount).toBe(1);
   });
 
+  it("resolves typed wiki links outside a folder without adding their objects", async () => {
+    const host = fixtureHost();
+    host.notes.set("Investigations/Case.md", {
+      path: "Investigations/Case.md",
+      basename: "Case",
+      frontmatter: {
+        stix_type: "grouping",
+        stix_id: "grouping--50000000-0000-4000-8000-000000000004",
+        spec_version: "2.1",
+        created: CREATED,
+        modified: CREATED,
+        name: "Case",
+        context: "suspicious-activity",
+        object_refs: ["[[Actor]]", "[[Malware]]"],
+      },
+      markdown: "",
+      links: [
+        { raw: "Actor", targetPath: "Objects/Actor.md" },
+        { raw: "Malware", targetPath: "Objects/Malware.md" },
+      ],
+    });
+
+    const result = await validateScopedGraph(
+      host,
+      host.listMarkdownPaths("Investigations"),
+      [],
+      DEFAULT_SETTINGS,
+      dependencies,
+    );
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.bundle.objects).toHaveLength(1);
+    expect(result.bundle.objects[0]).toEqual(
+      expect.objectContaining({
+        object_refs: [
+          "threat-actor--50000000-0000-4000-8000-000000000001",
+          "malware--50000000-0000-4000-8000-000000000002",
+        ],
+      }),
+    );
+  });
+
   it("writes collision-safe Canvas and whole-vault exports only after validation", async () => {
     const host = fixtureHost();
     const canvas = await exportCanvasGraph(
