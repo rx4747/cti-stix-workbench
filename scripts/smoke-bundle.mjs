@@ -115,6 +115,7 @@ assert.deepEqual(
     "open-stix-viewer",
     "import-stix-bundle",
     "create-stix-object",
+    "create-analyst-workflow",
     "validate-active-stix-canvas",
     "export-active-stix-canvas",
     "validate-current-stix-folder",
