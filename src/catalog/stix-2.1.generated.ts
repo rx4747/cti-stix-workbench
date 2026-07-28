@@ -46,7 +46,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -95,7 +95,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -132,7 +132,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -157,11 +157,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -257,7 +257,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -306,7 +306,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -343,7 +343,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -368,11 +368,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -466,7 +466,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -515,7 +515,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -552,7 +552,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -577,11 +577,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -651,7 +651,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -700,7 +700,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -737,7 +737,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -762,11 +762,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -854,7 +854,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -903,7 +903,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -940,7 +940,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -965,11 +965,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -1116,7 +1116,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -1165,7 +1165,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -1202,7 +1202,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -1227,11 +1227,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -1301,7 +1301,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -1350,7 +1350,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -1387,7 +1387,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -1412,11 +1412,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -1555,7 +1555,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -1604,7 +1604,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -1641,7 +1641,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -1666,11 +1666,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -1801,7 +1801,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -1850,7 +1850,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -1887,7 +1887,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -1912,11 +1912,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -2072,7 +2072,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -2121,7 +2121,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -2158,7 +2158,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -2183,11 +2183,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -2311,7 +2311,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -2360,7 +2360,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -2397,7 +2397,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -2422,11 +2422,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -2696,7 +2696,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -2745,7 +2745,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -2782,7 +2782,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -2807,11 +2807,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -2995,7 +2995,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -3044,7 +3044,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -3081,7 +3081,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -3106,11 +3106,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -3198,7 +3198,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -3247,7 +3247,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -3284,7 +3284,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -3309,11 +3309,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -3407,7 +3407,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -3456,7 +3456,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -3493,7 +3493,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -3518,11 +3518,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -3621,7 +3621,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -3670,7 +3670,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -3707,7 +3707,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -3732,11 +3732,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -3830,7 +3830,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -3879,7 +3879,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -3916,7 +3916,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -3941,11 +3941,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -4185,7 +4185,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -4234,7 +4234,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -4271,7 +4271,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -4296,11 +4296,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -4422,7 +4422,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -4471,7 +4471,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -4508,7 +4508,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -4533,11 +4533,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -4607,7 +4607,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -4656,7 +4656,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -4693,7 +4693,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -4718,11 +4718,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -4828,7 +4828,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -4877,7 +4877,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -4914,7 +4914,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -4939,11 +4939,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -5061,7 +5061,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -5086,11 +5086,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -5194,7 +5194,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -5219,11 +5219,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -5308,7 +5308,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -5333,11 +5333,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -5446,7 +5446,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -5471,11 +5471,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -5560,7 +5560,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -5585,11 +5585,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -5680,7 +5680,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -5705,11 +5705,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -5941,7 +5941,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -5966,11 +5966,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -6130,7 +6130,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -6155,11 +6155,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -6256,7 +6256,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -6281,11 +6281,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -6382,7 +6382,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -6407,11 +6407,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -6484,7 +6484,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -6509,11 +6509,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -6586,7 +6586,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -6611,11 +6611,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -6832,7 +6832,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -6857,11 +6857,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -7022,7 +7022,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -7047,11 +7047,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -7158,7 +7158,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -7183,11 +7183,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -7260,7 +7260,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -7285,11 +7285,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -7442,7 +7442,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -7467,11 +7467,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -7615,7 +7615,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -7640,11 +7640,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -7894,7 +7894,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -7929,12 +7929,6 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "Identifies the confidence that the creator has in the correctness of their data."
         },
         {
-          "name": "lang",
-          "dataType": "string",
-          "required": false,
-          "description": "Identifies the language of the text content in this object."
-        },
-        {
           "name": "external_references",
           "dataType": "array<object>",
           "required": false,
@@ -7943,7 +7937,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -7980,7 +7974,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -8005,11 +7999,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -8061,8 +8055,8 @@ export const STIX_2_1_CATALOG_DATA = {
         {
           "name": "definition_type",
           "dataType": "string",
-          "required": true,
-          "description": "The definition_type property identifies the type of Marking Definition.",
+          "required": false,
+          "description": "Deprecated marking type. This property and definition are required when extensions is absent.",
           "vocabulary": {
             "kind": "closed",
             "name": "definition_type-enum",
@@ -8075,8 +8069,8 @@ export const STIX_2_1_CATALOG_DATA = {
         {
           "name": "definition",
           "dataType": "object",
-          "required": true,
-          "description": "The marking object itself.",
+          "required": false,
+          "description": "Deprecated marking object. This property and definition_type are required when extensions is absent.",
           "children": [
             {
               "name": "statement",
@@ -8146,7 +8140,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -8159,7 +8153,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -8196,7 +8190,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -8221,11 +8215,11 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
@@ -8278,12 +8272,12 @@ export const STIX_2_1_CATALOG_DATA = {
         {
           "name": "created_by_ref",
           "dataType": "string",
-          "required": false,
+          "required": true,
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
             "targetTypes": [
-              "*"
+              "identity"
             ]
           }
         },
@@ -8312,18 +8306,6 @@ export const STIX_2_1_CATALOG_DATA = {
           "description": "The revoked property indicates whether the object has been revoked."
         },
         {
-          "name": "confidence",
-          "dataType": "integer",
-          "required": false,
-          "description": "Identifies the confidence that the creator has in the correctness of their data."
-        },
-        {
-          "name": "lang",
-          "dataType": "string",
-          "required": false,
-          "description": "Identifies the language of the text content in this object."
-        },
-        {
           "name": "external_references",
           "dataType": "array<object>",
           "required": false,
@@ -8332,7 +8314,7 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -8369,7 +8351,7 @@ export const STIX_2_1_CATALOG_DATA = {
           "reference": {
             "cardinality": "many",
             "targetTypes": [
-              "*"
+              "marking-definition"
             ]
           }
         },
@@ -8394,21 +8376,15 @@ export const STIX_2_1_CATALOG_DATA = {
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             }
           ]
-        },
-        {
-          "name": "extensions",
-          "dataType": "object",
-          "required": false,
-          "description": "Specifies any extensions of the object, as a dictionary."
         },
         {
           "name": "name",
@@ -8516,7 +8492,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "reference": {
                 "cardinality": "one",
                 "targetTypes": [
-                  "*"
+                  "identity"
                 ]
               }
             },
@@ -8572,7 +8548,7 @@ export const STIX_2_1_CATALOG_DATA = {
                 {
                   "name": "source_name",
                   "dataType": "string",
-                  "required": false,
+                  "required": true,
                   "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
                 },
                 {
@@ -8609,7 +8585,7 @@ export const STIX_2_1_CATALOG_DATA = {
               "reference": {
                 "cardinality": "many",
                 "targetTypes": [
-                  "*"
+                  "marking-definition"
                 ]
               }
             },
@@ -8634,11 +8610,11 @@ export const STIX_2_1_CATALOG_DATA = {
                 {
                   "name": "marking_ref",
                   "dataType": "string",
-                  "required": true,
+                  "required": false,
                   "reference": {
                     "cardinality": "one",
                     "targetTypes": [
-                      "*"
+                      "marking-definition"
                     ]
                   }
                 }

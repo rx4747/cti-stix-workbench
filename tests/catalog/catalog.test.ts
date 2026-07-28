@@ -49,6 +49,70 @@ describe("STIX 2.1 catalog", () => {
     ).toBe("many");
   });
 
+  it("matches normative meta-object requirements and applicability", () => {
+    const language = stixCatalog.getObjectType("language-content");
+    const marking = stixCatalog.getObjectType("marking-definition");
+    const extension = stixCatalog.getObjectType("extension-definition");
+
+    expect(language?.fields.some((field) => field.name === "lang")).toBe(false);
+    expect(
+      marking?.fields.find((field) => field.name === "definition_type")?.required,
+    ).toBe(false);
+    expect(marking?.fields.find((field) => field.name === "definition")?.required).toBe(
+      false,
+    );
+    expect(
+      extension?.fields.find((field) => field.name === "created_by_ref")?.required,
+    ).toBe(true);
+    for (const notApplicable of ["confidence", "lang", "extensions"]) {
+      expect(
+        extension?.fields.some((field) => field.name === notApplicable),
+        notApplicable,
+      ).toBe(false);
+    }
+  });
+
+  it("requires source names and constrains common embedded references", () => {
+    for (const definition of stixCatalog.listObjectTypes()) {
+      const externalReferences = definition.fields.find(
+        (field) => field.name === "external_references",
+      );
+      if (externalReferences !== undefined) {
+        expect(
+          externalReferences.children?.find((field) => field.name === "source_name")
+            ?.required,
+          definition.type,
+        ).toBe(true);
+      }
+      const creator = definition.fields.find(
+        (field) => field.name === "created_by_ref",
+      );
+      if (creator !== undefined) {
+        expect(creator.reference?.targetTypes, definition.type).toEqual(["identity"]);
+      }
+      const markings = definition.fields.find(
+        (field) => field.name === "object_marking_refs",
+      );
+      if (markings !== undefined) {
+        expect(markings.reference?.targetTypes, definition.type).toEqual([
+          "marking-definition",
+        ]);
+      }
+      const granularMarking = definition.fields.find(
+        (field) => field.name === "granular_markings",
+      );
+      if (granularMarking !== undefined) {
+        const markingReference = granularMarking.children?.find(
+          (field) => field.name === "marking_ref",
+        );
+        expect(markingReference?.required, definition.type).toBe(false);
+        expect(markingReference?.reference?.targetTypes, definition.type).toEqual([
+          "marking-definition",
+        ]);
+      }
+    }
+  });
+
   it("records the normative ID-contributing properties for every SCO", () => {
     const actual = Object.fromEntries(
       stixCatalog

@@ -40,7 +40,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -88,7 +88,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -124,7 +124,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -148,10 +148,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -243,7 +243,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -291,7 +291,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -327,7 +327,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -351,10 +351,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -444,7 +444,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -492,7 +492,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -528,7 +528,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -552,10 +552,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -621,7 +621,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -669,7 +669,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -705,7 +705,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -729,10 +729,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -814,7 +814,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -862,7 +862,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -898,7 +898,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -922,10 +922,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -1068,7 +1068,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -1116,7 +1116,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -1152,7 +1152,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -1176,10 +1176,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -1245,7 +1245,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -1293,7 +1293,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -1329,7 +1329,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -1353,10 +1353,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -1491,7 +1491,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -1539,7 +1539,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -1575,7 +1575,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -1599,10 +1599,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -1729,7 +1729,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -1777,7 +1777,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -1813,7 +1813,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -1837,10 +1837,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -1992,7 +1992,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -2040,7 +2040,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -2076,7 +2076,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -2100,10 +2100,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -2223,7 +2223,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -2271,7 +2271,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -2307,7 +2307,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -2331,10 +2331,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -2596,7 +2596,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -2644,7 +2644,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -2680,7 +2680,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -2704,10 +2704,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -2877,7 +2877,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -2925,7 +2925,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -2961,7 +2961,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -2985,10 +2985,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -3070,7 +3070,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -3118,7 +3118,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -3154,7 +3154,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -3178,10 +3178,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -3269,7 +3269,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -3317,7 +3317,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -3353,7 +3353,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -3377,10 +3377,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -3473,7 +3473,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -3521,7 +3521,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -3557,7 +3557,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -3581,10 +3581,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -3672,7 +3672,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -3720,7 +3720,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -3756,7 +3756,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -3780,10 +3780,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -4019,7 +4019,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -4067,7 +4067,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -4103,7 +4103,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -4127,10 +4127,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -4248,7 +4248,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -4296,7 +4296,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -4332,7 +4332,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -4356,10 +4356,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -4425,7 +4425,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -4473,7 +4473,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -4509,7 +4509,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -4533,10 +4533,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -4634,7 +4634,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -4682,7 +4682,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -4718,7 +4718,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -4742,10 +4742,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -4853,7 +4853,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -4877,10 +4877,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -4977,7 +4977,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -5001,10 +5001,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -5083,7 +5083,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -5107,10 +5107,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -5211,7 +5211,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -5235,10 +5235,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -5315,7 +5315,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -5339,10 +5339,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -5425,7 +5425,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -5449,10 +5449,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -5662,7 +5662,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -5686,10 +5686,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -5839,7 +5839,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -5863,10 +5863,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -5953,7 +5953,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -5977,10 +5977,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -6067,7 +6067,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -6091,10 +6091,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -6161,7 +6161,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -6185,10 +6185,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -6255,7 +6255,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -6279,10 +6279,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -6483,7 +6483,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -6507,10 +6507,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -6657,7 +6657,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -6681,10 +6681,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -6781,7 +6781,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -6805,10 +6805,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -6875,7 +6875,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -6899,10 +6899,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -7047,7 +7047,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -7071,10 +7071,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -7209,7 +7209,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -7233,10 +7233,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -7479,7 +7479,7 @@
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -7513,12 +7513,6 @@
           "description": "Identifies the confidence that the creator has in the correctness of their data."
         },
         {
-          "name": "lang",
-          "dataType": "string",
-          "required": false,
-          "description": "Identifies the language of the text content in this object."
-        },
-        {
           "name": "external_references",
           "dataType": "array<object>",
           "required": false,
@@ -7527,7 +7521,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -7563,7 +7557,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -7587,10 +7581,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -7639,8 +7633,8 @@
         {
           "name": "definition_type",
           "dataType": "string",
-          "required": true,
-          "description": "The definition_type property identifies the type of Marking Definition.",
+          "required": false,
+          "description": "Deprecated marking type. This property and definition are required when extensions is absent.",
           "vocabulary": {
             "kind": "closed",
             "name": "definition_type-enum",
@@ -7650,8 +7644,8 @@
         {
           "name": "definition",
           "dataType": "object",
-          "required": true,
-          "description": "The marking object itself.",
+          "required": false,
+          "description": "Deprecated marking object. This property and definition_type are required when extensions is absent.",
           "children": [
             {
               "name": "statement",
@@ -7713,7 +7707,7 @@
           "description": "The created_by_ref property specifies the ID of the identity object that describes the entity that created this Marking Definition.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -7725,7 +7719,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -7761,7 +7755,7 @@
           "description": "The object_marking_refs property specifies a list of IDs of marking-definition objects that apply to this Marking Definition.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -7785,10 +7779,10 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
@@ -7838,11 +7832,11 @@
         {
           "name": "created_by_ref",
           "dataType": "string",
-          "required": false,
+          "required": true,
           "description": "The ID of the Source object that describes who created this object.",
           "reference": {
             "cardinality": "one",
-            "targetTypes": ["*"]
+            "targetTypes": ["identity"]
           }
         },
         {
@@ -7870,18 +7864,6 @@
           "description": "The revoked property indicates whether the object has been revoked."
         },
         {
-          "name": "confidence",
-          "dataType": "integer",
-          "required": false,
-          "description": "Identifies the confidence that the creator has in the correctness of their data."
-        },
-        {
-          "name": "lang",
-          "dataType": "string",
-          "required": false,
-          "description": "Identifies the language of the text content in this object."
-        },
-        {
           "name": "external_references",
           "dataType": "array<object>",
           "required": false,
@@ -7890,7 +7872,7 @@
             {
               "name": "source_name",
               "dataType": "string",
-              "required": false,
+              "required": true,
               "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
             },
             {
@@ -7926,7 +7908,7 @@
           "description": "The list of marking-definition objects to be applied to this object.",
           "reference": {
             "cardinality": "many",
-            "targetTypes": ["*"]
+            "targetTypes": ["marking-definition"]
           }
         },
         {
@@ -7950,19 +7932,13 @@
             {
               "name": "marking_ref",
               "dataType": "string",
-              "required": true,
+              "required": false,
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             }
           ]
-        },
-        {
-          "name": "extensions",
-          "dataType": "object",
-          "required": false,
-          "description": "Specifies any extensions of the object, as a dictionary."
         },
         {
           "name": "name",
@@ -8065,7 +8041,7 @@
               "description": "The ID of the Source object that describes who created this object.",
               "reference": {
                 "cardinality": "one",
-                "targetTypes": ["*"]
+                "targetTypes": ["identity"]
               }
             },
             {
@@ -8118,7 +8094,7 @@
                 {
                   "name": "source_name",
                   "dataType": "string",
-                  "required": false,
+                  "required": true,
                   "description": "The source within which the external-reference is defined (system, registry, organization, etc.)"
                 },
                 {
@@ -8154,7 +8130,7 @@
               "description": "The list of marking-definition objects to be applied to this object.",
               "reference": {
                 "cardinality": "many",
-                "targetTypes": ["*"]
+                "targetTypes": ["marking-definition"]
               }
             },
             {
@@ -8178,10 +8154,10 @@
                 {
                   "name": "marking_ref",
                   "dataType": "string",
-                  "required": true,
+                  "required": false,
                   "reference": {
                     "cardinality": "one",
-                    "targetTypes": ["*"]
+                    "targetTypes": ["marking-definition"]
                   }
                 }
               ]
