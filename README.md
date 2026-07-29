@@ -171,6 +171,7 @@ corepack pnpm install --frozen-lockfile
 corepack pnpm format:check
 corepack pnpm verify:sources
 corepack pnpm test
+corepack pnpm lint:biome
 corepack pnpm lint:marketplace
 corepack pnpm typecheck
 corepack pnpm build
@@ -178,10 +179,13 @@ corepack pnpm smoke
 corepack pnpm check:release
 ```
 
-Corepack pins pnpm for reproducible installs. Biome handles fast formatting and
-baseline checks, while the Obsidian ESLint rules remain the type-aware
-Marketplace gate. Husky and nano-staged check changed files before a commit;
-commitlint keeps commit messages in the Conventional Commits format.
+Corepack pins pnpm for reproducible installs. Biome is the formatter, baseline
+linter, and staged-file checker. ESLint remains only as the type-aware Obsidian
+Marketplace gate because Biome cannot yet express every Obsidian-specific rule.
+The project does not use Prettier. Husky runs Biome through nano-staged before a
+commit, commitlint validates Conventional Commit messages, and the pre-push
+hook runs both linters, typechecking, tests, a production build, and the bundle
+smoke test through `corepack pnpm check:push`.
 
 The validation toolchain uses checksum-pinned OASIS STIX 2.1 sources under
 `standards/`. Generated runtime files stay out of Git; small declaration files

@@ -10,16 +10,18 @@
     "check:docs": "node scripts/check-docs.mjs",
     "check:coverage": "node scripts/check-coverage.mjs",
     "check:generated": "node scripts/generate-catalog.mjs --check && node scripts/generate-vault-example.mjs --check && node scripts/generate-analyst-workflows.mjs --check && pnpm check:coverage",
+    "check:push": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm smoke",
     "check:security": "node scripts/security-audit.mjs",
     "commitlint": "commitlint --last --verbose",
     "dev": "node esbuild.config.mjs",
     "install:dev": "pnpm build && node scripts/install-dev.mjs",
-    "format": "biome check --write .",
-    "format:check": "biome ci .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
     "generate": "node scripts/generate-catalog.mjs && node scripts/generate-analyst-workflows.mjs",
     "generate:workflows": "node scripts/generate-analyst-workflows.mjs",
     "generate:vault-example": "node scripts/generate-vault-example.mjs",
-    "lint": "pnpm lint:marketplace",
+    "lint": "pnpm lint:biome && pnpm lint:marketplace",
+    "lint:biome": "biome lint --error-on-warnings .",
     "lint:marketplace": "eslint --max-warnings 0 src package.json",
     "package:plugin": "pnpm build && node scripts/package-release.mjs plugin",
     "prepare:validation": "node scripts/build-validation.mjs",
@@ -60,7 +62,6 @@
   },
   "packageManager": "pnpm@11.17.0",
   "nano-staged": {
-    "*.{js,mjs,ts,json,jsonc,css}": "biome check --write --no-errors-on-unmatched",
-    "src/**/*.ts": "eslint --max-warnings 0 --no-warn-ignored"
+    "*.{js,mjs,ts,json,jsonc,css}": "biome check --write --error-on-warnings --no-errors-on-unmatched"
   }
 }

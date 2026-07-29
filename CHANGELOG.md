@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Changed
+
+- Made Biome the primary formatter, baseline linter, and staged-file checker
+  while retaining ESLint as the type-aware Obsidian Marketplace gate.
+- Added a Husky pre-push gate for linting, typechecking, tests, production
+  builds, and bundle smoke testing.
+
 ## Released
 
 ## 1.5.1 — 2026-07-28

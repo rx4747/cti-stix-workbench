@@ -13,13 +13,25 @@ corepack pnpm install --frozen-lockfile
 corepack pnpm format:check
 corepack pnpm verify:sources
 corepack pnpm check:generated
+corepack pnpm check:docs
+corepack pnpm check:security
 corepack pnpm test
+corepack pnpm lint:biome
 corepack pnpm lint:marketplace
 corepack pnpm typecheck
 corepack pnpm build
 corepack pnpm smoke
+corepack pnpm audit --audit-level high
 corepack pnpm check:release
 ```
+
+Biome owns formatting, baseline linting, and staged-file checks. The separate
+Marketplace lint command retains type-aware and Obsidian-specific rules that
+Biome plugins cannot currently reproduce. Husky runs nano-staged at pre-commit
+and commitlint at commit-msg. Before a push, Husky runs both linters,
+typechecking, tests, a production build, and the bundle smoke test through
+`corepack pnpm check:push`; generated, documentation, security, audit, and
+release-package checks remain CI and pre-PR responsibilities.
 
 Do not hand-edit generated catalog, coverage, or template outputs. Edit their
 canonical sources and run `corepack pnpm generate`.
