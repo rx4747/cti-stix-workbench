@@ -13,12 +13,15 @@ corepack pnpm install --frozen-lockfile
 corepack pnpm format:check
 corepack pnpm verify:sources
 corepack pnpm check:generated
+corepack pnpm check:docs
+corepack pnpm check:security
 corepack pnpm test
 corepack pnpm lint:biome
 corepack pnpm lint:marketplace
 corepack pnpm typecheck
 corepack pnpm build
 corepack pnpm smoke
+corepack pnpm audit --audit-level high
 corepack pnpm check:release
 ```
 

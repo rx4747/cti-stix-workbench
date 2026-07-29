@@ -10,7 +10,7 @@
     "check:docs": "node scripts/check-docs.mjs",
     "check:coverage": "node scripts/check-coverage.mjs",
     "check:generated": "node scripts/generate-catalog.mjs --check && node scripts/generate-vault-example.mjs --check && node scripts/generate-analyst-workflows.mjs --check && pnpm check:coverage",
-    "check:push": "pnpm lint && pnpm typecheck && pnpm test && pnpm smoke",
+    "check:push": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm smoke",
     "check:security": "node scripts/security-audit.mjs",
     "commitlint": "commitlint --last --verbose",
     "dev": "node esbuild.config.mjs",
