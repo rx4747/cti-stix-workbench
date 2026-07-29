@@ -13,7 +13,9 @@ The detailed 2.0 design is in
 Status: planned, with alpha and beta previews before the stable 2.0 release.
 
 Version 2.0 will rebuild the Workbench around visual, scenario-driven
-investigations:
+investigations while keeping portable Markdown notes as the persisted source of
+truth. Visual workspaces generate and update STIX notes; the shared graph
+engine derives graphs from a workspace or another analyst-confirmed note scope.
 
 - empty-vault onboarding and guided creation of the first investigation;
 - 36 official cyber-first scenarios spanning triage, incident response,
@@ -22,12 +24,18 @@ investigations:
   ATT&CK, attribution, detection, mitigation, reporting, markings, review, and
   retrospectives;
 - separate read-only **STIX viewer** and editable **STIX visual builder** modes
-  backed by one graph engine;
+  backed by one graph engine that maps selected notes;
 - a full type-aware property inspector, drag-and-drop object creation,
   dedicated Relationship-note edge creation, and reviewed bulk evidence flows;
   and
 - portable persistent layouts, change previews, atomic rollback, and explicit
   duplicate decisions.
+
+Builder actions remain note-authoring actions: they preview and atomically
+create or update ordinary Markdown notes. Viewer can derive a graph from the
+notes in a v2 workspace or from all supported STIX notes in an explicit,
+user-confirmed scope. The visual graph and workspace manifest never replace or
+hide the underlying notes.
 
 The v2 release will remove all Canvas functionality and generated Canvas
 assets. It will also remove generated vault templates and vault

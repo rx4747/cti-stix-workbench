@@ -9,16 +9,18 @@ documented by the existing v1 guides until stable 2.0 ships.
 
 ## Product direction
 
-Version 2.0 makes the investigation—not a file, form, or Canvas—the primary
-unit of work. An analyst starts with a real mission, selects an official
-scenario, supplies the first known facts, and receives a minimally complete
-STIX graph that can grow through visual and expert workflows.
+Version 2.0 keeps ordinary Markdown STIX notes as the persisted, portable source
+of truth. A visual workspace organizes and authors those notes for one
+investigation; it is not a graph database or a replacement file format. An
+analyst starts with a real mission, selects an official scenario, supplies the
+first known facts, and receives a minimally complete set of notes whose
+relationships can be rendered as a STIX graph.
 
 The program has six goals:
 
 1. Make a useful first investigation possible in an empty vault.
 2. Organize cyber intelligence work around recognizable analyst scenarios.
-3. Make graph authoring visual without weakening explicit STIX semantics.
+3. Make note authoring visual without weakening explicit STIX semantics.
 4. Keep every multi-file mutation previewed, collision-safe, and atomic.
 5. Preserve a read-only expert path for existing v1 Markdown and local JSON.
 6. Retire Canvas and generated-vault coupling at the stable v2 boundary.
@@ -30,9 +32,9 @@ traffic. TAXII, OpenCTI, and MISP are separate, later, opt-in roadmap releases.
 
 The built-in catalog contains exactly 36 official cyber-first scenarios.
 Custom scenario definitions are not part of 2.0. Each scenario has a guided
-intake, a minimally complete starting graph, recommended modules, and explicit
-expansion paths. Required anchors are facts the analyst supplies; they are
-never fabricated defaults.
+intake, a minimally complete starting note set and derived graph, recommended
+modules, and explicit expansion paths. Required anchors are facts the analyst
+supplies; they are never fabricated defaults.
 
 ### Triage and intake
 
@@ -211,8 +213,8 @@ send network requests, or silently add evidence.
 ### `WorkspaceManifest`
 
 Every v2 investigation has a portable manifest stored with its workspace. The
-manifest describes workspace membership and presentation; it is not exported
-as STIX evidence.
+manifest indexes note membership and presentation; it stores no STIX object
+content, does not replace the notes, and is not exported as STIX evidence.
 
 ```ts
 interface WorkspaceManifest {
@@ -238,13 +240,13 @@ membership separately from ownership so one workspace can reference promoted
 Library intelligence without copying or deleting it.
 
 Layout data includes stable node positions, collapsed groups, viewport hints,
-and visual preferences needed to reopen the same view. It never changes the
-meaning of STIX objects or Relationships.
+and visual preferences needed to reopen the same view. It never becomes the
+source of STIX content or changes the meaning of notes and Relationships.
 
 ### `WorkspaceChangePlan`
 
-Every Builder mutation produces a complete, reviewable plan before it touches
-the vault.
+Every Builder mutation produces a complete, reviewable note-and-layout plan
+before it touches the vault.
 
 ```ts
 interface WorkspaceChangePlan {
@@ -309,21 +311,22 @@ After the structure preview, onboarding asks the analyst to:
 2. enter the scenario's real anchor values and provenance;
 3. select any compatible existing Library objects;
 4. choose optional modules and handling markings;
-5. review the minimally complete graph, destinations, and relationships; and
+5. review the minimally complete note set, derived graph, destinations, and
+   relationships; and
 6. confirm the atomic creation plan.
 
-The result includes one root Grouping, the minimum supported scenario objects,
-explicit Relationship notes where required, the portable manifest, and links
-from `Home.md`. It does not invent evidence or fill optional roles with
-placeholders.
+The result includes one root Grouping Markdown note, the minimum supported
+scenario object notes, explicit Relationship notes where required, the
+portable manifest, and links from `Home.md`. It does not invent evidence or
+fill optional roles with placeholders.
 
 ## Workspace ownership
 
 Each investigation workspace contains:
 
-- one root Grouping that defines the investigation scope;
+- one root Grouping Markdown note that defines the investigation scope;
 - one portable `WorkspaceManifest`;
-- scenario-owned STIX objects and dedicated Relationship notes;
+- scenario-owned STIX Markdown notes and dedicated Relationship notes;
 - selected analyst workflow notes;
 - Reports or report drafts; and
 - local source notes or references required to support analytic claims.
@@ -339,19 +342,26 @@ export scope validates and immediately before a successful validated export.
 The workspace manifest's local identifier and paths do not become STIX
 identities.
 
-## One graph engine, two modes
+## Notes, one graph engine, and two modes
 
 The viewer and Builder share a pure graph model, layout primitives, renderer,
-selection state, and navigation behavior. They have different capabilities and
-trust boundaries.
+selection state, and navigation behavior. The graph model is derived from
+validated Markdown notes selected for the current scope. It is not persisted as
+a second copy of STIX content. The modes have different capabilities and trust
+boundaries.
 
 ### STIX viewer
 
 Viewer mode is read-only. It can render:
 
-- a v2 workspace;
-- supported v1 Markdown scopes through the existing expert mapping path; and
+- the note membership declared by a v2 workspace;
+- a selected note, folder, or all supported STIX Markdown notes in an explicit,
+  user-confirmed scope through the expert mapping path; and
 - selected local STIX JSON through the bounded JSON parser.
+
+Viewer parses the chosen notes into a derived graph without modifying them.
+Loading all supported notes is an explicit, cancellable, progress-aware action;
+opening Viewer never silently enumerates the whole vault.
 
 Viewing raw JSON never makes it editable. An analyst must import the JSON
 Bundle into a new v2 workspace, review its conflict and path plan, and complete
@@ -362,9 +372,10 @@ the atomic import before Builder mode becomes available.
 Builder mode is available only for a valid v2 workspace manifest. Planned
 capabilities include:
 
-- drag a compatible STIX type or scenario role onto the graph;
-- complete required properties in a full type-aware inspector;
-- edit supported common and type-specific properties;
+- drag a compatible STIX type or scenario role onto the graph to propose a new
+  Markdown note;
+- complete required note properties in a full type-aware inspector;
+- edit supported common and type-specific note properties;
 - add references through filtered, compatible object selection;
 - draw a catalog-valid edge that creates a dedicated Relationship note;
 - add reviewed objects through bulk evidence flows;
@@ -376,6 +387,10 @@ Builder actions collect every required field before producing a plan. Drawing
 an edge never creates a hidden wiki-link interpretation: it creates a
 dedicated Relationship note with explicit source, target, and relationship
 type. Ordinary links remain ordinary links.
+
+Confirmation atomically creates or updates the planned Markdown notes and then
+refreshes the derived graph. Builder never stores STIX objects only in a visual
+graph, manifest, browser storage, or another opaque workspace database.
 
 The property inspector displays validation errors, marking implications,
 reference compatibility, provenance, and fields that will receive generated
