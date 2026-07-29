@@ -41,8 +41,11 @@ jobs:
           fi
           pnpm exec commitlint --from "${COMMIT_FROM}" --to "${COMMIT_TO}" --verbose
 
-      - name: Check formatting and baseline lint
+      - name: Check formatting
         run: pnpm format:check
+
+      - name: Biome lint (zero warnings)
+        run: pnpm lint:biome
 
       - name: Verify pinned standards
         run: pnpm verify:sources

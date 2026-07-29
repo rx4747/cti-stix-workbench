@@ -28,7 +28,13 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "preset": "recommended"
+      "preset": "recommended",
+      "style": {
+        "useImportType": "error"
+      },
+      "suspicious": {
+        "noExplicitAny": "error"
+      }
     }
   },
   "javascript": {
