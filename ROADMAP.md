@@ -1,125 +1,104 @@
 # Roadmap
 
-The roadmap preserves the Workbench's local-first trust boundary while making
-authoring, review, and eventual interoperability more capable. Shipped behavior
-is documented elsewhere; roadmap entries are plans, not compatibility claims.
+The roadmap is a scenario-first plan for the next major Workbench release.
+Shipped v1 behavior remains documented in the README, user guides, command
+reference, and compatibility boundary. Everything below is planned and
+unshipped.
 
-## 1.6.0 — Scenario workspaces and evidence growth
+The detailed 2.0 design is in
+[v2 visual workspaces](docs/v2-visual-workspaces.md).
 
-Status: planned. The existing fixed workspace packs will be replaced by a
-data-driven scenario engine. The selectable blueprints will cover:
+## 2.0 — Visual investigation workspaces
 
-- general CTI investigation, incident response, phishing, malware,
-  ransomware, vulnerability exploitation, credential compromise, cloud or
-  SaaS compromise, supply-chain compromise, data exfiltration, and insider
-  threat;
-- brand or domain impersonation, IOC and observable triage, Indicator
-  lifecycle and Sightings, threat hunting, and infrastructure or C2 mapping;
+Status: planned, with alpha and beta previews before the stable 2.0 release.
+
+Version 2.0 will rebuild the Workbench around visual, scenario-driven
+investigations while keeping portable Markdown notes as the persisted source of
+truth. Visual workspaces generate and update STIX notes; the shared graph
+engine derives graphs from a workspace or another analyst-confirmed note scope.
+
+- empty-vault onboarding and guided creation of the first investigation;
+- 36 official cyber-first scenarios spanning triage, incident response,
+  hunting, attribution, exposure, and intelligence production;
+- reusable modules for timelines, Observed Data, Indicators, Sightings,
+  ATT&CK, attribution, detection, mitigation, reporting, markings, review, and
+  retrospectives;
+- separate read-only **STIX viewer** and editable **STIX visual builder** modes
+  backed by one graph engine that maps selected notes;
+- a full type-aware property inspector, drag-and-drop object creation,
+  dedicated Relationship-note edge creation, and reviewed bulk evidence flows;
   and
-- actor or intrusion-set attribution, campaign tracking, ATT&CK technique
-  assessment, detection and mitigation planning, and strategic reporting.
+- portable persistent layouts, change previews, atomic rollback, and explicit
+  duplicate decisions.
 
-Each blueprint will declare required and optional STIX object roles,
-catalog-valid relationship recipes, relevant analyst workflow Notes,
-type-aware prompts and defaults, Canvas layout hints, and additions available
-after creation. Required evidence will come from reviewed analyst input;
-optional roles may be skipped and no fictional evidence will be generated.
+Builder actions remain note-authoring actions: they preview and atomically
+create or update ordinary Markdown notes. Viewer can derive a graph from the
+notes in a v2 workspace or from all supported STIX notes in an explicit,
+user-confirmed scope. The visual graph and workspace manifest never replace or
+hide the underlying notes.
 
-**Create investigation workspace** will become a staged, file-previewed wizard
-for a fresh scenario. It will collect the object roster, per-object properties,
-explicit relationships, workflow selection, and destination. Producer and
-marking references will remain independent optional fields on compatible
-objects. Initial Canvas creation will be opt-in and unchecked.
+The v2 release will remove all Canvas functionality and generated Canvas
+assets. It will also remove generated vault templates and vault
+synchronization. The separate CTI Investigation Vault repository will be
+archived only when stable v2 launches; it remains independent and supported
+for the shipped v1 line until then.
 
-**Add to current investigation** is planned for reviewed single-object and
-bulk growth: Indicators, SCOs, Observed Data, Sightings, workflow Notes,
-Reports, existing vault objects, Report membership, and explicit
-relationships. Bulk Indicator input will create type-correct patterns and
-support an optional shared collection event. Duplicate Indicators and SCOs
-will require an explicit reuse, skip, or create-separate decision.
+Existing v1 notes and `.canvas` files will not be rewritten. V1 notes retain
+expert viewing, validation, and export commands but cannot enter Builder mode.
+Migration is an explicit Bundle export followed by import into a new v2 vault.
+Existing `.canvas` files remain untouched and are ignored by v2.
 
-Relationship authoring will remain UUID-free. The existing relationship
-builder starts from an active source note, offers catalog-compatible targets
-and types, and writes an explicit declaration such as
-`stix:indicates [[Target|Target]]`. The new investigation flows will reuse the
-same catalog and declaration contract, preferring workspace targets before a
-vault-wide picker. Validated export will materialize declarations as STIX
-Relationship Objects.
+See the
+[scenario catalog and planned contracts](docs/v2-visual-workspaces.md) for the
+complete unshipped design.
 
-Every multi-file addition will preview creates and edits, use collision-safe
-paths, recheck edited sources, avoid overwrites, and compensate if a later
-write fails. A versioned HTML comment in the root Grouping will carry portable
-workspace metadata without entering exported STIX.
+## 2.1 — Local quality and matching
 
-## 1.6.1 — Additional origins and additive Canvas sync
+Status: planned after stable 2.0.
 
-Status: planned. Workspace creation will add four more origins:
-
-- link an active typed STIX note in place without copying its identity;
-- import a local Bundle unchanged beneath a new wrapper Grouping;
-- adopt an existing folder after unambiguous root-Grouping detection; and
-- create a structural fork that reuses scenario and workflow choices while
-  generating new identities and copying no evidence.
-
-**Sync active investigation Canvas** will match file nodes by normalized note
-path and typed edges by source, relationship type, and target. It will preview
-only missing nodes and edges, then add them without deleting, moving, or
-restyling existing coordinates, groups, text cards, colors, manual edges, or
-analyst annotations.
-
-Representative QA and showcase coverage will include Incident Response,
-Phishing, Indicator and Sighting work, and the existing attributed APT1 import.
-The remaining scenarios will stay plugin-generated instead of adding 21 large
-example workspaces to the repository.
-
-Release verification will cover minimal and fully selected scenario forms,
-all creation origins, invalid and ambiguous input, collisions and rollback,
-bulk and repeated Indicator flows, duplicate handling, Report membership,
-relationship validity, optional producer and marking behavior, and
-non-destructive Canvas synchronization. The normal generated-contract,
-documentation, security, unit, lint, typecheck, build, smoke, clean-vault
-Obsidian, and release-package gates will still apply.
-
-## 1.7 — Local quality control
-
-- Audit folders or the confirmed whole vault for broken typed references,
-  conflicting versions, ID/type mismatches, duplicate relationships, and SCO
-  identity collisions.
+- Audit confirmed scopes for broken references, conflicting versions,
+  ID/type mismatches, duplicate relationships, and SCO identity collisions.
+- Detect likely duplicate STIX objects and require reviewed resolution rather
+  than automatic merging.
 - Compare two local Bundles without modifying either source.
-- Navigate to findings without automatic merging or repair.
-
-## 1.8 — Indicator matching and Sightings
-
-- Evaluate a documented STIX Indicator-pattern subset against local SCO and
+- Evaluate the supported STIX Indicator-pattern subset against local SCO and
   Observed Data notes.
-- Never report uncertain matches for unsupported expressions.
-- Create reviewed Sighting drafts from confirmed local matches.
+- Create Sighting drafts only from analyst-reviewed matches.
 
-## 1.9 — Offline interoperability foundation
+## 2.2 — TAXII 2.1
 
-- Introduce pure collection, pagination, preview, cancellation, and receipt
-  contracts shared by future connectors.
-- Exercise ingestion and conflict handling with a local Bundle inbox.
-- Keep the installed runtime network-free.
+Status: planned and opt-in.
 
-## 2.0 — Opt-in TAXII 2.1
-
-- Discover API roots and collections, pull paginated objects with previews,
-  and explicitly push a reviewed Bundle.
+- Introduce reviewed pull and push through shared collection, pagination,
+  preview, cancellation, conflict, and receipt contracts.
 - Require confirmation before inbound writes or outbound transmission; do not
   run scheduled or automatic synchronization.
-- Support HTTP Basic and bearer-token authentication, with credentials stored
-  only in Obsidian SecretStorage.
-- Use HTTPS and Obsidian `requestUrl`, raise the minimum Obsidian version to the
-  first supported SecretStorage release, and disclose network behavior on every
-  public plugin surface.
+- Use Obsidian network and SecretStorage APIs within the compatibility boundary
+  published for the release.
 
-MISP and OpenCTI adapters may follow after the TAXII connector establishes a
-stable, reviewable interoperability contract.
+## 2.3 — OpenCTI
+
+Status: planned and opt-in.
+
+- Add platform-specific collection discovery, imports, and exports on the
+  shared connector contracts.
+- Preview mappings and conflicts before any local write or outbound sharing.
+- Record non-secret operation receipts without retaining credentials or
+  transmitted intelligence.
+
+## 2.4 — MISP
+
+Status: planned and opt-in.
+
+- Define explicit MISP attribute and object mappings.
+- Show lossy or unsupported mappings before import or export.
+- Keep synchronization reviewed, cancellable, and receipt-backed.
 
 ## Release gates
 
-Every minor release requires generated-contract checks, unit and integration
-tests, zero-warning marketplace lint, typecheck, production build and smoke
-test, clean-vault Obsidian QA, release-package verification, an annotated
-numeric tag, provenance attestations, and exactly three release assets.
+Every release must pass the checks appropriate to its actual change set.
+Stable product releases also require generated-contract checks, unit and
+integration tests, zero-warning marketplace lint, typecheck, production build
+and smoke testing, clean-vault Obsidian QA, release-package verification, an
+annotated numeric tag, provenance attestations, and exactly three release
+assets.
